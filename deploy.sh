@@ -1,0 +1,1 @@
+hugo --minify && rsync -avz --delete public/ honeyfox@git.honeyfox.uk:/var/www/html/george.honeywood.org.uk/
