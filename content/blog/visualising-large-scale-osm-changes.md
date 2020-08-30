@@ -2,7 +2,7 @@
 title: "Visualising OpenStreetMap changes at a macro scale"
 date: 2020-08-30T12:17:38+01:00
 slug: ""
-description: "How to see what yo"
+description: "How to see what you've done in OSM."
 keywords: [openstreetmap, data visualisation]
 draft: true
 tags: [openstreetmap]

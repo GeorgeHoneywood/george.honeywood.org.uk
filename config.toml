@@ -21,7 +21,7 @@ copyright = "© {year}"
   # Links to your social accounts, comment/uncomment as needed. Icons will be displayed for those specified.
   #twitter = "https://twitter.com/<your handle>"
   github = "https://github.com/GeorgeHoneywood"
-  cv = "ddg.gg"
+  cv = "/cv.pdf"
   email = "mailto:contact@honeyfox.uk"
   # facebook = "https://facebook.com/<your handle>"
   # gitlab = "https://gitlab.com/<your handle>"
@@ -66,3 +66,8 @@ copyright = "© {year}"
   title = "Blog"
   url = "/blog"
 
+[[menu.main]]
+  identifier = "cv"
+  name = "cv"
+  title = "CV"
+  url = "/cv"
