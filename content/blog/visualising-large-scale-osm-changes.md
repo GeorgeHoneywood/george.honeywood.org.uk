@@ -36,6 +36,8 @@ Therefore I decided that it'd be best to just create a full on slippy map, using
 
 Using the Leaflet library to display these tiles, I followed an example from Mapbox on how you can overlay two different maps with a slider. I also added two pieces of text to illustrate which side was which.
 
+![Screenshot of the website](/images/visualising-large-scale-osm-changes/result.png)
+
 You can see the result at [https://maps.honeyfox.uk](https://maps.honeyfox.uk) (which only works for the UK). This will likely be very impermanent, as I don't really have the means to host it -- the database and tileserver are currently on my desktop PC, with an SSH tunnel up to my VPS.
 
 ### failures
