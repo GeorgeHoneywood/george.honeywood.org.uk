@@ -22,7 +22,7 @@ YouTube was also difficult. It would really make me happy to avoid it, but it cu
 
 With Android I have come to a compromise, using LineageOS instead of the stock ROM on my phone. I also much prefer using F-Droid whenever possible over the Google Play Store, but I haven't gone as far to completely avoid Google Play Services yet. MicroG seems like a good solution, but I haven't gotten round to testing it out yet.
 
-In conclusion its not something I'd recommend for everyone, simply because it is not really worth the struggle of detangling yourself from Googles' tentacles, unless its something that you believe is important.
+In conclusion its not something I'd recommend for everyone, simply because it is not really worth the struggle of detangling yourself from Googles' tentacles, unless its something that you believe is important. I'll probably update this page eventually with my progress, which has rather depressingly slowed recently.
 
 </br>
 
