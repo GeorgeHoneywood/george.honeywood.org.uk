@@ -53,6 +53,8 @@ googleAnalytics = "UA-180792452-1"
   [markup.goldmark.renderer]
       unsafe = true
 
+sectionPagesMenu = "main"
+
 # Controls the navigation
 [[menu.main]]
   identifier = "about"
@@ -66,8 +68,9 @@ googleAnalytics = "UA-180792452-1"
   title = "Blog"
   url = "/blog"
 
-[[menu.main]]
-  identifier = "cv"
-  name = "cv"
-  title = "CV"
-  url = "/cv"
+#[[menu.main]]
+#  identifier = "cv"
+#  name = "cv"
+#  title = "CV"
+#  url = "/cv.pdf"
+#  Done = "beans"
