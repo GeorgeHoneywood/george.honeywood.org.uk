@@ -186,6 +186,24 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "macxcool",
+      "name": "Mark C",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2531654?v=4",
+      "profile": "https://github.com/macxcool",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "rbnis",
+      "name": "Robin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5955614?v=4",
+      "profile": "https://rbn.is",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
