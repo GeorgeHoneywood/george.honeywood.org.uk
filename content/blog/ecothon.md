@@ -40,4 +40,4 @@ We run two nodes in the cluster, with traffic split between them using a load ba
 
 ## github repository
 
-You can see the repository [here,](https://github.com/JoeRourke123/ecothon) or even try it out if you are feeling brave.
+You can see the repository [here,](https://github.com/JoeRourke123/ecothon) or even try it out if you are feeling brave -- you can download an APK from the Github releases.
