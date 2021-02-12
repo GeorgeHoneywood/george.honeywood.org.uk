@@ -2,18 +2,17 @@ $medium: 800px;
 
 .burger__container {
     width: unset;
-    border: 2px dotted;
-    border-top-style: none;
-    border-right-style: none;
     right: 0;
     position: fixed;
+    background: rgba($color: #ffffff, $alpha: 0.825);
 }
 
-// .blog-image {
-//     @media screen and (min-width: $medium) {
-//         width: 70%;
-//       }
-// }
+.burger__meat--2 {
+    position: relative;
+    float: right;
+  }
+  
+
 
 .post{
     img {
