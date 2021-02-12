@@ -11,4 +11,4 @@
     {{ .Scratch.Set "modified-image" ($image.Resize $options) }}
 {{ end }}
 
-<img style="width: {{.Get "width"}}; float: {{.Get "float"}}; margin-top: {{.Get "margin"}}" src='{{ (.Scratch.Get "modified-image").Permalink }}' alt='{{ .Get "alt" }}'>
+<img style="width: {{default "100%" (.Get "width")}}; float: {{default "none" ( .Get "float")}}; margin-top: {{default "10px" (.Get "margin")}}" src='{{ (.Scratch.Get "modified-image").Permalink }}' alt='{{ .Get "alt" }}'>
