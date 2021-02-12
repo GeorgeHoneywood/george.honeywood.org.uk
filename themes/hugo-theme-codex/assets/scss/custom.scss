@@ -1,0 +1,30 @@
+$medium: 800px;
+
+.burger__container {
+    width: unset;
+    border: 2px dotted;
+    border-top-style: none;
+    border-right-style: none;
+    right: 0;
+    position: fixed;
+}
+
+// .blog-image {
+//     @media screen and (min-width: $medium) {
+//         width: 70%;
+//       }
+// }
+
+.post{
+    img {
+        @media screen and (max-width: $medium) {
+            width: 65% !important;;
+        }
+    }
+}
+
+main {  
+    @media screen and (max-width: $medium - 1) {
+      padding-top: 1rem;
+    }
+  }

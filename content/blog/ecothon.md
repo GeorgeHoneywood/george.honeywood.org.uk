@@ -4,7 +4,7 @@ date: 2021-02-12T11:46:43Z
 slug: ""
 description: "ecothon is a social network for those who care about the environment"
 keywords: ["hackathon", "ecothon", "github"]
-draft: true
+draft: false
 tags: ["projects"]
 math: false
 toc: false
