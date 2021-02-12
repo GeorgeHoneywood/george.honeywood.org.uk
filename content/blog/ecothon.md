@@ -12,11 +12,11 @@ toc: false
 
 ## demo
 
-Last weekend I took part in hackathon working with 3 of my housemates. We decided to make an social network app that inspires people to live a more eco-concious lifestyle. It has a concept of achievements, which are simple changes or tasks that people can make to reduce their impact.
+Last weekend I took part in a hackathon with 3 of my housemates. We decided to make an social network app that inspires people to live a more eco-concious lifestyle. It has a concept of achievements, which are simple changes or tasks that people can make to reduce their environmental impact.
 
 {{< container-image path="images/ecothon/achievement.jpg" method="Resize" options="400x png Lanczos" width="45%" margin="10px" alt="Achievement" >}}
 
-You can either privately complete an achievement, or create a post linked to that specific achievement. Either of these will add to your "carbon score", which is displayed on a leaderboard against people you are following.
+You can either privately complete an achievement, or publicly create a post linked to that specific achievement. Either of these will add to your "carbon score", which is displayed on a leaderboard against people you are following.
 
 {{< container-image path="images/ecothon/leaderboard.jpg" method="Resize" options="400x png Lanczos" width="45%" margin="10px" alt="Leaderboard" >}}
 
