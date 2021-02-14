@@ -12,7 +12,7 @@ toc: false
 
 ## demo
 
-Last weekend I took part in a hackathon with 3 of my housemates. We decided to make an social network app that inspires people to live a more eco-concious lifestyle. It has a concept of achievements, which are simple changes or tasks that people can make to reduce their environmental impact.
+Last weekend I took part in a hackathon with 3 of my housemates. We decided to make a social network app that inspires people to live a more eco-concious lifestyle. It has a concept of achievements, which are simple changes or tasks that people can make to reduce their environmental impact.
 
 {{< container-image path="images/ecothon/achievement.jpg" method="Resize" options="400x png Lanczos" width="45%" margin="10px" alt="Achievement" >}}
 
