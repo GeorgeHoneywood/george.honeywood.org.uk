@@ -19,17 +19,16 @@
               {{ end }}
           </article>
 
-        <div class="details__list">
-          <p>
-          Page last updated with <a href="https://github.com/GeorgeHoneywood/george.honeywood.org.uk/commit/{{ .GitInfo.AbbreviatedHash }}">{{ .GitInfo.AbbreviatedHash }}</a> at {{ .GitInfo.CommitDate.Format $dateFormat }}:<br/></p>
-        <p class="details__subject">{{ .GitInfo.Subject }}</p> </div>
+          {{ if $.Param "commitDetails"}}
+          {{ partial "commit-details.html" .}} 
+          {{end}}
 
           
           {{ partial "tags.html" .}} {{ partial "post-pagination.html" .}}
           {{ template "_internal/disqus.html" . }}
           <footer class="post__footer">
             {{ partial "social-icons.html" .}}
-            <p>{{ replace .Site.Copyright "{year}" now.Year }}</p>
+            <p>{{ replace .Site.Copyright "{year}" now.Year | safeHTML}}</p>
           </footer>
           </div>
       </div>
