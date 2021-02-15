@@ -18,6 +18,13 @@
                   {{ partial "math.html" . }}
               {{ end }}
           </article>
+
+        <div class="details__list">
+          <p>
+          Page last updated with <a href="https://github.com/GeorgeHoneywood/george.honeywood.org.uk/commit/{{ .GitInfo.AbbreviatedHash }}">{{ .GitInfo.AbbreviatedHash }}</a> at {{ .GitInfo.CommitDate.Format $dateFormat }}:<br/></p>
+        <p class="details__subject">{{ .GitInfo.Subject }}</p> </div>
+
+          
           {{ partial "tags.html" .}} {{ partial "post-pagination.html" .}}
           {{ template "_internal/disqus.html" . }}
           <footer class="post__footer">

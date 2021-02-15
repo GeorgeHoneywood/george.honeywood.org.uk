@@ -16,7 +16,7 @@ googleAnalytics = "UA-180792452-1"
 [params]
   # Follow the Hugo date/time format reference here: 
   # https://gohugo.io/functions/format/#gos-layout-string
-  dateFormat = "2006-01-02"
+  dateFormat = "3:04pm, 02/01/2006"
 
   # Links to your social accounts, comment/uncomment as needed. Icons will be displayed for those specified.
   #twitter = "https://twitter.com/<your handle>"
