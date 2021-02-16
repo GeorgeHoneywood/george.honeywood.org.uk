@@ -10,20 +10,32 @@ $medium: 800px;
 .burger__meat--2 {
     position: relative;
     float: right;
-  }
-  
+}
 
-
-.post{
+.post {
     img {
         @media screen and (max-width: $medium) {
-            width: 65% !important;;
+            width: 65% !important;
+        }
+    }
+
+    .details__list {
+        margin-top: 1.5rem;
+        font-size: smaller;
+        color: #9b9b9b;
+
+        p {
+            margin-top: 0;
+        }
+
+        .details__subject {
+            font-style: italic;
         }
     }
 }
 
-main {  
+main {
     @media screen and (max-width: $medium - 1) {
-      padding-top: 1rem;
+        padding-top: 1rem;
     }
-  }
+}

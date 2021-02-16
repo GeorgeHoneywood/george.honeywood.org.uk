@@ -4,7 +4,12 @@ theme = "hugo-theme-codex"
 title = "George Honeywood"
 languageCode = "en-gb"
 baseURL = "https://george.honeywood.org.uk/"
-copyright = "© {year}"
+copyright = "<a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>CC BY-NC-SA 4.0</a> - {year}"
+
+# You must set this to true to enable the commit
+# details setting
+
+enableGitInfo = true
 
 # Add your Disqus shortname here.
 # disqusShortname = ""
@@ -16,7 +21,12 @@ googleAnalytics = "UA-180792452-1"
 [params]
   # Follow the Hugo date/time format reference here: 
   # https://gohugo.io/functions/format/#gos-layout-string
-  dateFormat = "2006-01-02"
+  dateFormat = "3:04pm, 02/01/2006"
+
+  # Display a message at the bottom of a post showing when it was last updated, with what commit
+  # Requires project to be in a git repository, and that
+  # enableGitInfo = true
+  commitDetails = true
 
   # Links to your social accounts, comment/uncomment as needed. Icons will be displayed for those specified.
   #twitter = "https://twitter.com/<your handle>"
@@ -68,10 +78,3 @@ sectionPagesMenu = "main"
   name = "blog"
   title = "Blog"
   url = "/blog"
-
-#[[menu.main]]
-#  identifier = "cv"
-#  name = "cv"
-#  title = "CV"
-#  url = "/cv.pdf"
-#  Done = "beans"
