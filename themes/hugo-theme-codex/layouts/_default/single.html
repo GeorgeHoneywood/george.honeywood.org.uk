@@ -23,6 +23,10 @@
           {{ partial "commit-details.html" .}} 
           {{end}}
 
+          {{ if $.Param "comments"}}
+          {{ partial "comments.html" .}} 
+          {{end}}
+
           
           {{ partial "tags.html" .}} {{ partial "post-pagination.html" .}}
           {{ template "_internal/disqus.html" . }}
@@ -54,4 +58,7 @@
     <script src="/js/table-of-contents.js"></script>
   {{ end }}
 
+  {{ if $.Param "comments"}}
+    {{/*<script src="/js/rfcomment.js"></script>*/}}
+  {{ end }}
 {{ end }}

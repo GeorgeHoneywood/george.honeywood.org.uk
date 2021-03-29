@@ -27,6 +27,7 @@ googleAnalytics = "UA-180792452-1"
   # Requires project to be in a git repository, and that
   # enableGitInfo = true
   commitDetails = true
+  comments = true
 
   # Links to your social accounts, comment/uncomment as needed. Icons will be displayed for those specified.
   #twitter = "https://twitter.com/<your handle>"
