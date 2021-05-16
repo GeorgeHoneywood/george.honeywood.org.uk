@@ -34,8 +34,8 @@ HAVING avg_hub_dist > 40;
 
 ```SQL
 SELECT route_code, designation, geometry
-FROM missing_prow_list
-INNER JOIN prow_dataset
+FROM prow_dataset
+INNER JOIN missing_prow_list
 ON missing_prow_list.route_code = prow_dataset.route_code
 ```
 
