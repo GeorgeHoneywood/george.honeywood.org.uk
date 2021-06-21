@@ -1,10 +1,14 @@
-{{ $dateFormat := .Site.Params.dateFormat | default "Jan 2 2006" }}
-{{ $hash := .GitInfo.AbbreviatedHash  }}
+{{- if $.GitInfo -}}
 
-<div class="details__list">
-    <p>
-      Page last updated by <a href="https://github.com/GeorgeHoneywood/george.honeywood.org.uk/commit/{{ $hash }}">{{ $hash }}</a> - {{ .GitInfo.CommitDate.Format $dateFormat }}:
-      <br>
-    </p>
-    <p class="details__subject">{{ .GitInfo.Subject }}</p>
-</div>
+  {{ $dateFormat := .Site.Params.dateFormat | default "Jan 2 2006" }}
+  {{ $hash := .GitInfo.AbbreviatedHash  }}
+
+  <div class="details__list">
+      <p>
+        Page last updated by <a href="https://github.com/GeorgeHoneywood/george.honeywood.org.uk/commit/{{ $hash }}">{{ $hash }}</a> - {{ .GitInfo.CommitDate.Format $dateFormat }}:
+        <br>
+      </p>
+      <p class="details__subject">{{ .GitInfo.Subject }}</p>
+  </div>
+
+{{- end -}}
