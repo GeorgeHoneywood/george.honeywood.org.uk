@@ -4,7 +4,7 @@ date: 2021-06-20T11:41:00Z
 slug: ""
 description: "working with OpenStreetMap history files"
 keywords: ["openstreetmap"]
-draft: true
+draft: false
 tags: ["openstreetmap"]
 math: false
 toc: false
