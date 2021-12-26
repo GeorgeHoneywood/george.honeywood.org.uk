@@ -13,12 +13,6 @@ $medium: 800px;
 }
 
 .post {
-    img {
-        @media screen and (max-width: $medium) {
-            width: 65% !important;
-        }
-    }
-
     .details__list {
         margin-top: 1.5rem;
         font-size: smaller;
@@ -35,7 +29,7 @@ $medium: 800px;
 }
 
 main {
-    @media screen and (max-width: $medium - 1) {
-        padding-top: 1rem;
+    @media screen and (max-width: ($medium - 1)) {
+        padding-top: 4rem;
     }
 }
