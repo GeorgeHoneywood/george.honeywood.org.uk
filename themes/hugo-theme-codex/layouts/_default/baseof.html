@@ -51,6 +51,38 @@
 
   {{ partial "nav.html" .}}
 
+  <!-- FIXME: would rather this was not here... -->
+  <script>
+    /** 
+     * set color scheme
+     * @param {boolean} dark - true for dark, false for light
+    */
+    function setColorScheme(dark){
+      let root = document.querySelector("html");
+
+      if (dark === true) {
+        root.classList.remove("theme--default");
+        root.classList.add("theme--dark");
+      } else {
+        root.classList.remove("theme--dark");
+        root.classList.add("theme--default");
+      }
+    }
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      this.setColorScheme(e.matches);
+    })
+
+    let themePref = localStorage.getItem('theme');
+    if (themePref === "dark") {
+      setColorScheme(true);
+    } else if (themePref === "default"){
+        setColorScheme(false);
+    } else {
+      setColorScheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+  </script>
+
   <main>
     {{ block "main" . }} {{ end }}
   </main>

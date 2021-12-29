@@ -6,9 +6,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: $white;
   visibility: hidden;
   z-index: 1;
+  @include themed() {
+    background: t($bg);
+  }
 
   @media screen and (min-width: $medium) {
     display: block;
@@ -67,13 +69,18 @@
   color: $grey;
   text-decoration: none;
   font-size: 2em;
+  cursor: pointer;
 
   &.active {
-    color: $black;
+    @include themed() {
+      color: t($text);
+    }
   }
 
   &:hover {
-    color: $black;
+    @include themed() {
+      color: t($text);
+    }
   }
 
   @media screen and (min-width: $medium) {

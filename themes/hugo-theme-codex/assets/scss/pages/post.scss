@@ -55,6 +55,16 @@ $tocBreakpoint: 1024px;
     margin: 0 auto;
     display: block;
   }
+
+  a {
+    @include themed() {
+      color: t($link);
+
+      &:visited {
+          color: t($visited);
+      }
+    }
+  }
 }
 
 #post__title {
@@ -100,7 +110,9 @@ $tocBreakpoint: 1024px;
   }
 
   a.active {
-    color: rgb(51, 51, 51);
+    @include themed() {
+      color: t($text);
+    }
   }
 }
 
@@ -133,6 +145,10 @@ $tocBreakpoint: 1024px;
   &:hover {
     background: lighten($primary, 38%);
   }
+
+  // &:visited {
+  //   color: lighten($primary, 100%) !important;
+  // }
 }
 
 .gif {
@@ -173,9 +189,6 @@ $tocBreakpoint: 1024px;
     &:last-of-type {
       margin-top: 0;
     }
-    &:hover {
-      background-color: #f6f9fc;
-    }
   }
 }
 
@@ -185,7 +198,9 @@ $tocBreakpoint: 1024px;
 }
 
 .pagination__title {
-  color: $black;
+  @include themed() {
+    color: t($text);
+  }
   font-weight: 700;
   margin-top: 0.25rem;
 }
@@ -193,7 +208,6 @@ $tocBreakpoint: 1024px;
 footer {
   text-align: center;
   padding: 0 1.5rem;
-  background: $white;
 
   p {
     margin-top: 1rem; // reduce margin top due to social icons' padding
@@ -204,20 +218,10 @@ footer {
 
 /* overrides */
 .post__content {
-  ul {
-    list-style: none;
-
-    li {
+  ul li {
       margin-bottom: 0.5rem;
-
-      &::before {
-        content: "-";
-        color: $darkGrey;
-        position: absolute;
-        margin-left: -15px;
-      }
     }
-  }
+  
 }
 
 .twitter-tweet.twitter-tweet-rendered {

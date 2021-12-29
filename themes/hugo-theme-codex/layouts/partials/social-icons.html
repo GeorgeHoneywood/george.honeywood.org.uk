@@ -8,7 +8,12 @@
       <a class="social-icons__link" rel="me" title="{{ . }}"
          href="{{ index $currentPage.Site.Params $icon }}"
          target="_blank" rel="noopener">
-        <div class="social-icons__icon" style="background-image: url('{{print "svg/" $icon ".svg" | absURL}}')"></div>
+         {{ $url := print "svg/" $icon ".svg" | absURL }} 
+        <div 
+          class="social-icons__icon"
+          style="mask-image: url('{{$url}}'); -webkit-mask-image: url('{{$url}}')"
+          >
+        </div>
       </a>
     {{ end }}
   {{ end }}   

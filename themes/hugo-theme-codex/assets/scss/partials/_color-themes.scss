@@ -1,0 +1,43 @@
+$bg: 'bg';
+$text: 'text';
+$link: 'link';
+$visited: 'visited';
+
+$themes: (
+        default: (
+                bg: $white,
+                text: $black,
+                // text-secondary: $text--2--light,
+                link: #0000ee,
+                visited: #551a8b,
+                // hover: $hover--light,
+                // border: $border--light
+        ),
+        dark: (
+                bg: #181a1b,
+                text: #e8e6e3,
+                // text-secondary: $text--2--dark,
+                link: #58a6ff,
+                visited: #c34abd,
+                // hover: $hover--dark,
+                // border: $border--dark
+        ),
+);
+
+@mixin themed() {
+  @each $theme, $map in $themes {
+    .theme--#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function t($key) {
+  @return map-get($theme-map, $key);
+}

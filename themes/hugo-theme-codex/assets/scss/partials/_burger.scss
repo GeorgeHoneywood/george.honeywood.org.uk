@@ -5,7 +5,9 @@
   padding: 0 1.5rem;
   position: fixed;
   width: 100%;
-  background: $white;
+  @include themed() {
+    background: t($bg);
+  }
   z-index: 2;
 
   @media screen and (min-width: $medium) {
@@ -24,10 +26,12 @@
   position: absolute;
   width: $meatWidth;
   height: $meatHeight;
-  background: $black;
   top: calc(50% - #{$meatHeight} / 2);
   left: calc(50% - #{$meatWidth} / 2);
   transition: all 150ms ease-in;
+  @include themed() {
+    background: t($text);
+  }
 }
 
 .burger__meat--1 {

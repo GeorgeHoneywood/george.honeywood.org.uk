@@ -1,8 +1,15 @@
+@import "color-themes";
+
 html,
 body {
-  background-color: $white;
-  color: $black;
+  @include themed() {
+    color: t($text);
+    background: t($bg);
+  }
+
   height: 100%;
+  // transition: all 0.4s ease-in-out 0s; //FIXME: looks cool when you switch theme but jank on page
+  // load
 }
 
 html {
