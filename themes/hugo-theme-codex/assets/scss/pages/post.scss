@@ -1,5 +1,4 @@
 @import "../main";
-@import "../partials/github-syntax-highlighting";
 
 $tocBreakpoint: 1024px;
 
@@ -242,4 +241,8 @@ table {
     padding: 0.5em 1em;
     border: 1px double $greyTableBorder;
   }
+}
+
+.footnotes {
+margin-top: 1rem;
 }

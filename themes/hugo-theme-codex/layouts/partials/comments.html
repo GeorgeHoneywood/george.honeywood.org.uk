@@ -5,39 +5,38 @@
 
   <p class="comments__help">
     Add a comment by sending an email to <a href="mailto:comments@honeyfox.uk?subject={{ $.File.TranslationBaseName | urlize }}">comments@honeyfox.uk</a>, with the subject line "{{ $.File.TranslationBaseName }}".
-    Your name from the email will be published.
     You can use markdown for formatting.
   </p>
 
+  {{ $optBlock := dict "display" "block" }}
+
   <!-- FIXME: calling index on a nil errors, so have to check: i hate this -->
-  {{ with $.Site.Data.comments }}
-    {{ with index . $.File.TranslationBaseName }}
-      {{ range . }}
-        <div class="comment">
-          <div class="comment__author">
-            <span class="comment__author-name">
-              {{ if .from_name }}
-                {{ .from_name }}
-              {{ else }}
-                anon
-              {{ end }}
-            </span>
-            <span class="commment__author-wrote">wrote at</span>
-            <span class="comment__author-date">
-              <time datetime="{{ .timestamp }}">
-                {{ .timestamp | time.Format $.Site.Params.dateFormat }} 
-              </time>
-            </span>
-          </div>
-          <div class="comment__body">
-            {{ .body | htmlEscape |  markdownify }}
-          </div>
+  {{ $comments := $.Site.Data.comments | default dict }}
+  {{ with index $comments $.File.TranslationBaseName }}
+    {{ range . }}
+      <div class="comment">
+        <div class="comment__author">
+          <span class="comment__author-name">
+            {{ if .from_name }}
+              {{ .from_name }}
+            {{ else }}
+              anon
+            {{ end }}
+          </span>
+          <span class="commment__author-wrote">wrote at</span>
+          <span class="comment__author-date">
+            <time datetime="{{ .timestamp }}">
+              {{ .timestamp | time.Format $.Site.Params.dateFormat }} 
+            </time>
+          </span>
         </div>
-      {{ end }}
-    {{ else }}
-      <p>No comments yet.</p> 
+        <div class="comment__body">
+          {{ .body | htmlEscape | $.Page.RenderString $optBlock }}
+        </div>
+      </div>
     {{ end }}
   {{ else }}
     <p>No comments yet.</p> 
   {{ end }}
+
 </div>

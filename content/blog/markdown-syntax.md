@@ -1,13 +1,13 @@
 ---
 title: "Markdown Syntax Guide"
 date: 2020-06-05
-slug: "markdown-syntax-guide"
+slug: "markdown-syntax"
 description: "Sample article showcasing basic Markdown syntax and formatting for HTML elements"
 keywords: ["gohugo", "hugo", "go", "blog"]
-draft: false
+draft: true
 tags: ["markdown", "css", "html", "themes"]
 math: false
-toc: false
+toc: true
 ---
 
 This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.
@@ -60,9 +60,12 @@ Tables aren't part of the core Markdown spec, but Hugo supports supports them ou
 
 <div style="overflow-x: auto">
 
-| Inline&nbsp;&nbsp;&nbsp;     | Markdown&nbsp;&nbsp;&nbsp;  | In&nbsp;&nbsp;&nbsp;                | Table      |
+Nam, omnis sum am facea corem alique molestrunt et eos evelece arcillit ut aut eos eos nus, sin conecerem erum fuga. Ri oditatquam, ad quibus unda veliamenimin cusam et facea ipsamus es exerum sitate dolores editium rerore eost, temped molorro ratiae volorro te reribus dolorer sperchicium faceata tiustia prat.
+
+| Inline     | Markdown  | In                | Table      |
 | ---------- | --------- | ----------------- | ---------- |
-| *italics*  | **bold**  | ~~strikethrough~~&nbsp;&nbsp;&nbsp; | `code`     |
+| *italics*  | **bold**  | ~~strikethrough~~ | `code`     |
+| *italics*  | **bold**  | ~~strikethrough~~ | `code`     |
 
 </div>
 
@@ -140,8 +143,10 @@ Tables aren't part of the core Markdown spec, but Hugo supports supports them ou
 #### Nested list
 
 * Item
-1. First Sub-item
-2. Second Sub-item
+  1. First Sub-item
+    1. Second Sub-item
+* some otheritem
+  
 
 ## Other Elements — abbr, sub, sup, kbd, mark
 

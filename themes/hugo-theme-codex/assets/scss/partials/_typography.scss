@@ -80,19 +80,18 @@ blockquote {
     position: absolute;
     content: "\201C";
 
-    font-size: 6em;
+    font-size: 4em;
     font-family: "Roboto", serif;
-    margin-top: 0.1em;
-    margin-left: -0.2em;
 
     z-index: -1;
-    color: darken($white, 7%);
+    @include themed() {
+      color: darken(t($bg), 20%);
+    }
   }
 
   margin-top: $leading;
   margin-bottom: $leading;
   line-height: $leading;
-  color: $black;
 
   cite {
     &::before {
@@ -146,4 +145,15 @@ pre code {
 
 abbr[title] {
   text-decoration: underline double;
+}
+
+table {
+  margin-top: 1rem;
+  thead {
+    tr {
+      @include themed() {
+        background-color: t($bg);
+      }
+    }
+  }
 }
