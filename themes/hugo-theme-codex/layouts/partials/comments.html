@@ -7,35 +7,35 @@
     Add a comment by sending an email to <a href="mailto:comments@honeyfox.uk?subject={{ $.File.TranslationBaseName | urlize }}">comments@honeyfox.uk</a>, with the subject line "{{ $.File.TranslationBaseName }}".
     Your name from the email will be published.
     You can use markdown for formatting.
-
   </p>
 
-  <!-- <p class="details__subject">hello</p> -->
-  <!-- {{index $.Site.Data.comments $.File.TranslationBaseName }} -->
-
-  {{ $comments := index $.Site.Data.comments $.File.TranslationBaseName }}
-  {{ with $comments }}
-    {{ range . }}
-      <div class="comment">
-        <div class="comment__author">
-          <span class="comment__author-name">
-            {{ if .from_name }}
-              {{ .from_name }}
-            {{ else }}
-              anon
-            {{ end }}
-          </span>
-          <span class="commment__author-wrote">wrote at</span>
-          <span class="comment__author-date">
-            <time datetime="{{ .timestamp }}">
-              {{ .timestamp | time.Format $.Site.Params.dateFormat }} 
-            </time>
-          </span>
+  <!-- FIXME: calling index on a nil errors, so have to check: i hate this -->
+  {{ with $.Site.Data.comments }}
+    {{ with index . $.File.TranslationBaseName }}
+      {{ range . }}
+        <div class="comment">
+          <div class="comment__author">
+            <span class="comment__author-name">
+              {{ if .from_name }}
+                {{ .from_name }}
+              {{ else }}
+                anon
+              {{ end }}
+            </span>
+            <span class="commment__author-wrote">wrote at</span>
+            <span class="comment__author-date">
+              <time datetime="{{ .timestamp }}">
+                {{ .timestamp | time.Format $.Site.Params.dateFormat }} 
+              </time>
+            </span>
+          </div>
+          <div class="comment__body">
+            {{ .body | markdownify }}
+          </div>
         </div>
-        <div class="comment__body">
-          {{ .body | markdownify }}
-        </div>
-      </div>
+      {{ end }}
+    {{ else }}
+      <p>No comments yet.</p> 
     {{ end }}
   {{ else }}
     <p>No comments yet.</p> 
