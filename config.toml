@@ -15,7 +15,7 @@ enableGitInfo = true
 # disqusShortname = ""
 
 # Add your Google Analytics identifier: UA-XXXXXXXX-X
-googleAnalytics = "UA-180792452-1" 
+# googleAnalytics = "UA-180792452-1" 
 
 # Optional params
 [params]
@@ -57,13 +57,13 @@ googleAnalytics = "UA-180792452-1"
 # of prismjs. If you wish to use Hugo's default syntax highlighting
 # over prismjs, remove this. You will also need to remove the prismjs
 # vendor script in layouts/blog/single.html.
-[markup]
-  [markup.highlight]
-    codeFences = false
+# [markup]
+#   [markup.highlight]
+#     codeFences = false
     
-  # Set to false to disallow raw HTML in markdown files
-  [markup.goldmark.renderer]
-      unsafe = true
+#   # Set to false to disallow raw HTML in markdown files
+#   [markup.goldmark.renderer]
+#       unsafe = true
 
 sectionPagesMenu = "main"
 

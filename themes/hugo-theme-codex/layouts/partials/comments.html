@@ -30,7 +30,7 @@
             </span>
           </div>
           <div class="comment__body">
-            {{ .body | markdownify }}
+            {{ .body | htmlEscape |  markdownify }}
           </div>
         </div>
       {{ end }}
