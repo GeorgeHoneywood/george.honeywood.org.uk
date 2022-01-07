@@ -31,7 +31,10 @@ else
 
     tar -C public -cvz . | \
     curl -v --oauth2-bearer "$SOURCEHUT_TOKEN" \
-    -Fcontent=@- 'https://pages.sr.ht/publish/staging.george.honeywood.org.uk'
+    -w '%{json}' -Fcontent=@- \
+    -o /dev/null \
+    'https://pages.sr.ht/publish/staging.george.honeywood.org.uk' | \
+    jq '{size: (.size_upload / 1000 / 1000 | tostring + " mb"), speed: (.speed_upload / 1000 | tostring + " kb/s"), upload_time: .time_total}'
 
     # slightly angry note: this is how to unpublish a site using gql
     # I would not wish this on my worst enemy
