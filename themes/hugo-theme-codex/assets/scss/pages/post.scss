@@ -138,7 +138,7 @@ $tocBreakpoint: 1024px;
   padding: 0.2em 0.4em;
   border-radius: 3px;
   background: lighten($primary, 41%);
-  color: $primary;
+  color: $primary !important;
   font-size: 0.8rem;
 
   &:hover {
