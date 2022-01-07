@@ -23,11 +23,11 @@ $tocBreakpoint: 1024px;
     padding-top: 10px;
 
     .anchor {
-      top: 0.5rem;
+      top: 0.65rem;
       text-decoration: none;
       position: absolute;
       left: -1rem;
-      color: $grey;
+      color: $primary !important;
       font-size: 1.2rem;
       font-weight: 400;
     }
