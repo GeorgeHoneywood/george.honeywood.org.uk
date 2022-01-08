@@ -16,8 +16,8 @@
     <div class="comment">
       <div class="comment__author">
         <span class="comment__author-name">
-          {{ if .from_name }}
-            {{ .from_name }}
+          {{ with .from_name }}
+            {{ . }}
           {{ else }}
             anon
           {{ end }}
