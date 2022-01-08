@@ -15,10 +15,13 @@
     {{ end }}
 
     <img
-        class="blog-image"
-        style="width: {{default "100%" (.Get "width")}}; float: {{default "none" ( .Get "float")}}; margin-top: 20px"
+        style="{{ with (.Get "width") }}width: {{ . }};{{ end }}"
         src='{{ (.Scratch.Get "modified-image").Permalink }}'
-        alt='{{ .Get "alt" }}'
+        alt='{{ with (.Get "alt") }}
+            {{.}}
+        {{else}}
+            {{ warnf "no alt found for '%s' on page '%s'" (.Get "path") (.Page.Path)}}
+        {{end}}'
     >
 {{ else }}
     {{ errorf "no image found for '%s' on page '%s':\noptions are: %s" (.Get "path") (.Page.Path) (.Page.Resources)}}
