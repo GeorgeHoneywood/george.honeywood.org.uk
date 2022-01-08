@@ -12,29 +12,27 @@
 
   <!-- FIXME: calling index on a nil errors, so have to check: i hate this -->
   {{ $comments := $.Site.Data.comments | default dict }}
-  {{ with index $comments $.File.TranslationBaseName }}
-    {{ range . }}
-      <div class="comment">
-        <div class="comment__author">
-          <span class="comment__author-name">
-            {{ if .from_name }}
-              {{ .from_name }}
-            {{ else }}
-              anon
-            {{ end }}
-          </span>
-          <span class="commment__author-wrote">wrote at</span>
-          <span class="comment__author-date">
-            <time datetime="{{ .timestamp }}">
-              {{ .timestamp | time.Format $.Site.Params.dateFormat }} 
-            </time>
-          </span>
-        </div>
-        <div class="comment__body">
-          {{ .body | htmlEscape | $.Page.RenderString $optBlock }}
-        </div>
+  {{ range index $comments $.File.TranslationBaseName }}
+    <div class="comment">
+      <div class="comment__author">
+        <span class="comment__author-name">
+          {{ if .from_name }}
+            {{ .from_name }}
+          {{ else }}
+            anon
+          {{ end }}
+        </span>
+        <span class="commment__author-wrote">wrote at</span>
+        <span class="comment__author-date">
+          <time datetime="{{ .timestamp }}">
+            {{ .timestamp | time.Format $.Site.Params.dateFormat }} 
+          </time>
+        </span>
       </div>
-    {{ end }}
+      <div class="comment__body">
+        {{ .body | htmlEscape | $.Page.RenderString $optBlock }}
+      </div>
+    </div>
   {{ else }}
     <p>No comments yet.</p> 
   {{ end }}
