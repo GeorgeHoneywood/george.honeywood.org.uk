@@ -11,7 +11,8 @@
     {{ else if eq $method "Resize" }}
         {{ .Scratch.Set "modified-image" ($image.Resize $options) }}
     {{ else }}
-        {{ .Scratch.Set "modified-image" ($image) }}
+        {{/* passing through resources.Fingerprint means hash is included in URL, which is useful for cache busting */}}
+        {{ .Scratch.Set "modified-image" ($image | resources.Fingerprint "md5")  }}
     {{ end }}
 
     <img
@@ -24,5 +25,5 @@
         {{end}}'
     >
 {{ else }}
-    {{ errorf "no image found for '%s' on page '%s':\noptions are: %s" (.Get "path") (.Page.Path) (.Page.Resources)}}
+    {{ errorf "no image found for '%s' on page '%s':\noptions are: %s" (.Get "path") (.Page.Path) (.Page.Resources.ByType "image" )}}
 {{ end }}
