@@ -9,6 +9,13 @@
     {{ .Scratch.Set "modified-image" ($image.Fit $options) }}
 {{ else if eq $method "Resize" }}
     {{ .Scratch.Set "modified-image" ($image.Resize $options) }}
+{{ else }}
+    {{ .Scratch.Set "modified-image" ($image) }}
 {{ end }}
 
-<img class="blog-image" style="width: {{default "100%" (.Get "width")}}; float: {{default "none" ( .Get "float")}}; margin-top: {{default "10px" (.Get "margin")}}" src='{{ (.Scratch.Get "modified-image").Permalink }}' alt='{{ .Get "alt" }}'>
+<img
+    class="blog-image"
+    style="width: {{default "100%" (.Get "width")}}; float: {{default "none" ( .Get "float")}}; margin-top: 20px"
+    src='{{ (.Scratch.Get "modified-image").Permalink }}'
+    alt='{{ .Get "alt" }}'
+>

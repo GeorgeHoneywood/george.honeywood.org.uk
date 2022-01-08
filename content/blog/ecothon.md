@@ -14,19 +14,19 @@ toc: false
 
 Last weekend I took part in a hackathon with 3 of my housemates. We decided to make a social network app that inspires people to live a more eco-concious lifestyle. It has a concept of achievements, which are simple changes or tasks that people can make to reduce their environmental impact.
 
-{{< container-image path="images/ecothon/achievement.jpg" method="Resize" options="400x png Lanczos" width="45%" margin="10px" alt="Achievement" >}}
+{{< container-image path="images/ecothon/achievement.jpg" method="Resize" options="400x png Lanczos" width="45%" alt="Achievement" >}}
 
 You can either privately complete an achievement, or publicly create a post linked to that specific achievement. Either of these will add to your "carbon score", which is displayed on a leaderboard against people you are following.
 
-{{< container-image path="images/ecothon/leaderboard.jpg" method="Resize" options="400x png Lanczos" width="45%" margin="10px" alt="Leaderboard" >}}
+{{< container-image path="images/ecothon/leaderboard.jpg" method="Resize" options="400x png Lanczos" width="45%" alt="Leaderboard" >}}
 
 You can also like and comment on posts, or view a map of where posts were made from. As you can see we don't get out of the house much...
 
-{{< container-image path="images/ecothon/map.jpg" method="Resize" options="400x png Lanczos" width="45%" margin="10px" alt="Leaderboard" >}}
+{{< container-image path="images/ecothon/map.jpg" method="Resize" options="400x png Lanczos" width="45%" alt="Leaderboard" >}}
 
 The app opens to a feed, showing all the posts that have been made in your area. These are normally associated with an image, but it is possible to make a post without one.
 
-{{< container-image path="images/ecothon/feed.jpg" method="Resize" options="400x png Lanczos" width="45%" margin="10px" alt="Leaderboard" >}}
+{{< container-image path="images/ecothon/feed.jpg" method="Resize" options="400x png Lanczos" width="45%" alt="Leaderboard" >}}
 
 ## how it works
 
