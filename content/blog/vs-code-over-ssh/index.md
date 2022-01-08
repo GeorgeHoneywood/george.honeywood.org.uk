@@ -13,7 +13,7 @@ comments: true
 
 I've recently had an opportunity to do some work away from home. I've never worked on anything other than my desktop PC before. I do have a decently capable laptop, but it has limited RAM and storage -- and hence it is not really suited to running multiple Node.js servers and various Docker containers; let alone the significant faff to get everything set up on my laptop as it is on my desktop PC.
 
-{{< container-image path="images/vs-code-over-ssh/vscode.png" alt="VS Code Screenshot" >}}
+{{< image path="vscode" alt="VS Code being used remotely" >}}
 
 To suit this end, Visual Studio Code has a very nice feature that I've been appreciating -- you can connect to a remote instance of VS Code running on any machine you can SSH into. All of this happens automatically, just install the [Remote - SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh) extension, add a target in the "Remote Explorer", and it will install an instance of VS Code on the remote machine. As soon as it has downloaded some files, you will be working on your remote machine just as if it were local.
 

@@ -38,9 +38,9 @@ In order to help me determine which PRoWs were missing I used QGIS to analyse th
 * Select your second virtual layer in QGIS and export it as a shapefile. This can then be imported into JOSM, or any editor of your choice, then manually merged into OpenStreetMap after being tagged up appropriately; hint, this is by far the hardest step.
 * Job done :)
 
-{{< container-image path="images/prow-completeness/missing-prows.png" method="Resize" options="1200x png Lanczos" margin="10px" alt="Missing rights of ways in Dorset" >}}
+{{< image path="missing-prows" method="Resize" options="1200x png Lanczos" margin="10px" alt="Missing rights of ways in Dorset" >}}
 
-{{< container-image path="images/prow-completeness/missing-prows-heatmap.png" method="Resize" options="1200x png Lanczos" margin="10px" alt="Heatmap of missing PRoWs" >}}
+{{< image path="missing-prows-heatmap" method="Resize" options="1200x png Lanczos" margin="10px" alt="Heatmap of missing PRoWs" >}}
 
 This method is not perfect as it will miss smaller footpaths (such as those that join two roads only a short distance apart) and hence it is more useful for rural areas. On the other hand it seems to rarely produce false positives.
 
