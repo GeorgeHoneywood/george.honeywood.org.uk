@@ -10,9 +10,10 @@
 
   {{ $optBlock := dict "display" "block" }}
 
-  <!-- FIXME: calling index on a nil errors, so have to check: i hate this -->
-  {{ $comments := $.Site.Data.comments | default dict }}
-  {{ range index $comments $.File.ContentBaseName  }}
+  {{/* this kinda sucks */}}
+  {{ $comments := .Resources.GetMatch "comments.json" | default "{}" | transform.Unmarshal }}
+
+  {{ range $comments }}
     <div class="comment">
       <div class="comment__author">
         <span class="comment__author-name">

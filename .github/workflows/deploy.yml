@@ -1,0 +1,28 @@
+name: deploy
+
+on:
+  push:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    env:
+      SOURCEHUT_TOKEN: ${{ secrets.SOURCEHUT_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # need this for git info
+          fetch-depth: 0
+
+      - name: setup Hugo
+        uses: peaceiris/actions-hugo@v2.4.13
+        with:
+          extended: true
+
+      - name: run the deploy script
+        run: ./deploy.sh
