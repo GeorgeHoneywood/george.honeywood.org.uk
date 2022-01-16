@@ -2,3 +2,5 @@
   {{ if strings.HasPrefix .Destination "mailto" }} target="_blank" {{ end }}
   {{ if strings.HasPrefix .Destination "http" }} target="_blank" rel="noreferrer noopener" {{ end }}
 >{{ .Text | safeHTML }}</a>
+
+{{- /* This comment removes trailing newlines. */ -}}
