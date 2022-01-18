@@ -157,3 +157,8 @@ table {
     }
   }
 }
+
+// fix lines with footnotes being taller
+sup {
+  line-height: 0;
+}
