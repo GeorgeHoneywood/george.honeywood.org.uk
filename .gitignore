@@ -8,4 +8,4 @@ hugo.exe
 hugo.darwin
 hugo.linux
 
-data/comments/
+.hugo_build.lock
