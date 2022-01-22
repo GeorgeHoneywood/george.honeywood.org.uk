@@ -1,4 +1,4 @@
-<nav class="nav" id="navigation">
+<nav class="nav" id="navigation" role="navigation">
   <ul class="nav__list">
     {{ $currentPage := . }}
     {{ range .Site.Menus.main }}
@@ -11,7 +11,7 @@
       <a href="/georgehoneywood-cv.pdf" target="_blank">cv</a>
     </li>
     <li>
-      <a id="theme-switcher">theme</a>
+      <a id="theme-switcher" role="button">theme</a>
     </li>
   </ul>
 </nav>
