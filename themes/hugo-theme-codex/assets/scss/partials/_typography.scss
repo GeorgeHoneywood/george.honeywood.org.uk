@@ -104,10 +104,21 @@ blockquote {
   }
 }
 
+.highlight {
+  margin-top: $leading;
+  div {
+    padding-left: 12px;
+  }
+
+  table pre {
+  padding-left: 0;
+  padding-right: 0;
+  }
+}
+
 pre {
   line-height: 1.45;
-  margin-top: $leading;
-  padding: 16px;
+  padding: 12px;
   word-wrap: normal;
   overflow: auto;
   background-color: #f6f8fa; // FIXME: theme
