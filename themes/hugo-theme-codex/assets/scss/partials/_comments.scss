@@ -12,17 +12,18 @@
 
 .comment {
   background-color: #9b9b9b2d;
-  margin-bottom: .5rem;
-  padding: .75rem;
-  border-radius: .25rem;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
 
-  .comment__author-name, .comment__author-date {
+  .comment__author-name,
+  .comment__author-date {
     font-weight: bold;
   }
 
   .comment__body {
     font-size: smaller;
-    
+
     * {
       line-height: 1.25rem;
     }
@@ -32,7 +33,7 @@
       margin-bottom: 0.25rem;
       opacity: 0.75;
     }
-    > h1  {
+    > h1 {
       margin-top: 0.75rem;
       margin-bottom: 0.5rem;
     }

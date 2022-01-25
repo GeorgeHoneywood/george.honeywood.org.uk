@@ -1,29 +1,29 @@
-$bg: 'bg';
-$text: 'text';
-$link: 'link';
-$visited: 'visited';
+$bg: "bg";
+$text: "text";
+$link: "link";
+$visited: "visited";
 
 $theme-map: null;
 
 $themes: (
-        default: (
-                bg: $white,
-                text: $black,
-                // text-secondary: $text--2--light,
-                link: #0000ee,
-                visited: #551a8b,
-                // hover: $hover--light,
-                // border: $border--light
-        ),
-        dark: (
-                bg: #181a1b,
-                text: #e8e6e3,
-                // text-secondary: $text--2--dark,
-                link: #58a6ff,
-                visited: #c34abd,
-                // hover: $hover--dark,
-                // border: $border--dark
-        ),
+  default: (
+    bg: $white,
+    text: $black,
+    // text-secondary: $text--2--light,
+      link: #0000ee,
+    visited: #551a8b,
+    // hover: $hover--light,
+      // border: $border--light,,
+  ),
+  dark: (
+    bg: #181a1b,
+    text: #e8e6e3,
+    // text-secondary: $text--2--dark,
+      link: #58a6ff,
+    visited: #c34abd,
+    // hover: $hover--dark,
+      // border: $border--dark,,
+  ),
 );
 
 @mixin themed() {
@@ -31,8 +31,13 @@ $themes: (
     .theme--#{$theme} & {
       $theme-map: () !global;
       @each $key, $submap in $map {
-        $value: map-get(map-get($themes, $theme), '#{$key}');
-        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+        $value: map-get(map-get($themes, $theme), "#{$key}");
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
       }
       @content;
       $theme-map: null !global;

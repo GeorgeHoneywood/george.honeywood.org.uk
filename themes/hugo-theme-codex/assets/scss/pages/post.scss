@@ -59,7 +59,7 @@ $tocBreakpoint: 1024px;
       color: t($link);
 
       &:visited {
-          color: t($visited);
+        color: t($visited);
       }
     }
   }
@@ -217,9 +217,8 @@ footer {
 /* overrides */
 .post__content {
   ul li {
-      margin-bottom: 0.5rem;
-    }
-  
+    margin-bottom: 0.5rem;
+  }
 }
 
 .twitter-tweet.twitter-tweet-rendered {
@@ -243,5 +242,5 @@ table {
 }
 
 .footnotes {
-margin-top: 1rem;
+  margin-top: 1rem;
 }

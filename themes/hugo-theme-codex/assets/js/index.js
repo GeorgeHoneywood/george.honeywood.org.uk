@@ -18,20 +18,20 @@ function initBurger() {
 
 initBurger();
 
-let currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+let currentTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 // so we can tell what theme we are currently on
-let storedTheme = localStorage.getItem('theme') 
-if (storedTheme === 'dark'){
-  currentTheme = true
-} else if (storedTheme === 'default'){
-  currentTheme = false
+let storedTheme = localStorage.getItem("theme");
+if (storedTheme === "dark") {
+  currentTheme = true;
+} else if (storedTheme === "default") {
+  currentTheme = false;
 }
 
 const themeSwitcher = document.getElementById("theme-switcher");
 themeSwitcher.addEventListener("click", () => {
   currentTheme = !currentTheme;
-  setColorScheme(currentTheme)
+  setColorScheme(currentTheme);
 
-  localStorage.setItem('theme', currentTheme ? 'dark' : 'default');
-})
+  localStorage.setItem("theme", currentTheme ? "dark" : "default");
+});
