@@ -1,15 +1,13 @@
-{{ define "main" }}
-<article>
-  <h1>
-    
-  </h1>
-</article>
+{{ define "styles" }}
+    {{ $.Scratch.Set "style_opts" (dict "src" "scss/pages/404.scss" "dest" "css/404.css") }}
+{{ end }}
 
-<div class="splash-container">
-  <div class="splash">
+{{ define "main" }}
+
+<div class="page-not-found-container">
     <span>
       404: This is not the page you were looking for
     </span>
-  </div>
 </div>
+
 {{ end }}

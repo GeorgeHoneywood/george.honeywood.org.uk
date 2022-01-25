@@ -29,15 +29,12 @@
 
   <!-- Styles -->
   {{ block "styles" . }} {{ end }} <!-- Get "style_opts" variable from "styles" block -->
-  {{ $base_styles_opts := .Scratch.Get "style_opts" | default (dict "src" "scss/pages/about.scss" "dest" "css/about.css") }}
-  {{ $custom_styles_opts := (dict "src" "scss/custom.scss" "dest" "css/custom.css") }}
+  {{ $base_styles_opts := .Scratch.Get "style_opts" }}
   
   {{ $current_page := . }}
   
-  {{ range (slice $base_styles_opts $custom_styles_opts) }}
-    {{ $style := resources.Get .src | resources.ExecuteAsTemplate .dest $current_page | toCSS  (dict "enableSourceMap" true "outputStyle" "compressed") | fingerprint }}
-    <link type="text/css" rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}"/>
-  {{ end }}
+  {{ $style := resources.Get $base_styles_opts.src | resources.ExecuteAsTemplate $base_styles_opts.dest $current_page | toCSS  (dict "enableSourceMap" true "outputStyle" "compressed") | fingerprint }}
+  <link type="text/css" rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}"/>
   
   {{ range .AlternativeOutputFormats }} 
   {{ printf `<link rel="%s" type="%s+%s" href="%s" title="%s" />` .Rel .MediaType.Type .MediaType.FirstSuffix.Suffix .Permalink $.Site.Title | safeHTML }} 

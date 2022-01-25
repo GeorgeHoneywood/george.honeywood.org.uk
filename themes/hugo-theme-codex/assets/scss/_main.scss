@@ -5,6 +5,7 @@
 @import "partials/nav";
 @import "partials/social-icons";
 @import "partials/comments";
+@import "partials/commit-info";
 
 body.nav--active {
   overflow: hidden;
@@ -17,7 +18,7 @@ main {
     padding-left: calc(1.5rem + #{$navWidth});
   }
 
-  @media screen and (max-width: $medium - 1) {
-    padding-top: calc(3rem + #{$burgerContainerHeight});
+  @media screen and (max-width: ($medium - 1)) {
+    padding-top: calc(#{$burgerContainerHeight});
   }
 }

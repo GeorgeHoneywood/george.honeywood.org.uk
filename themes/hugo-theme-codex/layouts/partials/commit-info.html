@@ -3,12 +3,12 @@
   {{ $dateFormat := .Site.Params.dateFormat | default "Jan 2 2006" }}
   {{ $hash := .GitInfo.AbbreviatedHash  }}
 
-  <div class="details__list">
+  <div class="commit-info">
       <p>
         Page last updated by <a href="https://github.com/GeorgeHoneywood/george.honeywood.org.uk/commit/{{ $hash }}">{{ $hash }}</a> - {{ .GitInfo.CommitDate.Format $dateFormat }}:
         <br>
       </p>
-      <p class="details__subject">{{ .GitInfo.Subject }}</p>
+      <p class="commit-info__subject">{{ .GitInfo.Subject }}</p>
   </div>
 
 {{- end -}}

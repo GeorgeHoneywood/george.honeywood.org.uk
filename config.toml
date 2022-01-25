@@ -26,7 +26,7 @@ enableGitInfo = true
   # Display a message at the bottom of a post showing when it was last updated, with what commit
   # Requires project to be in a git repository, and that
   # enableGitInfo = true
-  commitDetails = true
+  commitInfo = true
   comments = true
 
   # Links to your social accounts, comment/uncomment as needed. Icons will be displayed for those specified.

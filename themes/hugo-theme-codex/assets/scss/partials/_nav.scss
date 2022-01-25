@@ -8,6 +8,7 @@
   align-items: center;
   visibility: hidden;
   z-index: 1;
+  background-color: inherit;
 
   @media screen and (min-width: $medium) {
     display: block;

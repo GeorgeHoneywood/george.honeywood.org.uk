@@ -3,12 +3,10 @@
   display: flex;
   align-items: center;
   padding: 0 1.5rem;
-  position: fixed;
-  width: 100%;
-  @include themed() {
-    background: t($bg);
-  }
+  background-color: inherit;
   z-index: 2;
+  right: 0;
+  position: fixed;
 
   @media screen and (min-width: $medium) {
     display: none;
@@ -30,7 +28,7 @@
   left: calc(50% - #{$meatWidth} / 2);
   transition: all 150ms ease-in;
   @include themed() {
-    background: t($text);
+    background-color: t($text);
   }
 }
 
@@ -40,6 +38,7 @@
 
 .burger__meat--2 {
   width: calc(#{$meatWidth} - 6px);
+  margin-left: 6px;
 }
 
 .burger__meat--3 {
