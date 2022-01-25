@@ -8,9 +8,6 @@
   align-items: center;
   visibility: hidden;
   z-index: 1;
-  @include themed() {
-    background: t($bg);
-  }
 
   @media screen and (min-width: $medium) {
     display: block;

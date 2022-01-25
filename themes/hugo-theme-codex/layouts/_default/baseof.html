@@ -85,6 +85,12 @@
     } else {
       setColorScheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
     }
+
+    // cool transition between themes
+    // have to wait otherwise we get a weird transition on page load
+    // TODO: this could probably use page load or something instead
+    //       i.e if people have slow internet, this could be a problem
+    setTimeout(() =>  document.querySelector("body").style.transition = "all 0.25s linear 0s", 1000);
   </script>
 
   <main>
