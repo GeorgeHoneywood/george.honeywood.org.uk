@@ -27,7 +27,9 @@ if [[ $OPTS_PROD = "yes" ]]; then
     rsync -avz --delete public/ honeyfox@git.honeyfox.uk:/var/www/html/george.honeywood.org.uk/
 else
     echo "staging"
-    hugo --gc --minify -D -b 'https://staging.george.honeywood.org.uk'
+    hugo --gc --minify -D \
+    --environment staging \
+    -b 'https://staging.george.honeywood.org.uk'
 
     tar -C public -cvz . | \
     curl -v --oauth2-bearer "$SOURCEHUT_TOKEN" \
