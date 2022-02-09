@@ -13,10 +13,8 @@
   .social-icons__icon {
     width: 24px;
     height: 24px;
-    background-size: contain;
-    background-repeat: no-repeat;
     @include themed() {
-      background-color: t($text);
+      color: t($text);
     }
   }
 }

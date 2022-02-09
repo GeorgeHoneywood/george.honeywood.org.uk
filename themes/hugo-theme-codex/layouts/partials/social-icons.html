@@ -8,11 +8,11 @@
       <a class="social-icons__link" rel="me noopener" title="{{ . }}"
          href="{{ index $currentPage.Site.Params $icon }}"
          target="_blank">
-         {{ $url := print "svg/" $icon ".svg" | absURL }} 
+        {{ $res := resources.Get (print "svg/" $icon ".svg") }}
         <div 
           class="social-icons__icon"
-          style="mask-image: url('{{$url}}'); -webkit-mask-image: url('{{$url}}')"
           >
+          {{ $res.Content | safeHTML}}
         </div>
       </a>
     {{ end }}

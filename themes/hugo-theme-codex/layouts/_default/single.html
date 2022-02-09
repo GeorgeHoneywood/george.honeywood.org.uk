@@ -1,5 +1,9 @@
 {{ define "styles" }}
     {{ $.Scratch.Set "style_opts" (dict "src" "scss/pages/post.scss" "dest" "css/post.css") }}
+
+    {{ $highlighting := resources.Get "css/highlighting.css" | fingerprint }}
+    <link type="text/css" rel="stylesheet" href="{{ $highlighting.RelPermalink }}" integrity="{{ $highlighting.Data.Integrity }}"/>
+
 {{ end }}
 
 {{ define "main" }}

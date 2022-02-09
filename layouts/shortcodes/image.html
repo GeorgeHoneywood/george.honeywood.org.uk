@@ -16,13 +16,17 @@
     {{ end }}
 
     <img
-        style="{{ with (.Get "width") }}width: {{ . }};{{ end }}"
+        width='{{ with (.Get "width") }}
+            {{- . -}}
+        {{ else -}}
+            100%    
+        {{- end }}'
         src='{{ (.Scratch.Get "modified-image").Permalink }}'
         alt='{{ with (.Get "alt") }}
-            {{.}}
-        {{else}}
+            {{- . -}}
+        {{ else }}
             {{ warnf "no alt found for '%s' on page '%s'" (.Get "path") (.Page.Path)}}
-        {{end}}'
+        {{ end }}'
     >
 {{ else }}
     {{ errorf "no image found for '%s' on page '%s':\noptions are: %s" (.Get "path") (.Page.Path) (.Page.Resources.ByType "image" )}}
