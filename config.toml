@@ -60,11 +60,13 @@ enableGitInfo = true
   # name mostly used for ld json schema stuffs
   name = "George Honeywood"
 
-# configure highlighting
-[markup]
-  [markup.highlight]
-    noClasses = false
-    style = "native"
+# This disables Hugo's default syntax highlighting in favor
+# of prismjs. If you wish to use Hugo's default syntax highlighting
+# over prismjs, remove this. You will also need to remove the prismjs
+# vendor script in layouts/blog/single.html.
+# [markup]
+#   [markup.highlight]
+#     codeFences = false
     
 #   # Set to false to disallow raw HTML in markdown files
 #   [markup.goldmark.renderer]

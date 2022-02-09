@@ -10,12 +10,6 @@
   <meta name="keywords" content="{{ delimit .Keywords " , " }}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta http-equiv="content-security-policy"
-   content="default-src 'none';
-            img-src 'self';
-            script-src 'self' {{ if eq .Site.IsServer true -}} 'unsafe-inline' {{- end }};
-            style-src 'self';
-            connect-src 'self';">
 
   <!-- we don't want staging to be indexed -->
   {{ if not hugo.IsProduction }}
