@@ -244,3 +244,16 @@ table {
 .footnotes {
   margin-top: 1rem;
 }
+
+.footnote-ref {
+  text-decoration: none;
+  font-size: smaller;
+
+  &:before {
+    content: " [";
+  }
+
+  &:after {
+    content: "]";
+  }
+}
