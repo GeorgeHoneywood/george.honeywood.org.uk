@@ -17,7 +17,7 @@
 
     <img
         style="{{ with (.Get "width") }}width: {{ . }};{{ end }}"
-        src='{{ (.Scratch.Get "modified-image").Permalink }}'
+        src='{{ (.Scratch.Get "modified-image").RelPermalink }}'
         alt='{{ with (.Get "alt") }}
             {{.}}
         {{else}}
