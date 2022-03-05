@@ -21,7 +21,7 @@ In order to help me determine which PRoWs were missing I used QGIS to analyse th
 * Import the datasets into QGIS, reprojecting into a different CRS if necessary.
 * Use the [points along geometry](https://docs.qgis.org/3.16/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#points-along-geometry) tool to place points at a regular interval (I used 25m) on both the OSM and PRoW datasets. This is to ensure that straight sections of line still contain vertices, which is important for the next step of analysis.
 * Employ the [hub to hub distance](https://docs.qgis.org/3.16/en/docs/user_manual/processing_algs/qgis/vectoranalysis.html#distance-to-nearest-hub-points) tool to find the nearest node in OSM from each node in the PRoW, which is done by setting the PRoWs as the source, and OSM as the destination. We can't use the [join attributes by nearest](https://docs.qgis.org/3.16/en/docs/user_manual/processing_algs/qgis/vectorgeneral.html#qgisjoinbynearest) tool for this as it works based on line centeroids, which may be completely different in the datasets. For example, if a public footpath begins halfway up the length of a residential road and then they end at the same point, their centeroids will be quite far apart, despite their significant overlap and hence will not conflate.
-* Add a virtual layer, I called mine `missing_prow_list`. This will allow you to write arbitrary SQL to create a list of the missing PRoWs route codes. I ended up using something like the below -- this will select any rights of way which are on average more than 30m away from a `highway=*` in OSM:
+* Add a virtual layer, I called mine `missing_prow_list`. This will allow you to write arbitrary SQL to create a list of the missing PRoWs route codes. I ended up using something like the below -- this will select any rights of way which are on average more than 40m away from a `highway=*` in OSM:
     ```SQL
     SELECT route_code, AVG(hub_to_hub_dist) as avg_hub_dist,
     FROM prow_dataset_distances
@@ -38,9 +38,9 @@ In order to help me determine which PRoWs were missing I used QGIS to analyse th
 * Select your second virtual layer in QGIS and export it as a shapefile. This can then be imported into JOSM, or any editor of your choice, then manually merged into OpenStreetMap after being tagged up appropriately; hint, this is by far the hardest step.
 * Job done :)
 
-{{< image path="missing-prows" method="Resize" options="1200x png Lanczos" margin="10px" alt="Missing rights of ways in Dorset" >}}
+{{< image path="missing-prows" alt="Missing rights of ways in Dorset" >}}
 
-{{< image path="heatmap" method="Resize" options="1200x png Lanczos" margin="10px" alt="Heatmap of missing PRoWs" >}}
+{{< image path="heatmap" alt="Heatmap of missing PRoWs" >}}
 
 This method is not perfect as it will miss smaller footpaths (such as those that join two roads only a short distance apart) and hence it is more useful for rural areas. On the other hand it seems to rarely produce false positives.
 
