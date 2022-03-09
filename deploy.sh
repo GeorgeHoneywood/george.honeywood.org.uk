@@ -5,8 +5,10 @@ set -e
 OPTS_PROD=no
 
 while [ "$1" != "" ]; do
-    param=$(echo $1 | awk -F= '{print $1}')
-    value=$(echo $1 | awk -F= '{print $2}')
+    # not currently needed as no options have parameters 
+    # param=$(echo "$1" | awk -F= '{print $1}')
+    # value=$(echo $1 | awk -F= '{print $2}')
+    param=$1
 
     case $param in
         --prod)
