@@ -1,1 +1,3 @@
-hugo -D serve --disableFastRender
+#!/usr/bin/env bash
+
+hugo -D serve --disableFastRender "$@"
