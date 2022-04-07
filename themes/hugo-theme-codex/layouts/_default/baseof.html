@@ -53,6 +53,9 @@
   {{ partial "nav.html" .}}
 
   <!-- FIXME: would rather this was not here... -->
+  <!-- it means that I can't enable a inline JS blocking CSP -->
+  <!-- maybe a hash is the way to go... bit of a pain to generate though -->
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_inline_script -->
   <script>
     /** 
      * set color scheme
@@ -60,13 +63,22 @@
     */
     function setColorScheme(dark){
       let root = document.querySelector("html");
+      let meta = document.querySelector('meta[name="theme-color"]');
+
+      if (!meta) {
+        newNode = document.createElement('meta');
+        newNode.name = "theme-color";
+        meta = document.head.appendChild(newNode);
+      }
 
       if (dark === true) {
         root.classList.remove("theme--default");
         root.classList.add("theme--dark");
+        meta.setAttribute("content", "#181a1b");
       } else {
         root.classList.remove("theme--dark");
         root.classList.add("theme--default");
+        meta.setAttribute("content", "#ffffff");
       }
     }
 
@@ -87,7 +99,7 @@
     // have to wait otherwise we get a weird transition on page load
     // TODO: this could probably use page load or something instead
     //       i.e if people have slow internet, this could be a problem
-    setTimeout(() =>  document.querySelector("body").style.transition = "all 0.25s linear 0s", 1000);
+    setTimeout(() => document.querySelector("body").style.transition = "all 0.25s linear 0s", 1000);
   </script>
 
   <main>
