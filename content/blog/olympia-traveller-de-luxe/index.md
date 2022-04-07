@@ -19,3 +19,9 @@ This one is a Olympia Traveller de Luxe. It's about the closest experience you c
 {{< image path="top-no-case" alt="Top down without case" >}}
 
 Even though it is indisputably simpler than a modern laptop, the complexities of it seem more striking. It is packed with tiny linkages that all work in harmony to get the text on the page. Even the ink spools are more complicated than you might think. Each keypress winds the ribbon a small amount from one side to the other, and then once one side is exhausted, pressure builds on a pin that causes the mechanism to switch directions -- returning the ribbon to the other spool.
+
+* margins
+* colour selection
+* line spacing
+* correction
+* how the shift works
