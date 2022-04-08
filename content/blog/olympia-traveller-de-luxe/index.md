@@ -25,3 +25,4 @@ Even though it is indisputably simpler than a modern laptop, the complexities of
 * line spacing
 * correction
 * how the shift works
+* i'm writing this from github.dev on my phone, how incredible is that -- shame I can't quite get it fullscreen though...
