@@ -15,8 +15,5 @@
     height: 24px;
     background-size: contain;
     background-repeat: no-repeat;
-    @include themed() {
-      background-color: t($text);
-    }
   }
 }
