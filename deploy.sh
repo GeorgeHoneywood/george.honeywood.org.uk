@@ -2,6 +2,12 @@
 set -e
 # Usage: ./deploy.sh [--prod]
 
+function check_links () {
+    echo "checking links..."
+    python3 get-links.py
+    python3 check-links.py
+}
+
 OPTS_PROD=no
 
 while [ "$1" != "" ]; do
@@ -26,6 +32,8 @@ echo -n "deploying: "
 if [[ $OPTS_PROD = "yes" ]]; then
     echo "production"
     hugo --gc --minify
+    check_links
+
     rsync -avz --delete public/ honeyfox@git.honeyfox.uk:/var/www/html/george.honeywood.org.uk/
 else
     SUB_DOMAIN="staging"
@@ -41,6 +49,7 @@ else
     hugo --gc --minify -D \
     --environment staging \
     -b "$URL"
+    check_links
 
     tar -C public -cvz . | \
     curl -v --oauth2-bearer "$SOURCEHUT_TOKEN" \
