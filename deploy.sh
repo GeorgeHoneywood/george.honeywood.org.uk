@@ -49,7 +49,6 @@ else
     hugo --gc --minify -D \
     --environment staging \
     -b "$URL"
-    check_links
 
     tar -C public -cvz . | \
     curl -v --oauth2-bearer "$SOURCEHUT_TOKEN" \
