@@ -1,6 +1,6 @@
 ---
 title: "Olympia Traveller de Luxe"
-date: 2022-03-23T16:23:37Z
+date: 2022-04-30T15:49:05Z
 draft: false
 description: "My manual typewriter"
 keywords: ["typewriters", "manual", "Olympia Traveller de Luxe"]
