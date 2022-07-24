@@ -112,6 +112,8 @@
   {{ $script := resources.Get "js/index.js" | minify | fingerprint }}
   <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous"></script>
   {{ block "scripts" . }} {{ end }}
+
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "882518a802154fcb9f0014e8203a0415"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 
 </html>
