@@ -1,0 +1,32 @@
+{
+    "name": "George Honeywood",
+    "icons": [
+      {
+        "src": "/favicon.svg",
+        "type": "image/svg+xml",
+        "sizes": "256x256",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "/favicon.png",
+        "type": "image/png",
+        "sizes": "48x48"
+      }
+    ],
+    "start_url": "/blog/",
+    "display": "standalone",
+    "scope": "/",
+    "shortcuts": [
+      {
+        "name": "Blog",
+        "description": "View the blog",
+        "url": "/blog/"
+      },
+      {
+        "name": "CV",
+        "description": "View my CV",
+        "url": "/georgehoneywood-cv.pdf"
+      }
+    ],
+    "description": "George Honeywood's personal website"
+}
