@@ -26,6 +26,7 @@ You can set up VS Code to use a custom command to open a new terminal window. He
             "path": "bash",
             "args": ["-c", "tmux new -ADs ${PWD##*/}"],
             "icon": "terminal-tmux",
+        },
     },
     "terminal.integrated.defaultProfile.linux": "tmux",
 }
