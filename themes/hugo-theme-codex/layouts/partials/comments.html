@@ -4,14 +4,16 @@
   </h3>
 
   <p class="comments__help">
-    Add a comment by sending an email to <a href="mailto:comments@honeyfox.uk?subject={{ $.File.ContentBaseName  | urlize }}">comments@honeyfox.uk</a>, with the subject line "{{ $.File.ContentBaseName }}".
-    You can use markdown for formatting.
+    Send me a comment by emailing <a href="mailto:comments@honeyfox.uk?subject={{ $.File.ContentBaseName  | urlize }}">comments@honeyfox.uk</a>, with the subject line "{{ $.File.ContentBaseName }}".
+    {{/* You can use markdown for formatting. */}}
   </p>
 
   {{ $optBlock := dict "display" "block" }}
 
   {{/* this kinda sucks */}}
   {{ $comments := .Resources.GetMatch "comments.json" | default "{}" | transform.Unmarshal }}
+
+  {{/*
 
   {{ range $comments }}
     <div class="comment">
@@ -37,5 +39,7 @@
   {{ else }}
     <p>No comments yet.</p> 
   {{ end }}
+
+  */}}
 
 </div>
