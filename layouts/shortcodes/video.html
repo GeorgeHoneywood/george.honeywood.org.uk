@@ -1,0 +1,12 @@
+{{/*} use this something like {{< video path="docking.mp4" muted="true" >}} */}}
+
+{{ $muted := .Get "muted" }} 
+
+{{ with .Page.Resources.GetMatch (printf "images/%s*" (.Get "path")) }}
+<video class="video-shortcode" controls {{ if $muted }}muted{{ end }} >
+    <source src="{{ .RelPermalink }}" type="{{ .MediaType }}">
+    There should have been a video here, but your browser does not seem
+    to support it.
+    You can try visiting <a href="{{ .RelPermalink }}">{{ .RelPermalink }}</a> instead.
+</video>
+{{ end }}

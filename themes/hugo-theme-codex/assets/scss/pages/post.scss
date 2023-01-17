@@ -54,6 +54,12 @@ $tocBreakpoint: 1024px;
     display: block;
   }
 
+  video {
+    width: 100%;
+    margin: 20px auto;
+    display: block;
+  }
+
   a {
     @include themed() {
       color: t($link);
