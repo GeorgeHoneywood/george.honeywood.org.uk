@@ -5,7 +5,7 @@ slug: "markdown-syntax"
 description: "Sample article showcasing basic Markdown syntax and formatting for HTML elements"
 keywords: ["gohugo", "hugo", "go", "blog"]
 draft: true
-tags: ["markdown", "css", "html", "themes"]
+# tags: ["markdown", "css", "html", "themes"]
 math: false
 toc: true
 ---
