@@ -1,7 +1,7 @@
 ---
 title: "The Roomba"
 date: 2023-01-17T14:11:01Z
-draft: true
+draft: false
 description: "Using a Roomba from 2009"
 keywords: ["roomba"]
 tags: ["projects"]
