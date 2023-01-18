@@ -16,3 +16,4 @@
 /
 /categories/
 /blog/
+/blog/the-roomba/
