@@ -14,7 +14,7 @@ Since I've started using [VS Code over SSH]({{< relref "vs-code-over-ssh" >}}),
 I've encountered the slight irritation that the session will drop when I suspend my laptop.
 This is to be expected, as the underlying TCP connection can't survive without regular keepalives.
 Restarting the remote session means that I lose the integrated terminals that I have open,
-meaning I have to through and type out `yarn dev` or `go run` again.
+meaning I have to go through and type out `yarn dev` or `go run` again.
 What is particularly annoying is that the previously running programs will continue in the background,
 so I have to go and manually kill them before I can work again.
 
