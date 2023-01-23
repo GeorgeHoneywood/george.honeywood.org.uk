@@ -63,7 +63,7 @@
   }
 }
 
-.nav__list a {
+.nav__list > li > * {
   color: $grey;
   text-decoration: none;
   font-size: 2em;
@@ -84,4 +84,9 @@
   @media screen and (min-width: $medium) {
     font-size: 1em;
   }
+}
+
+#theme-switcher {
+  background-color: inherit;
+  border: none;
 }
