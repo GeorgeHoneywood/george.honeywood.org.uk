@@ -1,9 +1,14 @@
-{{/*} use this something like {{< video path="docking.mp4" muted="true" >}} */}}
+{{/*} use this something like {{< video path="docking-960x720.mp4" muted="true" >}} */}}
 
 {{ $muted := .Get "muted" }} 
 
 {{ with .Page.Resources.GetMatch (printf "images/%s*" (.Get "path")) }}
-<video class="video-shortcode" controls {{ if $muted }}muted{{ end }} >
+
+{{ $dims := split (index (split (index (last 1 (split .Name "-")) 0) ".") 0) "x" }}
+{{ $width := index $dims 0 }}
+{{ $height := index $dims 1 }}
+
+<video class="video-shortcode" controls {{ if $muted }}muted{{ end }} width="{{ $width }}" height="{{ $height }}" >
     <source src="{{ .RelPermalink }}" type="{{ .MediaType }}">
     There should have been a video here, but your browser does not seem
     to support it.

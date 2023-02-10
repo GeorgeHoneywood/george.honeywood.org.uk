@@ -12,7 +12,7 @@ comments: true
 
 For Christmas one of my housemates got us a second-hand Roomba. I tried to not take this too personally. It came from Germany for the princely sum of £60, which got us the Roomba 555 from 2009.
 
-{{< video path="docking.mp4" muted="true" >}}
+{{< video path="docking-960x720.mp4" muted="true" >}}
 
 Somewhat unsurprisingly, a 14-year-old Roomba is not the cleverest thing. I think this has made me like it more. I've zoomorphised it to some degree --- it has become our house pet, and is quite like owning an annoying cat. It seems to have two modes of operation; wall following and stochastic (random) bouncing about. This randomness is not particularly efficient.
 
