@@ -17,3 +17,4 @@
 /categories/
 /blog/
 /blog/the-roomba/
+/blog/jane-holloway-hall/
