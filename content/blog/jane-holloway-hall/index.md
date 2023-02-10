@@ -18,6 +18,5 @@ I study at Royal Holloway, a university probably most well known for the iconic 
 
 {{< image path="jane-holloway-front" alt="Entrance to Jane Holloway Hall" method="Resize" options="2000x" >}}
 
-On the wooded slopes below Founder's is Jane Holloway Hall. It was built in 1893, so about a decade after Founder's was finished. It is not nearly as visually impressive, but suits its' environment well enough. Saying that, they decided to pebble dash it, which I think is a bad call on _any_ building.
-
-<!-- For almost as long as i've been ... -->
+On the wooded slopes below Founder's is Jane Holloway Hall. It was built in 1893, so about a decade after Founder's was finished. It is not nearly as visually impressive, but suits its environment well enough. Saying that, they decided to pebble dash it, which I think is a bad call on _any_ building.
+For almost as long as I've been at Royal Holloway, I've been curious about this building. There isn't much about it online. On campus there are vague rumours that a student once drowned there. There are a few ancient posts on Student Room..
