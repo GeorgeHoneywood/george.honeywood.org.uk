@@ -8,7 +8,13 @@
 {{ $width := index $dims 0 }}
 {{ $height := index $dims 1 }}
 
-<video class="video-shortcode" controls {{ if $muted }}muted{{ end }} width="{{ $width }}" height="{{ $height }}" >
+<video 
+    class="video-shortcode"
+    controls
+    {{ if $muted }}muted{{ end }}
+    width="{{ $width }}"
+    height="{{ $height }}"
+    style="aspect-ratio: {{ $width }} / {{ $height }}" >
     <source src="{{ .RelPermalink }}" type="{{ .MediaType }}">
     There should have been a video here, but your browser does not seem
     to support it.
