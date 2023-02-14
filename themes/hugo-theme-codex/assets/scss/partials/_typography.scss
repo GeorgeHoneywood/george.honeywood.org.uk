@@ -67,22 +67,25 @@ ol {
 }
 
 blockquote {
-  &::before {
-    position: absolute;
-    content: "\201C";
+  // &::before {
+  //   position: absolute;
+  //   content: "\201C";
 
-    font-size: 4em;
-    font-family: "Roboto", serif;
+  //   font-size: 4em;
+  //   font-family: "Roboto", serif;
 
-    z-index: -1;
-    @include themed() {
-      color: darken(t($bg), 20%);
-    }
-  }
+  //   z-index: -1;
+  //   @include themed() {
+  //     color: darken(t($bg), 20%);
+  //   }
+  // }
 
   margin-top: $leading;
   margin-bottom: $leading;
   line-height: $leading;
+  padding-left: 15px;
+
+  border-left: 2px solid; 
 
   cite {
     &::before {

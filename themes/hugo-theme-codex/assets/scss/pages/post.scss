@@ -38,7 +38,6 @@ $tocBreakpoint: 1024px;
   }
 
   blockquote {
-    width: 95%;
     margin: 0 auto;
     font-size: 1rem;
 
@@ -52,6 +51,13 @@ $tocBreakpoint: 1024px;
     width: 100%;
     margin: 20px auto;
     display: block;
+  }
+
+  figure > figcaption {
+    border-left: 2px solid;
+    padding-left: 10px;
+    font-style: italic;
+    line-height: $leading;
   }
 
   video {
@@ -250,6 +256,7 @@ table {
 
 .footnotes {
   margin-top: 1rem;
+  border-top: 1px solid;
 }
 
 .footnote-ref {
