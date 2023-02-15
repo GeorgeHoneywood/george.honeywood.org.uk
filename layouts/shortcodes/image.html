@@ -27,7 +27,7 @@
         />
         {{ with (.Get "caption") }}
             <figcaption>
-                {{.}}
+                {{ . | markdownify }}
             </figcaption>
         {{end}}
     </figure>

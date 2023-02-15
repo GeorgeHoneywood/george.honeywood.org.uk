@@ -1,9 +1,9 @@
 ---
-title: "Jane Holloway Swimming Pool"
+title: "History of the Jane Holloway Swimming Pool"
 date: 2023-02-10T12:19:09Z
 draft: true
-description: "The history of Jane Holloway Hall, at Royal Holloway"
-keywords: ["swimming pool", ]
+description: "Brief history of Jane Holloway Hall, Royal Holloway"
+keywords: ["swimming pool", "history"]
 tags: ["thoughts", "projects"]
 math: false
 toc: false
@@ -18,21 +18,25 @@ I study at Royal Holloway, a university probably most well known for the iconic 
 
 {{< image path="jane-holloway-front" alt="Entrance to Jane Holloway Hall" method="Resize" options="2000x" >}}
 
-On the wooded slopes below Founder's is Jane Holloway Hall, which was originally an indoor heated swimming pool. It was built in 1893, so about a decade after Founder's was finished. This completion date would make it one of the earlier examples in the UK. It is not nearly as visually impressive as Founder's, but it suits its environment well enough. Unfortunately, they decided to pebble dash it, which I think is a bad call on _any_ building. At least the interior has the brickwork exposed.
+On the wooded slopes below Founder's is the grade two listed Jane Holloway Hall, which was formerly an indoor heated swimming pool. It was built in 1893, so about a decade after Founder's was constructed. This completion date would make it one of the earlier examples in the UK. It is not nearly as visually impressive as Founder's, but it suits the wooded environment well. Unfortunately, they decided to pebble dash it, which I think is a bad call on _any_ building. Fortunately, the interior has the brickwork exposed, and is notable for its "elegant pinjointed steel roof trusses" [^4].
 
-For almost as long as I've been at Royal Holloway, I've been curious about this building. There isn't much about it online. On campus there are vague rumours that a student once drowned there. There is a [13-year-old thread](https://www.thestudentroom.co.uk/showthread.php?t=903291) on Student Room, where I found this picture, which really piqued my interest in history of this building.
+I've been curious about this building since I started studying here. There isn't much about it online. On campus there are rumours that a student once drowned in the pool, and since haunts the corridors of Founder's. Randomly I found a [13-year-old thread](https://www.thestudentroom.co.uk/showthread.php?t=903291) on Student Room, with this picture attached, which piqued my interest.
 
-{{< image path="interior-student-room" alt="Jane Holloway Hall interior"  caption="Jane Holloway Hall, undated (© Royal Holloway Archives)">}}
+{{< image path="interior-student-room" alt="Jane Holloway Hall interior" caption="Jane Holloway Hall, undated (© Royal Holloway Archives)">}}
 
 This curiosity lingered on for a couple of years until I started swimming regularly. These days students have to make the 30-minute walk to Egham Orbit on the other side of the M25. Out of laziness, I wanted to find out why the university got rid of the more conveniently located campus swimming pool.
 
-I figured the best place to find this out would be the university archives. From the Student Room thread, I knew that the pool became a gym at some point in the 1980s. A brief search of the online archive catalogue returned some results that seemed like they might be relevant.
+{{< image path="interior-1906" alt="Jane Holloway Hall interior 2" caption="Jane Holloway Hall, 1906 (© Royal Holloway Archives, ref: [RHC PH/213/1](https://www.flickr.com/photos/rhularchives/3811874334))">}}
 
-Here I have to thank the Archivist, who very helpfully identified magazines and other articles that referenced Jane Holloway Hall. As the documents haven't yet been digitized, I had to book a visit to the archive reading room. This was the first time I have ever visited an archive --- I'd strongly recommend the experience. It's quite weird seeing the world from a perspective 40 years in the past.
+I figured the best place to find this out would be the university archives. From the Student Room thread, I knew that the pool was removed at some point in the 1980s. A brief search of the online archive catalogue returned some results that seemed like they might be relevant.
 
-{{< image path="fortnight" alt="Fortnight News Bulletin Edition 2" method="Resize" options="2000x" caption="Fortnight News Bulletin Edition 2 (© Royal Holloway Archives, ref: RHBNC/CM/Pubs/2/1/2)">}}
+Here I have to thank the Archivist, who very helpfully identified magazines and other articles that referenced Jane Holloway Hall. As the documents are yet to be digitized, I had to book a visit to the archive reading room. This was the first time I have ever used an archive --- I'd strongly recommend the experience. It's quite weird seeing the world from a perspective 40 years in the past.
 
-Pretty soon I found my answer in the very 1980s Fortnight university "News Bulletin". I'll include the text of the article here verbatim.
+{{< image path="fortnight" alt="Fortnight News Bulletin Edition 2" method="Resize" options="2000x" caption="Fortnight News Bulletin Edition 2 (© Royal Holloway Archives, ref: [RHBNC/CM/Pubs/2/1/2](http://185.121.204.135/archives/#/details/ecatalogue/9361))">}}
+
+Pretty soon I found my answer in the very 1980s Fortnight university "News Bulletin" [^6]. I'll include the text of the article here verbatim:
+
+[^6]: See RHUL Archive ref [HB/CM/Pubs/2/1/2](http://185.121.204.135/archives/#/details/ecatalogue/9361).
 
 > #### Ignominious end for Victorian swimming pool?
 >
@@ -55,3 +59,18 @@ Pretty soon I found my answer in the very 1980s Fortnight university "News Bulle
 > GORDON BORELAND
 >
 > (Archive Research by Mr P J F Scott, Deputy Secretary)
+
+TL;DR: a tree fell on the building in 1981. The required repairs and modernization would have cost £250,000 in 1983 (about £750,000 today). This seems to me to be a very reasonable sum to pay for repairs to a swimming pool [^2]. Presumably the university must have been under some considerable financial strain at the time. This article was comprehensive, providing a full history of the building, and I am grateful to Gordon Boreland and Mr P J F Scott for writing it. 
+
+[^2]: [According to the architect](https://web.archive.org/web/20230214222905if_/https://watsonbatty.com/wp-content/uploads/2017/06/WBA-Sport-and-Leisure-2019-Final-Int-SML-1.pdf#page=7), the new-build Egham Orbit leisure centre cost £19 million in 2019, making the £750,000 repair seem pale in comparison.
+
+After 1984 the basement of the building was used as the rock store for the Geology department. This continued until 1992, when it was realized that the damp conditions were causing "academically valuable" rock specimens to deteriorate [^3]. By the centenary of the building, in 1993, it had finally been converted into a "multi-purpose flat-floored" hall [^4]. It was then used for lecturing and music rehearsals, with a seated capacity of 150.
+
+[^3]: See RHUL Archive ref [HB/CM/Pubs/2/3/28](http://185.121.204.135/archives/#/details/ecatalogue/10914).
+[^4]: See RHUL Archive ref [HB/CM/Pubs/2/3/43](http://185.121.204.135/archives/#/details/ecatalogue/9947).
+
+More recently in 2018, the building was once again modernized --- this time to become a space for group exercise, supplementing the relatively small on-campus gym [^5]. The interior today is remarkably consistent with pictures from 1906, having retained the exposed brickwork and steel roof trusses, with the caveat that it is now sans swimming pool. The grade two listing should prevent any alterations that would significantly alter its character in the future.
+
+It would be quite amusing if it were to be converted back into a swimming pool one day. I'd be interested if anyone has more pictures of the building in use as a pool --- I'm sure there must be some between 1906 and when it was damaged in 1981.
+
+[^5]: See [Gym Now In Shape After Summer Upgrade](https://web.archive.org/web/20210123225056/https://www.su.rhul.ac.uk/news/article/surhul/Blog-Gym-Now-In-Shape-After-Summer-Upgrades/) from the RHSU blog. Note the images are of the gym, not Jane Holloway Hall.
