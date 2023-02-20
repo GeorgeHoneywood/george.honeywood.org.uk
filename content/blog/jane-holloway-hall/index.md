@@ -1,7 +1,7 @@
 ---
 title: "History of the Jane Holloway Swimming Pool"
-date: 2023-02-10T12:19:09Z
-draft: true
+date: 2023-02-20T12:19:09Z
+draft: false
 description: "Brief history of Jane Holloway Hall, Royal Holloway"
 keywords: ["swimming pool", "history"]
 tags: ["thoughts", "projects"]
@@ -52,7 +52,7 @@ Pretty soon I found my answer in the very 1980s Fortnight university "News Bulle
 >
 > The pool had originally been heated from a pipe off the main College heating system. Since it took 4 hours to clean the pool and 12 to 14 hours to refill, it was very expensive to maintain the heating supply.
 >
-> Indeed it had such a prejudicial effect on the central system that a coke filled (sic) boiler was installed. By 1949 16 tons of coke in total were used each year to run the boiler, and the cost of maintaining the pool came to £13 10d each week.
+> Indeed it had such a prejudicial effect on the central system that a coke filled boiler was installed. By 1949 16 tons of coke in total were used each year to run the boiler, and the cost of maintaining the pool came to £13 10d each week.
 >
 > The swimming pool remained in full use until 1981 when it was so badly damaged. Few students now remain at the College who have swum in the pool, and because the cost for repair will probably keep increasing it seems unlikely that the pool will ever be reopened for use. Since the state of the building is deteriorating and becoming dangerous, it might soon become expedient to demolish it. It is sad that such an historic building of the last century might come to such an ignominious end.
 >
