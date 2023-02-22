@@ -10,13 +10,13 @@ toc: false
 comments: true
 ---
 
-{{< image path="founders-cat" alt="Founder's at sunrise" method="Resize" options="2000x" >}}
+{{< image path="founders-cat" alt="Founder's at sunrise" >}}
 
 I study at Royal Holloway, a university probably most well known for the iconic Founder's Building. According to Wikipedia, it is an example of French-Renaissance style architecture. Founder's is often used in TV and film as visual shorthand for a grandiose university or school setting, starring in Avengers: Age of Ultron, The Crown, You, and most importantly, Midsomer Murders [^1].
 
 [^1]: The Crown and You were filming recently, so I don't have any sources (bar campus rumours). Royal Holloway has an [official page](https://www.royalholloway.ac.uk/about-us/our-history/our-story/in-tv-and-film/) listing previous productions.
 
-{{< image path="jane-holloway-front" alt="Entrance to Jane Holloway Hall" method="Resize" options="2000x" >}}
+{{< image path="jane-holloway-front" alt="Entrance to Jane Holloway Hall" >}}
 
 On the wooded slopes below Founder's is the grade two listed Jane Holloway Hall, which was formerly an indoor heated swimming pool. It was built in 1893, so about a decade after Founder's was constructed. This completion date would make it one of the earlier examples in the UK. It is not nearly as visually impressive as Founder's, but it suits the wooded environment well. Unfortunately, they decided to pebble dash it, which I think is a bad call on _any_ building. Fortunately, the interior has the brickwork exposed, and is notable for its "elegant pinjointed steel roof trusses" [^4].
 
@@ -32,7 +32,7 @@ I figured the best place to find this out would be the university archives. From
 
 Here I have to thank the Archivist, who very helpfully identified magazines and other articles that referenced Jane Holloway Hall. As the documents are yet to be digitized, I had to book a visit to the archive reading room. This was the first time I have ever used an archive --- I'd strongly recommend the experience. It's quite weird seeing the world from a perspective 40 years in the past.
 
-{{< image path="fortnight" alt="Fortnight News Bulletin Edition 2" method="Resize" options="2000x" caption="Fortnight News Bulletin Edition 2 (© Royal Holloway Archives, ref: [RHBNC/CM/Pubs/2/1/2](http://185.121.204.135/archives/#/details/ecatalogue/9361))">}}
+{{< image path="fortnight" alt="Fortnight News Bulletin Edition 2" caption="Fortnight News Bulletin Edition 2 (© Royal Holloway Archives, ref: [RHBNC/CM/Pubs/2/1/2](http://185.121.204.135/archives/#/details/ecatalogue/9361))">}}
 
 Pretty soon I found my answer in the very 1980s Fortnight university "News Bulletin" [^6]. I'll include the text of the article here verbatim:
 
@@ -40,7 +40,7 @@ Pretty soon I found my answer in the very 1980s Fortnight university "News Bulle
 
 > #### Ignominious end for Victorian swimming pool?
 >
-> {{< image path="tree-damage" alt="Tree damage to Jane Holloway Hall" method="Resize" options="2000x">}}
+> {{< image path="tree-damage" alt="Tree damage to Jane Holloway Hall" >}}
 >
 > The indoor Victorian swimming pool at Royal Holloway is to remain unrepaired for the forseeable future. In 1981 it sustained considerable damage when a tree fell onto the roof of the building during a storm. Last January it was recommended by the Joint Standing Committee that the cost of repairing and modernizing the pool and the building, over £250,000, was too great to be considered at the present time. Even to have brought the pool up to working order for summer-time use only would have cost £100,000.
 >

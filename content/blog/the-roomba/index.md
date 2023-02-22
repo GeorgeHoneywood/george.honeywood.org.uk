@@ -24,7 +24,7 @@ When it arrived, it was hilariously bad at vacuuming. It could suck up dust, but
 
 In Roomba land, the beater bar is part of the "Cleaning Head Module". Nothing seemed to be visibly wrong with it, so I had a look inside the gearbox. Other than managing to strip one of the screws through impatience, it was pretty simple to get in. Once I had it open, the problem became rather obvious.
 
-{{< image path="gearbox" alt="A very dirty gearbox" method="Resize" options="1000x" >}}
+{{< image path="gearbox" alt="A very dirty gearbox" >}}
 
 The gearbox was completely full of dust and hair. I'm not sure if this was a result of engineering oversight, or if it is just very difficult to seal a gearbox against 14 years of grime. This reminded me of a great [video by rctestflight](https://youtu.be/YhwthSaLgh4?t=1714), where he runs a selection of RC cars in circles for literal weeks to see how far they'll go. Some of them eventually failed after the universal joints driving the wheels wore down, and in others the gearboxes wore out, as mud got in and ate away at the gears.
 
@@ -36,6 +36,6 @@ Annoyingly, immediately after this new part arrived, the Roomba stopped charging
 
 Once I had installed the new parts, its cleaning performance improved dramatically. It can now pick up larger bits of dirt, and even gets fluffs and hairs up from the low pile carpets we have. One feature I am particularly fond of is "Dirt Detect", which uses some kind of contact microphone in the Cleaning Head to detect dirty spots. When it finds one, it circles back and gives the area a second pass. It also has a "Spot" mode, where it cleans in concentric circles if you have a specific area that needs special attention.
 
-{{< image path="docked" alt="The Roomba docked and charging up" method="Resize" options="1000x" >}}
+{{< image path="docked" alt="The Roomba docked and charging up" >}}
 
 I still need to replace the side brush on it. This is what would normally enable it to reach dirt that is close to the walls. For now, I have been manually brushing dirt into the middle of the floor, which you could argue defeats the point of a robot vacuum.
