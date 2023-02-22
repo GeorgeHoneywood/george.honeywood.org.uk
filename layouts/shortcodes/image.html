@@ -1,32 +1,56 @@
-{{ $image := .Page.Resources.GetMatch (printf "images/%s*" (.Get "path")) }}
+{{/* credit to: https://www.brycewray.com/posts/2022/06/responsive-optimized-images-hugo/ */}}
 
-{{ if $image }}
-    {{ $options := .Get "options"}}
-    {{ $method := .Get "method" }}
+{{ $src := .Page.Resources.GetMatch (printf "images/%s*" (.Get "path")) }}
 
-    {{ if eq $method "Fill" }}
-        {{ .Scratch.Set "modified-image" ($image.Fill $options) }}
-    {{ else if eq $method "Fit" }}
-        {{ .Scratch.Set "modified-image" ($image.Fit $options) }}
-    {{ else if eq $method "Resize" }}
-        {{ .Scratch.Set "modified-image" ($image.Resize $options) }}
+{{- $respSizes := slice "320" "640" "960" "1280" -}}
+{{/* if the viewport is >600px, then serve the nearest image greater than 600px,
+    otherwise serve image closest to 100% of the viewport width
+    
+    on hi-DPI screens, it will serve the 960 and 1280 res images */}}
+{{- $dataSzes := "(max-width: 600px) 100vw, 600px" -}}
+
+{{ if $src }}
+    {{- $actualImg := $src.Resize "640x jpg" -}}
+
+    {{/* FIXME: not really sure if this deepcopies or not. if not then this might
+         be resizing images twice, which isn't ideal */}}
+    {{ $linkSrc := $src }}
+    {{ if gt $linkSrc.Width 2048 }}
+        {{ $linkSrc = $linkSrc.Resize "2048x webp" }}
     {{ else }}
-        {{/* passing through resources.Fingerprint means hash is included in URL, which is useful for cache busting */}}
-        {{ .Scratch.Set "modified-image" ($image | resources.Fingerprint "md5")  }}
+        {{ $linkSrc = $linkSrc.Resize (printf "%dx%d webp" $linkSrc.Width $linkSrc.Height)}}
     {{ end }}
 
     <figure>
-        <img
-            style="{{ with (.Get "width") }}width: {{ . }};{{ end }}"
-            src='{{ (.Scratch.Get "modified-image").RelPermalink }}'
-            width="{{ (.Scratch.Get "modified-image").Width }}"
-            height="{{ (.Scratch.Get "modified-image").Height }}"
-            alt='{{ with (.Get "alt") }}
-                {{- . -}}
-            {{else}}
-                {{ warnf "no alt found for '%s' on page '%s'" (.Get "path") (.Page.Path)}}
-            {{end}}'
-        />
+        <a href='{{ $linkSrc.RelPermalink }}'>
+            <picture>
+                <source
+                    type="image/webp"
+                    srcset="
+                    {{- with $respSizes -}}
+                        {{- range $i, $e := . -}}
+                            {{- if ge $src.Width . -}}
+                                {{- if $i }}, {{ end -}}{{- ($src.Resize (printf "%sx%s" . " webp") ).RelPermalink }} {{ . }}w
+                            {{- end -}}
+                        {{- end -}}
+                    {{- end -}}"
+                    sizes="{{ $dataSzes }}"
+                />
+                {{/* NOTE: not worth supporting jpg IMO, given wide webp support */}}
+                <img
+                    style="{{ with (.Get "width") }}width: {{ . }};{{ end }}"
+                    src='{{ $actualImg.RelPermalink }}'
+                    width="{{ $src.Width }}"
+                    height="{{ $src.Height }}"
+                    loading="lazy"
+                    alt='{{ with (.Get "alt") }}
+                        {{- . -}}
+                    {{else}}
+                        {{ warnf "no alt found for '%s' on page '%s'" (.Get "path") (.Page.Path)}}
+                    {{end}}'
+                />
+            </picture>
+        </a>
         {{ with (.Get "caption") }}
             <figcaption>
                 {{ . | markdownify }}
