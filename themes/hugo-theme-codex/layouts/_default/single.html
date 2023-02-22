@@ -10,7 +10,8 @@
         <div class="post">
           <header class="post__header">
             <h1 id="post__title">{{.Title}}</h1>
-            {{ if .Date }}<time datetime="{{ .Date }}" class="post__date">{{ .Date.Format $dateFormat }}</time> {{ end }}
+            {{ if .Date }}<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z" }}" class="post__date">{{ .Date.Format $dateFormat }}</time> {{ end }}
+            <span class="post__warning">- This post is more than 6 months old. Circumstances or my opinions may have changed.</span>
           </header>
           <article class="post__content">
               {{ partial "anchored-headings.html" .Content }}
@@ -47,6 +48,10 @@
 
 {{ define "scripts" }}  
   {{ if .Params.toc }}
-    <script src="/js/table-of-contents.js"></script>
+    <!-- <script src="/js/table-of-contents.js"></script> -->
+    {{ $script := resources.Get "js/table-of-contents.js" | minify | fingerprint }}
+    <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous"></script>
   {{ end }}
+  {{ $script := resources.Get "js/old-post.js" | minify | fingerprint }}
+  <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous"></script>
 {{ end }}

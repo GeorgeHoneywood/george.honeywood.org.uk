@@ -43,6 +43,9 @@
   {{ block "links" . }} {{ end }}
   {{ partial "seo-schema.html" .}}
 
+  {{ $script := resources.Get "js/theme.js" | minify | fingerprint }}
+  <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous"></script>
+
   {{- if not .Site.IsServer -}}
       {{ template "_internal/google_analytics_async.html" . }}
   {{- end -}}
@@ -57,51 +60,7 @@
   <!-- it means that I can't enable a inline JS blocking CSP -->
   <!-- maybe a hash is the way to go... bit of a pain to generate though -->
   <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_inline_script -->
-  <script>
-    /** 
-     * set color scheme
-     * @param {boolean} dark - true for dark, false for light
-    */
-    function setColorScheme(dark){
-      let root = document.querySelector("html");
-      let meta = document.querySelector('meta[name="theme-color"]');
 
-      if (!meta) {
-        newNode = document.createElement('meta');
-        newNode.name = "theme-color";
-        meta = document.head.appendChild(newNode);
-      }
-
-      if (dark === true) {
-        root.classList.remove("theme--default");
-        root.classList.add("theme--dark");
-        meta.setAttribute("content", "#181a1b");
-      } else {
-        root.classList.remove("theme--dark");
-        root.classList.add("theme--default");
-        meta.setAttribute("content", "#ffffff");
-      }
-    }
-
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      this.setColorScheme(e.matches);
-    })
-
-    let themePref = localStorage.getItem('theme');
-    if (themePref === "dark") {
-      setColorScheme(true);
-    } else if (themePref === "default"){
-        setColorScheme(false);
-    } else {
-      setColorScheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
-    }
-
-    // cool transition between themes
-    // have to wait otherwise we get a weird transition on page load
-    // TODO: this could probably use page load or something instead
-    //       i.e if people have slow internet, this could be a problem
-    setTimeout(() => document.querySelector("body").style.transition = "all 0.25s linear 0s", 1000);
-  </script>
 
   <main>
     {{ block "main" . }} {{ end }}
@@ -109,8 +68,9 @@
 
   {{ block "footer" . }} {{ end }}
 
-  {{ $script := resources.Get "js/index.js" | minify | fingerprint }}
+  {{ $script := resources.Get "js/handlers.js" | minify | fingerprint }}
   <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous"></script>
+
   {{ block "scripts" . }} {{ end }}
 
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "882518a802154fcb9f0014e8203a0415"}'></script><!-- End Cloudflare Web Analytics -->

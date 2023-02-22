@@ -50,6 +50,7 @@ $tocBreakpoint: 1024px;
   img {
     width: 100%;
     margin: 20px auto;
+    height: auto;
     display: block;
   }
 
@@ -86,6 +87,13 @@ $tocBreakpoint: 1024px;
 .post__date {
   color: $grey;
   font-size: 0.8rem;
+}
+
+.post__warning {
+  color: $grey;
+  font-size: 0.8rem;
+  display: none;
+  font-style: italic;
 }
 
 .post__footer {
