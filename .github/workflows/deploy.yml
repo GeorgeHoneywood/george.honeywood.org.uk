@@ -13,15 +13,16 @@ jobs:
       SOURCEHUT_TOKEN: ${{ secrets.SOURCEHUT_TOKEN }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           # need this for git info
           fetch-depth: 0
 
       - name: setup Hugo
-        uses: peaceiris/actions-hugo@v2.4.13
+        uses: peaceiris/actions-hugo@v2
         with:
           extended: true
+          hugo-version: 'latest'
 
       - name: run the deploy script
         run: ./deploy.sh
