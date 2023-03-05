@@ -3,10 +3,14 @@
   display: flex;
   align-items: center;
   padding: 0 1.5rem;
-  background-color: inherit;
   z-index: 2;
   right: 0;
+  backdrop-filter: blur(3px);
   position: fixed;
+
+  @include themed() {
+    background-color: transparentize($color: t($bg), $amount: 0.4);
+  }
 
   @media screen and (min-width: $medium) {
     display: none;
@@ -18,7 +22,7 @@
   width: $meatWidth;
   height: $meatWidth;
   cursor: pointer;
-  background-color: inherit;
+  background: none;
   border: none;
 }
 
@@ -29,6 +33,7 @@
   top: calc(50% - #{$meatHeight} / 2);
   left: calc(50% - #{$meatWidth} / 2);
   transition: all 150ms ease-in;
+
   @include themed() {
     background-color: t($text);
   }
