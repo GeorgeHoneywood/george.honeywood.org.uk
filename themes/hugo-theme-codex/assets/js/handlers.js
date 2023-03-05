@@ -12,7 +12,7 @@ function toggleMobileNavState() {
  */
 
 function initBurger() {
-  const burger = document.querySelector(".burger");
+  const burger = document.querySelector(".burger__container");
   burger.addEventListener("click", toggleMobileNavState);
 }
 
