@@ -1,5 +1,5 @@
 ---
-heading: "George Honeywood"
-subheading: "A website about programming & GIS"
+heading: "George Honeywood's blog"
+subheading: "Mostly about programming & GIS"
 handle: "GeorgeHoneywood"
 ---

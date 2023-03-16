@@ -1,7 +1,7 @@
 theme = "hugo-theme-codex" 
 
 # Override these settings with your own
-title = "George Honeywood"
+title = "George Honeywood's blog"
 languageCode = "en-gb"
 baseURL = "https://george.honeywood.org.uk/"
 copyright = "content: <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>CC BY-NC-SA 4.0</a> &mdash; theme: modified <a href='https://github.com/jakewies/hugo-theme-codex'>codex</a>"
