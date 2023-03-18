@@ -269,7 +269,6 @@ table {
 
 .footnote-ref {
   text-decoration: none;
-  font-size: smaller;
 
   &:before {
     content: " [";
@@ -278,4 +277,12 @@ table {
   &:after {
     content: "]";
   }
+}
+
+// would prefer to use :has on the .footnote-ref , but firefox doesn't support
+// this yet
+// even better would be a render hook for footnotes
+sup {
+  vertical-align: baseline;
+  font-size: inherit;
 }
