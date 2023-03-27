@@ -1,12 +1,15 @@
+@import "fonts";
+
 $baseFontSize: 16;
 $baseLineHeight: 1.5;
 $scale: 1.414;
 $leading: $baseLineHeight * 1rem;
 
 html {
-  // not bundling any of these fonts, so we just get whatever the browser has
-  // hopefully they should all be fairly similar
-  font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  // we bundle IBM Plex Sans Variable, but IBM Plex Sans is preferred if the
+  // user has it installed (unlikely)
+  font-family: "IBM Plex Sans", "IBM Plex Sans Variable", "Helvetica Neue",
+    Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 100%;
 }
@@ -167,4 +170,9 @@ table {
 // fix lines with footnotes being taller
 sup {
   line-height: 0;
+}
+
+// otherwise buttons don't inherit font-family from body
+button {
+  font-family: inherit;
 }
