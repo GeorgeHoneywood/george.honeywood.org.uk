@@ -46,9 +46,8 @@
   {{ $script := resources.Get "js/theme.js" | minify | fingerprint }}
   <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous"></script>
 
-  {{- if not .Site.IsServer -}}
-      {{ template "_internal/google_analytics_async.html" . }}
-  {{- end -}}
+  <!-- preload the main body font -->
+  <link rel="preload" href="/fonts/IBMPlexSansVar-Roman-Latin1.woff2" as="font" type="font/woff2" crossorigin> 
 </head>
 
 <body>
@@ -73,7 +72,9 @@
 
   {{ block "scripts" . }} {{ end }}
 
-  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "882518a802154fcb9f0014e8203a0415"}'></script><!-- End Cloudflare Web Analytics -->
+  {{- if not .Site.IsServer -}}
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "882518a802154fcb9f0014e8203a0415"}'></script><!-- End Cloudflare Web Analytics -->
+  {{- end -}}
 </body>
 
 </html>
