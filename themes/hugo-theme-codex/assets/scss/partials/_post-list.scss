@@ -26,14 +26,17 @@
   font-weight: 500;
 
   a {
+    text-decoration: none;
     @include themed() {
       color: t($text);
     }
-    text-decoration: none;
   }
 }
 
 .post__date {
-  color: $grey;
   font-size: 0.8rem;
+
+  @include themed() {
+    color: t($text-secondary);
+  }
 }

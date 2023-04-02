@@ -94,7 +94,9 @@ blockquote {
   line-height: $leading;
   padding-left: 15px;
 
-  border-left: 2px solid;
+  @include themed() {
+    border-left: 2px solid t($text-secondary);
+  }
 
   cite {
     &::before {
@@ -103,7 +105,6 @@ blockquote {
 
     font-style: italic;
     font-size: 0.95em;
-    color: $darkGrey;
   }
 }
 

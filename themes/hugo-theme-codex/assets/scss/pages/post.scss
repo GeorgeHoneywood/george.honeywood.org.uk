@@ -23,27 +23,13 @@ $tocBreakpoint: 1024px;
     padding-top: 10px;
 
     .anchor {
-      top: 0.65rem;
+      // top: 0.65rem;
       text-decoration: none;
       position: absolute;
       left: -1rem;
       color: $primary !important;
       font-size: 1.2rem;
       font-weight: 400;
-    }
-
-    .anchor:hover {
-      color: $darkGrey;
-    }
-  }
-
-  blockquote {
-    margin: 0 auto;
-    font-size: 1rem;
-
-    a {
-      color: $darkGrey;
-      text-decoration: underline;
     }
   }
 
@@ -56,10 +42,13 @@ $tocBreakpoint: 1024px;
   }
 
   figure > figcaption {
-    border-left: 2px solid;
     padding-left: 10px;
     font-style: italic;
     line-height: $leading;
+
+    @include themed() {
+      border-left: 2px solid t($text-secondary);
+    }
   }
 
   video {
@@ -86,15 +75,21 @@ $tocBreakpoint: 1024px;
 }
 
 .post__date {
-  color: $grey;
   font-size: 0.8rem;
+
+  @include themed() {
+    color: t($text-secondary);
+  }
 }
 
 .post__warning {
-  color: $grey;
   font-size: 0.8rem;
   display: none;
   font-style: italic;
+
+  @include themed() {
+    color: t($text-secondary);
+  }
 }
 
 .post__footer {
@@ -125,8 +120,11 @@ $tocBreakpoint: 1024px;
 
   a {
     text-decoration: none;
-    color: $grey;
     font-size: 0.9rem;
+
+    @include themed() {
+      color: t($text-secondary);
+    }
   }
 
   a.active {
@@ -213,8 +211,11 @@ $tocBreakpoint: 1024px;
 }
 
 .pagination__label {
-  color: $grey;
   font-size: 0.8rem;
+
+  @include themed() {
+    color: t($text-secondary);
+  }
 }
 
 .pagination__title {
@@ -230,8 +231,11 @@ footer {
 
   p {
     margin-top: 1rem; // reduce margin top due to social icons' padding
-    color: $grey;
     font-size: 0.75rem;
+
+    @include themed() {
+      color: t($text-secondary);
+    }
   }
 }
 
@@ -264,7 +268,14 @@ table {
 
 .footnotes {
   margin-top: 1rem;
-  border-top: 1px solid;
+
+  hr {
+    border: none;
+
+    @include themed() {
+      border-top: 2px solid t($text-secondary);
+    }
+  }
 }
 
 .footnote-ref {

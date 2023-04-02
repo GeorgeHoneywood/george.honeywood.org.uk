@@ -8,8 +8,11 @@
 
   a,
   .separator {
-    color: $grey;
     font-size: 1.5rem;
+
+    @include themed() {
+      color: t($text-secondary);
+    }
   }
 
   a {

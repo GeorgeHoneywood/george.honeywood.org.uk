@@ -14,10 +14,14 @@
 }
 
 .comment {
-  background-color: $grey;
   margin-bottom: 0.5rem;
   padding: 0.75rem;
   border-radius: 0.25rem;
+
+  // this seems wrong, but comments aren't used anyway
+  @include themed() {
+    background-color: t($text-secondary);
+  }
 
   .comment__author-name,
   .comment__author-date {

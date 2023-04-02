@@ -64,21 +64,26 @@
 }
 
 .nav__list > li > * {
-  color: $grey;
   text-decoration: none;
   font-size: 2em;
   cursor: pointer;
+
+  @include themed() {
+    color: t($text-secondary);
+  }
 
   &.active {
     @include themed() {
       color: t($text);
     }
+    font-weight: 500;
   }
 
   &:hover {
     @include themed() {
       color: t($text);
     }
+    font-weight: 500;
   }
 
   @media screen and (min-width: $medium) {

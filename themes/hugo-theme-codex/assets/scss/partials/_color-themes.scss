@@ -2,6 +2,7 @@ $bg: "bg";
 $text: "text";
 $link: "link";
 $visited: "visited";
+$text-secondary: "text-secondary";
 
 $theme-map: null;
 
@@ -9,20 +10,16 @@ $themes: (
   default: (
     bg: $white,
     text: $black,
-    // text-secondary: $text--2--light,
-      link: #0000ee,
+    text-secondary: #595959,
+    link: #0000ee,
     visited: #551a8b,
-    // hover: $hover--light,
-      // border: $border--light,,,
   ),
   dark: (
     bg: #181a1b,
     text: #e8e6e3,
-    // text-secondary: $text--2--dark,
-      link: #58a6ff,
+    text-secondary: #a4a4a4,
+    link: #58a6ff,
     visited: #c34abd,
-    // hover: $hover--dark,
-      // border: $border--dark,,,
   ),
 );
 

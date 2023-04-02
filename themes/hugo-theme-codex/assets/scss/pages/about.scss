@@ -36,8 +36,11 @@
 .handle {
   display: inline-block;
   margin-top: 0.275em;
-  color: $grey;
   letter-spacing: 0.5px;
+
+  @include themed() {
+    color: t($text-secondary);
+  }
 }
 
 .writing {
