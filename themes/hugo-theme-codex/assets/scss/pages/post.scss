@@ -125,7 +125,7 @@ $tocBreakpoint: 1024px;
 
   a {
     text-decoration: none;
-    color: #9b9b9b;
+    color: $grey;
     font-size: 0.9rem;
   }
 
@@ -231,7 +231,7 @@ footer {
   p {
     margin-top: 1rem; // reduce margin top due to social icons' padding
     color: $grey;
-    font-size: 0.65rem;
+    font-size: 0.75rem;
   }
 }
 
