@@ -27,16 +27,11 @@
 
   a {
     text-decoration: none;
-    @include themed() {
-      color: t($text);
-    }
+    color: var(--text);
   }
 }
 
 .post__date {
   font-size: 0.8rem;
-
-  @include themed() {
-    color: t($text-secondary);
-  }
+  color: var(--text-secondary);
 }

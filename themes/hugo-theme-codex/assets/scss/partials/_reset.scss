@@ -1,11 +1,7 @@
-@import "color-themes";
-
 html,
 body {
-  @include themed() {
-    color: t($text);
-    background: t($bg);
-  }
+  color: var(--text);
+  background: var(--bg);
 
   height: 100%;
 }

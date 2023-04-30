@@ -8,13 +8,20 @@
   backdrop-filter: blur(3px);
   position: fixed;
 
-  @include themed() {
-    background-color: transparentize($color: t($bg), $amount: 0.4);
-  }
-
   @media screen and (min-width: $medium) {
     display: none;
   }
+}
+
+// trick to make the burger have a partial background opacity
+.burger__container::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  background-color: var(--bg);
+  opacity: 0.4;
 }
 
 .burger {
@@ -33,10 +40,7 @@
   top: calc(50% - #{$meatHeight} / 2);
   left: calc(50% - #{$meatWidth} / 2);
   transition: all 150ms ease-in;
-
-  @include themed() {
-    background-color: t($text);
-  }
+  background-color: var(--text);
 }
 
 .burger__meat--1 {

@@ -37,10 +37,7 @@
   display: inline-block;
   margin-top: 0.275em;
   letter-spacing: 0.5px;
-
-  @include themed() {
-    color: t($text-secondary);
-  }
+  color: var(--text-secondary);
 }
 
 .writing {

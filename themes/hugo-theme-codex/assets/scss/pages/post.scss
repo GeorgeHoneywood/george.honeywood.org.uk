@@ -45,10 +45,7 @@ $tocBreakpoint: 1024px;
     padding-left: 10px;
     font-style: italic;
     line-height: $leading;
-
-    @include themed() {
-      border-left: 2px solid t($text-secondary);
-    }
+    border-left: 2px solid var(--text-secondary);
   }
 
   video {
@@ -59,12 +56,9 @@ $tocBreakpoint: 1024px;
   }
 
   a {
-    @include themed() {
-      color: t($link);
-
-      &:visited {
-        color: t($visited);
-      }
+    color: var(--link);
+    &:visited {
+      color: var(--visited);
     }
   }
 }
@@ -76,10 +70,7 @@ $tocBreakpoint: 1024px;
 
 .post__date {
   font-size: 0.8rem;
-
-  @include themed() {
-    color: t($text-secondary);
-  }
+  color: var(--text-secondary);
 }
 
 .post__warning {
@@ -87,9 +78,7 @@ $tocBreakpoint: 1024px;
   display: none;
   font-style: italic;
 
-  @include themed() {
-    color: t($text-secondary);
-  }
+  color: var(--text-secondary);
 }
 
 .post__footer {
@@ -122,15 +111,11 @@ $tocBreakpoint: 1024px;
     text-decoration: none;
     font-size: 0.9rem;
 
-    @include themed() {
-      color: t($text-secondary);
-    }
+    color: var(--text-secondary);
   }
 
   a.active {
-    @include themed() {
-      color: t($text);
-    }
+    color: var(--text);
   }
 }
 
@@ -212,16 +197,11 @@ $tocBreakpoint: 1024px;
 
 .pagination__label {
   font-size: 0.8rem;
-
-  @include themed() {
-    color: t($text-secondary);
-  }
+  color: var(--text-secondary);
 }
 
 .pagination__title {
-  @include themed() {
-    color: t($text);
-  }
+  color: var(--text);
   font-weight: 700;
   margin-top: 0.25rem;
 }
@@ -232,10 +212,7 @@ footer {
   p {
     margin-top: 1rem; // reduce margin top due to social icons' padding
     font-size: 0.75rem;
-
-    @include themed() {
-      color: t($text-secondary);
-    }
+    color: var(--text-secondary);
   }
 }
 
@@ -271,10 +248,7 @@ table {
 
   hr {
     border: none;
-
-    @include themed() {
-      border-top: 2px solid t($text-secondary);
-    }
+    border-top: 2px solid var(--text-secondary);
   }
 }
 

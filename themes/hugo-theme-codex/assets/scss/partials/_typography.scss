@@ -1,4 +1,5 @@
 @import "fonts";
+@import "color-themes";
 
 $baseFontSize: 16;
 $baseLineHeight: 1.5;
@@ -84,19 +85,15 @@ blockquote {
   //   font-family: "Roboto", serif;
 
   //   z-index: -1;
-  //   @include themed() {
-  //     color: darken(t($bg), 20%);
-  //   }
+  //   
+  //   color: darken(var(--bg), 20%);
   // }
 
   margin-top: $leading;
   margin-bottom: $leading;
   line-height: $leading;
   padding-left: 15px;
-
-  @include themed() {
-    border-left: 2px solid t($text-secondary);
-  }
+  border-left: 2px solid var(--text-secondary);
 
   cite {
     &::before {
@@ -166,9 +163,7 @@ table {
   margin-top: 1rem;
   thead {
     tr {
-      @include themed() {
-        background-color: t($bg);
-      }
+      background-color: var(--bg);
     }
   }
 }

@@ -68,21 +68,15 @@
   font-size: 2em;
   cursor: pointer;
 
-  @include themed() {
-    color: t($text-secondary);
-  }
+  color: var(--text-secondary);
 
   &.active {
-    @include themed() {
-      color: t($text);
-    }
+    color: var(--text);
     font-weight: 500;
   }
 
   &:hover {
-    @include themed() {
-      color: t($text);
-    }
+    color: var(--text);
     font-weight: 500;
   }
 
@@ -97,7 +91,7 @@ main {
   }
 }
 
-#theme-switcher {
-  background-color: inherit;
-  border: none;
-}
+// #theme-switcher {
+//   background-color: inherit;
+//   border: none;
+// }

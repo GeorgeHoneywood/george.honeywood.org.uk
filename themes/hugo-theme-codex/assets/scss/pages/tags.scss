@@ -9,10 +9,7 @@
   a,
   .separator {
     font-size: 1.5rem;
-
-    @include themed() {
-      color: t($text-secondary);
-    }
+    color: var(--text-secondary);
   }
 
   a {

@@ -19,9 +19,7 @@
   border-radius: 0.25rem;
 
   // this seems wrong, but comments aren't used anyway
-  @include themed() {
-    background-color: t($text-secondary);
-  }
+  background-color: var(--text-secondary);
 
   .comment__author-name,
   .comment__author-date {

@@ -36,10 +36,7 @@
 .tag__link {
   text-decoration: none;
   font-size: 0.9rem;
-
-  @include themed() {
-    color: t($text-secondary);
-  }
+  color: var(--text-secondary);
 
   &::before {
     content: "#";
@@ -48,9 +45,7 @@
   }
 
   &:hover {
-    @include themed() {
-      color: t($text);
-    }
+    color: var(--text);
   }
 }
 

@@ -1,76 +1,67 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
+<html lang="{{- .Site.LanguageCode -}}">
 
 <head>
-  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <title>{{- if .IsHome -}}{{- .Site.Title -}}{{- else -}}{{- .Title -}} | {{- .Site.Title -}}{{- end -}}</title>
 
   <meta charset="UTF-8">
   <meta name="language" content="en">
-  <meta name="description" content="{{ if .IsHome}}{{ .Site.Params.Description }}{{ else }}{{.Page.Params.Description}}{{ end }}">
-  <meta name="keywords" content="{{ delimit .Keywords " , " }}">
+  <meta name="description" content="{{- if .IsHome -}}{{- .Site.Params.Description -}}{{- else -}}{{- .Page.Params.Description -}}{{- end -}}">
+  <meta name="keywords" content="{{- delimit .Keywords " , " -}}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <link rel="manifest" href="/manifest.json">
 
   <!-- we don't want staging to be indexed -->
-  {{ if not hugo.IsProduction }}
+  {{- if not hugo.IsProduction -}}
    <meta name="robots" content="noindex" />
-  {{ end }}
+  {{- end -}}
 
   <!-- Twitter -->
-  {{ if isset .Site.Params "twitter" }}
+  {{- if isset .Site.Params "twitter" -}}
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="{{ .Title }}" />
-  <meta name="twitter:description" content="{{ if .IsHome }}{{ htmlEscape .Site.Params.description }}{{ else }}{{ htmlEscape .Description }}{{ end }}"/>
-  <meta name="twitter:site" content="{{ .Site.Params.twitterSite | default .Site.Params.twitter }}" />
-  <meta name="twitter:creator" content="{{ .Site.Params.twitterCreator | default .Site.Params.twitter }}" />
-  {{ end }}
+  <meta name="twitter:title" content="{{- .Title -}}" />
+  <meta name="twitter:description" content="{{- if .IsHome -}}{{- htmlEscape .Site.Params.description -}}{{- else -}}{{- htmlEscape .Description -}}{{- end -}}"/>
+  <meta name="twitter:site" content="{{- .Site.Params.twitterSite | default .Site.Params.twitter -}}" />
+  <meta name="twitter:creator" content="{{- .Site.Params.twitterCreator | default .Site.Params.twitter -}}" />
+  {{- end -}}
 
-  {{ partial "favicon.html" }}
+  {{- partial "favicon.html" -}}
 
   <!-- Styles -->
-  {{ block "styles" . }} {{ end }} <!-- Get "style_opts" variable from "styles" block -->
-  {{ $base_styles_opts := .Scratch.Get "style_opts" }}
+  {{- block "styles" . -}} {{- end -}} <!-- Get "style_opts" variable from "styles" block -->
+  {{- $base_styles_opts := .Scratch.Get "style_opts" -}}
   
-  {{ $current_page := . }}
+  {{- $current_page := . -}}
   
-  {{ $style := resources.Get $base_styles_opts.src | resources.ExecuteAsTemplate $base_styles_opts.dest $current_page | toCSS  (dict "enableSourceMap" true "outputStyle" "compressed") | fingerprint }}
-  <link type="text/css" rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}"/>
+  {{- $style := resources.Get $base_styles_opts.src | resources.ExecuteAsTemplate $base_styles_opts.dest $current_page | toCSS  (dict "enableSourceMap" true "outputStyle" "compressed") | fingerprint -}}
+  <link type="text/css" rel="stylesheet" href="{{- $style.RelPermalink -}}" integrity="{{- $style.Data.Integrity -}}"/>
   
-  {{ range .AlternativeOutputFormats }} 
-  {{ printf `<link rel="%s" type="%s+%s" href="%s" title="%s" />` .Rel .MediaType.Type .MediaType.FirstSuffix.Suffix .Permalink $.Site.Title | safeHTML }} 
-  {{ end }} 
-  {{ block "links" . }} {{ end }}
-  {{ partial "seo-schema.html" .}}
-
-  {{ $script := resources.Get "js/theme.js" | minify | fingerprint }}
-  <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous"></script>
+  {{- range .AlternativeOutputFormats -}} 
+  {{- printf `<link rel="%s" type="%s+%s" href="%s" title="%s" />` .Rel .MediaType.Type .MediaType.FirstSuffix.Suffix .Permalink $.Site.Title | safeHTML -}} 
+  {{- end -}} 
+  {{- block "links" . -}} {{- end -}}
+  {{- partial "seo-schema.html" . -}}
 
   <!-- preload the main body font -->
   <link rel="preload" href="/fonts/IBMPlexSansVar-Roman-Latin1.woff2" as="font" type="font/woff2" crossorigin> 
 </head>
 
 <body>
-  {{ partial "burger.html" .}} 
+  {{- partial "burger.html" . -}} 
 
-  {{ partial "nav.html" .}}
-
-  <!-- FIXME: would rather this was not here... -->
-  <!-- it means that I can't enable a inline JS blocking CSP -->
-  <!-- maybe a hash is the way to go... bit of a pain to generate though -->
-  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_inline_script -->
-
+  {{- partial "nav.html" . -}}
 
   <main>
-    {{ block "main" . }} {{ end }}
+    {{- block "main" . -}} {{- end -}}
   </main>
 
-  {{ block "footer" . }} {{ end }}
+  {{- block "footer" . -}} {{- end -}}
 
-  {{ $script := resources.Get "js/handlers.js" | minify | fingerprint }}
-  <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous"></script>
+  {{- $script := resources.Get "js/handlers.js" | minify | fingerprint -}}
+  <script src="{{- $script.RelPermalink -}}" integrity="{{- $script.Data.Integrity | safeHTMLAttr -}}" crossorigin="anonymous"></script>
 
-  {{ block "scripts" . }} {{ end }}
+  {{- block "scripts" . -}} {{- end -}}
 
   {{- if not .Site.IsServer -}}
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "882518a802154fcb9f0014e8203a0415"}'></script><!-- End Cloudflare Web Analytics -->
