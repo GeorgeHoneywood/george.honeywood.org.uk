@@ -8,7 +8,7 @@
   <div class="post-list__container">
     <div class="tag__header">
       <a href="/blog/">{{ i18n "all_posts" }}</a><span class="separator">/</span>
-      <a class="tag__term">{{ .Title }}</a>
+      <a href="{{ .RelPermalink }}" class="tag__term">{{ .Title }}</a>
     </div>
     <ul class="post-list">
       {{ range .Data.Pages }}
