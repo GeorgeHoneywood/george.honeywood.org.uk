@@ -10,11 +10,11 @@ toc: false
 comments: true
 ---
 
-This is pretty much a summary of the Final Year Project, that I completed at Royal Holloway. The task was to produce an "Offline HTML5 Map Application".
+This is a summary of the Final Year Project that I completed as part of my last year at Royal Holloway. The task was to produce an "Offline HTML5 Map Application".
 
 This is a slightly weird thing to do. Most web maps are decidedly online, fetching tiles dynamically from a tile sever whenever they are required. Most offline map applications are native apps for mobile devices, which fulfil the main use case for an offline map, navigation. However, it is possible to build offline web apps, through technologies like Service Workers, and it seemed like a good opportunity for me to understand the lower levels of how web maps work.
 
-What follows is a summary of the main chunks that you need, in more of a logical order than strictly adhering to the chronology of the project.
+What follows is a summary of how a digital map is built, in more of a logical order than strictly adhering to the chronology of the project developed.
 
 First, you need data to render. Raw OpenStreetMap data comes in either XML, or a more efficient, but semantically similar binary representation, known as PBF. Neither of these are particularly suitable for rendering a map from -- they are instead designed to simplify editing. Here is an example of a building in raw OSM XML:
 
@@ -35,4 +35,30 @@ First, you need data to render. Raw OpenStreetMap data comes in either XML, or a
 </osm>
 ```
 
-Instead of the shape of this building being directly represented (like a GeoJSON LineString), a way is made up of constituent nodes, which can then be looked up by ID, to find their position, to derive geometry of a building. 
+Instead of the shape of this building being directly represented (like a GeoJSON LineString), a way is made up of constituent nodes, which can then be looked up by ID, to find their position, to derive the geometry of a building. Each of these ways is linearly stored in the file, one after the other, with no geospatial indexing.
+
+In order to allow for real-time performant rendering, we have to make two main optimizations: tiling, and zoom simplification. These are both processes that have to be done in advance.
+
+Tiling is the process of splitting the map data into a grid of tiles. Dividing the area up into a grid means that we only need to send (and render) the data currently within the clients' viewport. For example, if a user is zoomed in on Trafalgar Square in London, there is no point sending detailed map data for the whole of the UK, or even the whole of London, as it will not be on the screen. Each zoom level has its own set of tiles, and these can be accessed through Z/X/Y coordinates, where the maximum X/Y values double as Z increases by one.
+
+Simplification is less relevant for a zoomed in view, but is very necessary for a zoomed out region or country zoom level. It is simply not possible (in real time) to render all the detail of a whole country -- and besides, rendering the exact geometry of a road is not necessary, as it can't be seen from the zoomed out view. Therefore, in advance, we must simplify the data in order to remove unnecessary detail. This is effectively invisible to the user if executed well, as it should only remove what is imperceptible. The Douglas-Peucker algorithm is a popular algorithm for achieving this, but some manual tag-based checks are also required, so that you only preserve large roads and other important details when zoomed out.
+
+As part of this, you need to decide at how many zoom levels you provide simplified versions of the geometry. There is a trade-off here -- if you stored a simplified version for every zoom level between 1 and 20, the versions only one level apart will basically be duplicates, storing almost the same data, wasting space. For the zoom levels you don't store a simplified version for, you can either "under-zoom" a more detailed one, or "over-zoom" in the other direction. For example, if you stored a simplified copy at zoom 14, you could still render data at z12, albeit at a performance loss, as you are rendering unperceivable details. Equally, you could also render at z16, but the artefacts introduced by simplification may become visible (TODO: add sample image of overzoom).
+
+Developing my own map file format that handles both of these issues would have been a significant undertaking, so I decided that using an existing option would the best strategy. Luckily for me, the Mapsforge project has developed a file format (TODO: CITE HERE) which satisfies both of these requirements. Therefore, for this project, I decided it made sense to interpret these files, and render them to a canvas. (FIXME: reword this)
+
+As far as I can tell, there is not an existing library for reading Mapsforge format map files in JavaScript/TypeScript, apart from this effort by [ThomasHubelbauer](https://github.com/TomasHubelbauer/mapsforge/blob/main/index.js) -- which goes as far as decoding the file header.
+
+The basic structure of the Mapsforge file format is as follows (see the [specification for details](https://github.com/mapsforge/mapsforge/blob/master/docs/Specification-Binary-Map-File.md)):
+
+* Header: contains metadata about the map, such as bounding boxes, details about the zoom levels that simplified geometry is stored for (referred to as "zoom intervals").
+* For each zoom interval, a subfile, which itself contains:
+    * An index, allowing you to locate simplified tile data via Z/X/Y tile coordinates.
+    * The simplified tile data itself, first Point of Interest (PoI) data, then Way data.
+
+There are a number of neat tricks the format uses to eke out extra performance. For example, each zoom simplified tile is stored with a "zoom table", which is used to limit the number of features that are rendered if a tile is being over-zoomed or under-zoomed. This seems a little odd, but as both the data is stored in priority order, Ways/PoIs that should be rendered at the lowest zooms are stored first, and therefore if we just stop rendering features after the depth specified in the zoom table, we can render extra features as we zoom, even though we are only storing a single simplified version of the tile.
+
+* delta encoding/ double delta
+* varible length encoding for ints etc
+
+
