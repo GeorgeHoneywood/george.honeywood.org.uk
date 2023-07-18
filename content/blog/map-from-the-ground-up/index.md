@@ -60,5 +60,10 @@ There are a number of neat tricks the format uses to eke out extra performance. 
 
 * delta encoding/ double delta
 * varible length encoding for ints etc
+* packing multiple values into a single byte
 
+As I'd never written any binary parsing code before, this was quite an instructive process for me. Although the [specification](https://github.com/mapsforge/mapsforge/blob/master/docs/Specification-Binary-Map-File.md) was very helpful, it was often not exactly obvious how to utilize the decoded data, and there were some confused details. At one point I had to dig into the Java sources of the reference implementation, as the specification did not align with what was actually in the files [^1]. I even wrote a simple hexdump function to help me debug issues with my parser.
 
+[^1]: I ended up contributing [a PR](https://github.com/mapsforge/mapsforge/pull/1374) to clarify the wording of the specification. 
+
+The next step is actually rendering the data.
