@@ -67,6 +67,10 @@ ol {
       margin-top: calc(#{$leading} - 1rem);
       margin-bottom: calc(#{$leading} - 1rem);
     }
+
+    ul {
+      margin-top: calc(#{$leading} - 1rem);
+    }
   }
 
   ul,
