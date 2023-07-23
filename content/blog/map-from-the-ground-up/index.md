@@ -1,7 +1,7 @@
 ---
 title: "Building a digital map from the ground up"
 date: 2023-07-04T11:19:09Z
-draft: false
+draft: true
 description: "A summary of how one might go about building a digital map from the ground up."
 keywords: ["maps", "projection", "tiles", "openstreetmap"]
 tags: ["openstreetmap", "projects"]
