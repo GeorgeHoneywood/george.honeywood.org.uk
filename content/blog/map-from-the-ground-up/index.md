@@ -66,4 +66,4 @@ As I'd never written any binary parsing code before, this was quite an instructi
 
 [^1]: I ended up contributing [a PR](https://github.com/mapsforge/mapsforge/pull/1374) to clarify the wording of the specification. 
 
-The next step is actually rendering the data.
+The next step is actually rendering the data. At a basic level this isn't too complicated. You first need to project the coordinates from WGS-84 to your desired projection, in my case Web Mercator. The Web Mercator projection is conformal, meaning it preserves angles (locally) whilst distorting area. Once you've projected the coordinates, you can draw the data to the canvas -- although you might need to scale the coordinates so that they fit within the viewport of the canvas.
