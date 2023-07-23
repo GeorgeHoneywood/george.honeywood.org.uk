@@ -1,0 +1,3 @@
+[submodule "cv/alta-typst"]
+	path = cv/alta-typst
+	url = git@github.com:GeorgeHoneywood/alta-typst.git

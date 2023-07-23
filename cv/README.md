@@ -1,0 +1,1 @@
+This is a little Typst document that compiles a CV PDF.
