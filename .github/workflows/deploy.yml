@@ -24,5 +24,10 @@ jobs:
           extended: true
           hugo-version: 'latest'
 
+      - name: setup Typst
+        uses: yusancky/setup-typst@v2
+        with:
+          version: 'latest'
+
       - name: run the deploy script
         run: ./deploy.sh
