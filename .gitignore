@@ -9,3 +9,6 @@ hugo.darwin
 hugo.linux
 
 .hugo_build.lock
+
+# no point storing this, as it can be generated from cv/georgehoneywood-cv.typ
+static/georgehoneywood-cv.pdf

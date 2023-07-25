@@ -26,6 +26,11 @@ while [ "$1" != "" ]; do
     shift
 done
 
+echo "compiling cv..."
+typst compile "cv/georgehoneywood-cv.typ"
+echo "copying cv in"
+mv "cv/georgehoneywood-cv.pdf" "static/"
+
 echo "cleaning up..."
 rm -rf public/
 echo -n "deploying: "
@@ -45,13 +50,15 @@ else
     DOMAIN="$SUB_DOMAIN.george.honeywood.org.uk"
     URL="https://$DOMAIN"
 
-    echo "staging deploy to $URL"
+    echo "staging: $URL"
+    echo "building site..."
     hugo --gc --minify -D \
     --environment staging \
     -b "$URL"
 
-    tar -C public -cvz . | \
-    curl -v --oauth2-bearer "$SOURCEHUT_TOKEN" \
+    echo "tarring and uploading to $URL"
+    tar -C public -cz . | \
+    curl --oauth2-bearer "$SOURCEHUT_TOKEN" \
     -Fcontent=@- \
     "https://pages.sr.ht/publish/$DOMAIN"
 
