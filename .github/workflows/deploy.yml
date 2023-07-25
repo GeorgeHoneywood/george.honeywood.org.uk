@@ -27,7 +27,7 @@ jobs:
           hugo-version: 'latest'
 
       - name: setup Typst
-        uses: yusancky/setup-typst@v2
+        uses: GeorgeHoneywood/setup-typst@main
         with:
           version: 'latest'
 
