@@ -17,6 +17,8 @@ jobs:
         with:
           # need this for git info
           fetch-depth: 0
+          # need this as alta-typst is a submodule
+          submodules: recursive
 
       - name: setup Hugo
         uses: peaceiris/actions-hugo@v2
