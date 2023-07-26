@@ -1,6 +1,9 @@
 {{/*} use this something like {{< video path="docking-960x720.mp4" muted="true" >}} */}}
 
-{{ $muted := .Get "muted" }} 
+{{ $muted := .Get "muted" }}
+{{ $nocontrols := .Get "no-controls" }}
+{{ $autoplay := .Get "autoplay" }}
+{{ $loop := .Get "loop" }} 
 
 {{ with .Page.Resources.GetMatch (printf "images/%s*" (.Get "path")) }}
 
@@ -8,16 +11,26 @@
 {{ $width := index $dims 0 }}
 {{ $height := index $dims 1 }}
 
-<video 
-    class="video-shortcode"
-    controls
-    {{ if $muted }}muted{{ end }}
-    width="{{ $width }}"
-    height="{{ $height }}"
-    style="aspect-ratio: {{ $width }} / {{ $height }}" >
-    <source src="{{ .RelPermalink }}" type="{{ .MediaType }}">
-    There should have been a video here, but your browser does not seem
-    to support it.
-    You can try visiting <a href="{{ .RelPermalink }}">{{ .RelPermalink }}</a> instead.
-</video>
+<figure>
+    <video 
+        class="video-shortcode"
+        {{ if not $nocontrols }}controls{{ end }}
+        {{ if $muted }}muted{{ end }}
+        {{ if $autoplay }}autoplay{{ end }}
+        {{ if $loop }}loop{{ end }}
+        
+        width="{{ $width }}"
+        height="{{ $height }}"
+        style="aspect-ratio: {{ $width }} / {{ $height }}" >
+        <source src="{{ .RelPermalink }}" type="{{ .MediaType }}">
+        There should have been a video here, but your browser does not seem
+        to support it.
+        You can try visiting <a href="{{ .RelPermalink }}">{{ .RelPermalink }}</a> instead.
+    </video>
+    {{ with ($.Get "caption") }}
+    <figcaption>
+        {{ . | markdownify }}
+    </figcaption>
+    {{ end }}
+</figure>
 {{ end }}

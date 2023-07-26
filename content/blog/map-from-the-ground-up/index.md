@@ -51,12 +51,14 @@ As far as I can tell, there is not an existing library for reading Mapsforge for
 
 The basic structure of the Mapsforge file format is as follows (see the [specification for details](https://github.com/mapsforge/mapsforge/blob/master/docs/Specification-Binary-Map-File.md)):
 
-* Header: contains metadata about the map, such as bounding boxes, details about the zoom levels that simplified geometry is stored for (referred to as "zoom intervals").
+* Header: contains metadata about the map, such as bounding boxes, and details about the zoom levels that simplified geometry is stored for (hence referred to as "zoom intervals").
 * For each zoom interval, a subfile, which itself contains:
     * An index, allowing you to locate simplified tile data via Z/X/Y tile coordinates.
     * The simplified tile data itself, first Point of Interest (PoI) data, then Way data.
 
-There are a number of neat tricks the format uses to eke out extra performance. For example, each zoom simplified tile is stored with a "zoom table", which is used to limit the number of features that are rendered if a tile is being over-zoomed or under-zoomed. This seems a little odd, but as both the data is stored in priority order, Ways/PoIs that should be rendered at the lowest zooms are stored first, and therefore if we just stop rendering features after the depth specified in the zoom table, we can render extra features as we zoom, even though we are only storing a single simplified version of the tile.
+There are a number of neat tricks the format uses to eke out extra performance. For example, each zoom simplified tile is stored with a "zoom table", which is used to limit the number of features that are rendered if a tile is being over-zoomed or under-zoomed. This seems a little odd, but as the data is stored in a priority order, Ways/PoIs that should be rendered at the lowest zooms are stored first, and therefore if we just stop rendering features after the depth specified in the zoom table, we can render extra features as we zoom, even though we are only storing a single simplified version of the tile. Therefore, roads will be stored before buildings, so when at a low zoom, we can simply stop after rendering the roads, avoiding rendering buildings.
+
+{{< video path="zoom-table-1084x720.mp4" no-controls="true" autoplay="true" loop="true" caption="Zoom table limiting the amount of features rendered from a tile" >}}
 
 * delta encoding/ double delta
 * varible length encoding for ints etc
