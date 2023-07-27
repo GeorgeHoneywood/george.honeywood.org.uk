@@ -10,11 +10,13 @@ toc: false
 comments: true
 ---
 
-This is a summary of the Final Year Project that I completed as part of my last year at Royal Holloway. The task was to produce an "Offline HTML5 Map Application".
+This is a summary of the Final Year Project that I completed as part of my last year at Royal Holloway. The task was to produce an "Offline HTML5 Map Application". You can try out the result, OSMO, at [files.george.honeywood.org.uk/final-deliverable/](https://files.george.honeywood.org.uk/final-deliverable/#16/51.4290/-0.5521).
 
 This is a slightly weird thing to do. Most web maps are decidedly online, fetching tiles dynamically from a tile sever whenever they are required. Most offline map applications are native apps for mobile devices, which fulfil the main use case for an offline map, navigation. However, it is possible to build offline web apps, through technologies like Service Workers, and it seemed like a good opportunity for me to understand the lower levels of how web maps work.
 
 What follows is a summary of how a digital map is built, in more of a logical order than strictly adhering to the chronology of the project developed.
+
+## OpenStreetMap data
 
 First, you need data to render. Raw OpenStreetMap data comes in either XML, or a more efficient, but semantically similar binary representation, known as PBF. Neither of these are particularly suitable for rendering a map from -- they are instead designed to simplify editing. Here is an example of a building in raw OSM XML:
 
@@ -37,7 +39,9 @@ First, you need data to render. Raw OpenStreetMap data comes in either XML, or a
 
 Instead of the shape of this building being directly represented (like a GeoJSON LineString), a way is made up of constituent nodes, which can then be looked up by ID, to find their position, to derive the geometry of a building. Each of these ways is linearly stored in the file, one after the other, with no geospatial indexing.
 
-In order to allow for real-time performant rendering, we have to make two main optimizations: tiling, and zoom simplification. These are both processes that have to be done in advance.
+## Performance considerations
+
+In order to allow for real-time rendering of a map, we have to make two main optimizations: tiling, and zoom simplification. These are both processes that have to be done in advance.
 
 Tiling is the process of splitting the map data into a grid of tiles. Dividing the area up into a grid means that we only need to send (and render) the data currently within the clients' viewport. For example, if a user is zoomed in on Trafalgar Square in London, there is no point sending detailed map data for the whole of the UK, or even the whole of London, as it will not be on the screen. Each zoom level has its own set of tiles, and these can be accessed through Z/X/Y coordinates, where the maximum X/Y values double as Z increases by one.
 
@@ -45,11 +49,15 @@ Simplification is less relevant for a zoomed in view, but is very necessary for 
 
 As part of this, you need to decide at how many zoom levels you provide simplified versions of the geometry. There is a trade-off here -- if you stored a simplified version for every zoom level between 1 and 20, the versions only one level apart will basically be duplicates, storing almost the same data, wasting space. For the zoom levels you don't store a simplified version for, you can either "under-zoom" a more detailed one, or "over-zoom" in the other direction. For example, if you stored a simplified copy at zoom 14, you could still render data at z12, albeit at a performance loss, as you are rendering unperceivable details. Equally, you could also render at z16, but the artefacts introduced by simplification may become visible (TODO: add sample image of overzoom).
 
-Developing my own map file format that handles both of these issues would have been a significant undertaking, so I decided that using an existing option would the best strategy. Luckily for me, the Mapsforge project has developed a file format (TODO: CITE HERE) which satisfies both of these requirements. Therefore, for this project, I decided it made sense to interpret these files, and render them to a canvas. (FIXME: reword this)
+## Mapsforge file format
+
+Developing my own map file format that handles both of these issues would have been a significant undertaking, so I decided that using an existing option would the best strategy. Luckily for me, the [Mapsforge project](https://github.com/mapsforge/mapsforge) has developed a [file format][mapsforge-spec] which satisfies both of these requirements.
+
+[mapsforge-spec]: https://github.com/mapsforge/mapsforge/blob/master/docs/Specification-Binary-Map-File.md
 
 As far as I can tell, there is not an existing library for reading Mapsforge format map files in JavaScript/TypeScript, apart from this effort by [ThomasHubelbauer](https://github.com/TomasHubelbauer/mapsforge/blob/main/index.js) -- which goes as far as decoding the file header.
 
-The basic structure of the Mapsforge file format is as follows (see the [specification for details](https://github.com/mapsforge/mapsforge/blob/master/docs/Specification-Binary-Map-File.md)):
+The basic structure of the Mapsforge file format is as follows (see the [specification for details][mapsforge-spec]):
 
 * Header: contains metadata about the map, such as bounding boxes, and details about the zoom levels that simplified geometry is stored for (hence referred to as "zoom intervals").
 * For each zoom interval, a subfile, which itself contains:
@@ -60,12 +68,75 @@ There are a number of neat tricks the format uses to eke out extra performance. 
 
 {{< video path="zoom-table-1084x720.mp4" no-controls="true" autoplay="true" loop="true" caption="Zoom table limiting the amount of features rendered from a tile" >}}
 
-* delta encoding/ double delta
-* varible length encoding for ints etc
-* packing multiple values into a single byte
+Another more common trick the file format uses is delta (and double-delta) encoding. This is a useful technique for reducing the amount of space required to encode a sequence of numbers. The idea is that instead of storing a series of numbers like `[50, 52, 48, 60]`, you instead store a start point, such as `50`, and then also the difference between each number and the previous one, such as `[2, -4, 12]`. This approach is valuable for the map use case, as the majority of points will near the previous one, hence giving us delta values that are much smaller in magnitude than raw coords. Double-delta encoding takes this a step further, storing the difference between the deltas --- the Mapsforge file writer [opportunistically uses this approach](https://github.com/mapsforge/mapsforge/blob/b028ff0cf8c51810c8801835a734906e65b3f074/mapsforge-map-writer/src/main/java/org/mapsforge/map/writer/MapFileWriter.java#L213-L223) when it results in a smaller file size.
 
-As I'd never written any binary parsing code before, this was quite an instructive process for me. Although the [specification](https://github.com/mapsforge/mapsforge/blob/master/docs/Specification-Binary-Map-File.md) was very helpful, it was often not exactly obvious how to utilize the decoded data, and there were some confused details. At one point I had to dig into the Java sources of the reference implementation, as the specification did not align with what was actually in the files [^1]. I even wrote a simple hexdump function to help me debug issues with my parser.
+In a similar vein to storing way coordinates with delta encoding, all coordinates in a tile are stored relative to the origin of the tile. This once again cuts down the magnitude of the numbers you are storing. Another nice technique is the encoding of coordinate values. Although you might assume that a coordinate, such as (54.6195, -3.0778), would be stored as two floating point numbers, they instead store coordinates as integer values in microdegrees --- i.e. degrees × 10^6. This saves some space compared to storing floats, without compromising precision.
+
+They also use a variable encoding scheme for integers, allowing both large and small numbers to be stored similarly, without losing too much efficiency. For example, the naive approach would be to use 32-bit integers for all numbers, but this would result in space being wasted when storing small delta values (which could fit in an 8-bit int). Therefore, they sacrifice the first bit of each byte as a continuation indicator, and use the remaining 7 bits to store (a part of) the actual value.
+
+```typescript
+// decode a variable length _unsigned_ integer as a number
+// this.data is a DataView, and this.offset is the offset we are reading from, in bytes
+getVUint() {
+    // if the first bit is 1, need to read the next byte. the rest of the 7 bits
+    // are the numeric value, starting with the least significant
+    let value = 0;
+    let shift = 0;
+
+    // check if we need to continue
+    while ((this.data.getUint8(this.offset) & 0b1000_0000) != 0) {
+        // if this not the first byte we've read, each bit is worth more
+        value |= (this.data.getUint8(this.offset) & 0b0111_1111) << shift
+        this.offset++
+        shift += 7
+    }
+
+    // read the seven bits from the last byte
+    value |= (this.data.getUint8(this.offset) << shift)
+    this.offset++
+    return value
+}
+```
+
+The final trick that I've already partially discussed is packing multiple values into a single byte. This allows you to store up to 8 flags in 8 bits, instead of a byte for each flag. As the minimum you can read from a `DataView` is 1 byte, you have to do some bit manipulation to read out the individual boolean flags. This is a bit fiddly, but not too bad. Representing the bitmask values in binary with `0b` makes it a bit easier to understand what is going on.
+
+```typescript
+const flags = tile_data.getUint8()
+
+const has_name =         (flags & 0b1000_0000) !== 0
+const has_house_number = (flags & 0b0100_0000) !== 0
+const has_elevation =    (flags & 0b0010_0000) !== 0
+```
+
+As I'd never written any binary parsing code before, this was quite an instructive process for me. Although the [specification](https://github.com/mapsforge/mapsforge/blob/master/docs/Specification-Binary-Map-File.md) was very helpful, it was often not exactly obvious how to utilize the decoded data, and there were some confused details. At one point I had to dig into the Java sources of the reference implementation, as the specification did not align with what was actually in the files [^1]. I ended up writing a simple hexdump function to help me debug issues with my parser.
 
 [^1]: I ended up contributing [a PR](https://github.com/mapsforge/mapsforge/pull/1374) to clarify the wording of the specification. 
 
-The next step is actually rendering the data. At a basic level this isn't too complicated. You first need to project the coordinates from WGS-84 to your desired projection, in my case Web Mercator. The Web Mercator projection is conformal, meaning it preserves angles (locally) whilst distorting area. Once you've projected the coordinates, you can draw the data to the canvas -- although you might need to scale the coordinates so that they fit within the viewport of the canvas.
+## Rendering
+
+The next step is actually rendering the data. At a basic level this isn't too complicated. You first need to project the coordinates from WGS-84 to your desired projection, in my case Web Mercator. The Web Mercator projection is conformal, meaning it preserves angles (locally) whilst distorting area. Once you've projected the coordinates, you can draw the data to the canvas. Firstly, to handle translation of the map, you will need x/y offset values, that which will alter what falls within the map viewport.
+
+In order to handle map zooming, you need to implement a scale factor that you multiply the coordinates values by before drawing them, having the effect of stretching the map out [^2]. The complication here is that this will scale about the origin, so you need to will need to dynamically adjust the x/y offsets so that you zoom centred around the mouse position. Although this sounds simple enough, it was one of the things that took the longest to get right, as the maths was fiddly. This is the sort of code that you write, and then have no idea how it works the next day, and I am not proud.
+
+```typescript
+// x and y are the mouse coordinates, and zoom_delta is the amount to zoom by
+const new_zoom = this.zoom_level + zoom_delta;
+let scale = 2 ** this.zoom_level;
+
+const x_offset_scaled = (x - this.x_offset) / scale;
+const y_offset_scaled = ((this.canvas.height - y) - this.y_offset) / scale;
+
+scale *= (2 ** zoom_delta);
+
+this.x_offset = x - (x_offset_scaled * scale);
+this.y_offset = (this.canvas.height - y) - (y_offset_scaled * scale);
+
+this.zoom_level = new_zoom
+```
+
+[^2]: This scale factor actually needs to be exponential, otherwise the zooming will get slower and slower as you zoom in.
+
+## Range requests and service worker tricks
+
+
+
