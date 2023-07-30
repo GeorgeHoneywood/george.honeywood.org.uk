@@ -1,8 +1,8 @@
 ---
-title: "Building a digital map from the ground up"
+title: "Building an offline web map"
 date: 2023-07-04T11:19:09Z
 draft: true
-description: "A summary of how one might go about building a digital map from the ground up."
+description: "A summary of how one might go about building a digital map."
 keywords: ["maps", "projection", "tiles", "openstreetmap"]
 tags: ["openstreetmap", "projects"]
 math: false
@@ -10,13 +10,16 @@ toc: false
 comments: true
 ---
 
-This is a summary of the Final Year Project that I completed as part of my last year at Royal Holloway. The task was to produce an "Offline HTML5 Map Application". You can try out the result, OSMO, at [files.george.honeywood.org.uk/final-deliverable/](https://files.george.honeywood.org.uk/final-deliverable/#16/51.4290/-0.5521).
+This is a summary of the Final Year Project that I completed as part of my last year at Royal Holloway. The task was to produce an "Offline HTML5 Map Application". You can try out the result, OSMO, at [files.george.honeywood.org.uk/final-deliverable/](https://files.george.honeywood.org.uk/final-deliverable/#16/51.4290/-0.5521). The code is available on [GitHub](https://github.com/GeorgeHoneywood/final-year-project), and I have also written a [formal report](https://github.com/GeorgeHoneywood/final-year-project/files/11584765/george-honeywood-final-report.pdf).
 
-This is a slightly weird thing to do. Most web maps are decidedly online, fetching tiles dynamically from a tile sever whenever they are required. Most offline map applications are native apps for mobile devices, which fulfil the main use case for an offline map, navigation. However, it is possible to build offline web apps, through technologies like Service Workers, and it seemed like a good opportunity for me to understand the lower levels of how web maps work.
+Building an offline HTML5 map application is a slightly weird thing to do. Most web maps are decidedly online, fetching tiles dynamically from a tile sever whenever they are required. Most offline map applications are native apps for mobile devices, which fulfil the main use case for an offline map, navigation. However, it is possible to build offline web apps, through technologies like Service Workers, and it seemed like a good opportunity for me to understand the lower levels of how web maps work.
 
-What follows is a summary of how a digital map is built, in more of a logical order than strictly adhering to the chronology of the project developed.
+What follows is less of a summary of how a digital map is built, and more of a description of the things I found interesting along the way.
+<!-- in more of a logical order than strictly adhering to the chronology of the project developed. -->
 
 ## OpenStreetMap data
+
+<!-- TODO: maybe cut this -->
 
 First, you need data to render. Raw OpenStreetMap data comes in either XML, or a more efficient, but semantically similar binary representation, known as PBF. Neither of these are particularly suitable for rendering a map from -- they are instead designed to simplify editing. Here is an example of a building in raw OSM XML:
 
@@ -72,7 +75,7 @@ Another more common trick the file format uses is delta (and double-delta) encod
 
 In a similar vein to storing way coordinates with delta encoding, all coordinates in a tile are stored relative to the origin of the tile. This once again cuts down the magnitude of the numbers you are storing. Another nice technique is the encoding of coordinate values. Although you might assume that a coordinate, such as (54.6195, -3.0778), would be stored as two floating point numbers, they instead store coordinates as integer values in microdegrees --- i.e. degrees × 10^6. This saves some space compared to storing floats, without compromising precision.
 
-They also use a variable encoding scheme for integers, allowing both large and small numbers to be stored similarly, without losing too much efficiency. For example, the naive approach would be to use 32-bit integers for all numbers, but this would result in space being wasted when storing small delta values (which could fit in an 8-bit int). Therefore, they sacrifice the first bit of each byte as a continuation indicator, and use the remaining 7 bits to store (a part of) the actual value.
+They also use a variable-length encoding scheme for integers, allowing both large and small numbers to be stored in the same format, without losing too much efficiency. For example, the naive approach would be to use 32-bit integers for all numbers, but this would result in space being wasted when storing small delta values (which could fit in an 8-bit int). Therefore, they sacrifice the first bit of each byte as a continuation indicator, and use the remaining 7 bits to store (a part of) the actual value.
 
 ```typescript
 // decode a variable length _unsigned_ integer as a number
@@ -136,7 +139,21 @@ this.zoom_level = new_zoom
 
 [^2]: This scale factor actually needs to be exponential, otherwise the zooming will get slower and slower as you zoom in.
 
-## Range requests and service worker tricks
+## Range requests and service worker abuse
 
+My next goal was to make the app work offline. Naively, this is simple --- just store the whole map file in a Service Worker cache, then `fetch()` it from there when offline. This approach worked fine while I was initially testing the app, given I was only using small map files (say >10 MB). Unfortunately, country sized maps will be much larger --- the map file for England is about 1 GB. While it is actually possible to `fetch()` and store a 1 GB blob in a Service Worker in modern browsers, having to download the entire map file on launch is terrible UX. I had two design goals in conflict:
 
+* The app should work instantly online, without a lengthy download period
+* The app should work offline 
 
+When online, we could do with some way of only partially loading the file, loading more data as the user pans the map. This is where range requests become useful, allowing you to fetch certain byte range(s) from a file [^3]. The Mapsforge file format was not designed with this use case in mind, but it is actually fairly efficient. To be able to read a map tile from its Z/X/Y coordinate, we first need to look up its byte position in the file, using the indexes. As this is a common operation, and we have significant network latency, it makes sense to cache the indexes at startup, as they are actually fairly small. For example in the England map file, in the most detailed sub-file (at zoom 14), there are about 200,000 tiles, and each index entry is 5 bytes. This means that in total the largest index is about 200,000 × 5 = 1 MB.
+
+[^3]: I was inspired to take this approach by the [Protomaps project](https://protomaps.com/), who built a custom map format specifically for use with range requests.
+
+Unfortunately, this has broken offline support, as we can we no longer have the whole file available to stash in the Service Worker. While Service Workers can serve HTTP range requests from a larger cached file (useful for storing video offline), there is no mechanism to store only portions of a larger file. This is where I went slightly off-piste. The general idea of Service Workers is that they are a proxy between the browser and the network, meaning you can intercept and decide how requests are replied to. Normally they are quite boilerplate, or use abstractions like Google's Workbox --- however you are completely free to implement your own custom logic.
+
+Therefore, I implemented a scheme that allowed byte ranges to be stored, by inserting them into the Service Worker cache as separate request/response pairs. When a request was intercepted by a service worker, it would first check if it already had the byte-range, then if not, fetch it and cache it. The beauty of this approach is that it is completely transparent to the rest of the app, which just acts as if it is fetching ranges from the network. The ugliness of it is that the Service Worker cache is designed to store pairs of `Request` and `Response` objects. You retrieve the `Response` objects by passing the URL you want into `cache.match()`. But as we are dealing with byte ranges of a single file, we only have a single URL! To make multiple URLs I ended up appending a `?bytes=${start}-${end}` query string to each range stored in the cache, which is quite an offensive hack.
+
+{{< image path="sw-cache.png" alt="Screenshot of Chrome Dev Tools, Application > Storage > Cache storage page" caption="Storing byte ranges in the Service Worker cache, using the manufactured `?bytes` query string variable">}}
+
+This gave me the cache as you pan part of the solution, but I still wanted the user to be able to download a larger area for offline use, without downloading the whole 1 GB map. The simple approach to this is just fetching the byte ranges for each tile required, but if you are downloading a region this can quickly add up into thousands of tiles. You don't want to be making that many HTTP requests all at once. Luckily tiles next to each other in the X dimension are stored in contiguous bytes, meaning you instead only have to make a single request for each row of tiles, effectively square-rooting the total (assuming your screen is square).
