@@ -1,7 +1,7 @@
 ---
 title: "Building an offline web map"
 date: 2023-07-04T11:19:09Z
-draft: true
+draft: false
 description: "A summary of how one might go about building a digital map."
 keywords: ["maps", "projection", "tiles", "openstreetmap"]
 tags: ["openstreetmap", "projects"]
@@ -11,6 +11,8 @@ comments: true
 ---
 
 This is a summary of the Final Year Project that I completed as part of my last year at Royal Holloway. The task was to produce an "Offline HTML5 Map Application". You can try out the result, OSMO, at [files.george.honeywood.org.uk/final-deliverable/](https://files.george.honeywood.org.uk/final-deliverable/#16/51.4290/-0.5521). The code is available on [GitHub](https://github.com/GeorgeHoneywood/final-year-project), and I have also written a [formal report](https://github.com/GeorgeHoneywood/final-year-project/files/11584765/george-honeywood-final-report.pdf).
+
+{{< image path="header.png" alt="Screenshot of the OSMO app, showing central London" >}}
 
 Building an offline HTML5 map application is a slightly weird thing to do. Most web maps are decidedly online, fetching tiles dynamically from a tile sever whenever they are required. Most offline map applications are native apps for mobile devices, which fulfil the main use case for an offline map, navigation. However, it is possible to build offline web apps, through technologies like Service Workers, and it seemed like a good opportunity for me to understand the lower levels of how web maps work.
 
@@ -50,7 +52,9 @@ Tiling is the process of splitting the map data into a grid of tiles. Dividing t
 
 Simplification is less relevant for a zoomed in view, but is very necessary for a zoomed out region or country zoom level. It is simply not possible (in real time) to render all the detail of a whole country -- and besides, rendering the exact geometry of a road is not necessary, as it can't be seen from the zoomed out view. Therefore, in advance, we must simplify the data in order to remove unnecessary detail. This is effectively invisible to the user if executed well, as it should only remove what is imperceptible. The Douglas-Peucker algorithm is a popular algorithm for achieving this, but some manual tag-based checks are also required, so that you only preserve large roads and other important details when zoomed out.
 
-As part of this, you need to decide at how many zoom levels you provide simplified versions of the geometry. There is a trade-off here -- if you stored a simplified version for every zoom level between 1 and 20, the versions only one level apart will basically be duplicates, storing almost the same data, wasting space. For the zoom levels you don't store a simplified version for, you can either "under-zoom" a more detailed one, or "over-zoom" in the other direction. For example, if you stored a simplified copy at zoom 14, you could still render data at z12, albeit at a performance loss, as you are rendering unperceivable details. Equally, you could also render at z16, but the artefacts introduced by simplification may become visible (TODO: add sample image of overzoom).
+As part of this, you need to decide at how many zoom levels you provide simplified versions of the geometry. There is a trade-off here -- if you stored a simplified version for every zoom level between 1 and 20, the versions only one level apart will basically be duplicates, storing almost the same data, wasting space. For the zoom levels you don't store a simplified version for, you can either "under-zoom" a more detailed one, or "over-zoom" in the other direction. For example, if you stored a simplified copy at zoom 14, you could still render data at z12, albeit at a performance loss, as you are rendering unperceivable details. Equally, you could also render at z16, but the artefacts introduced by simplification may become visible.
+
+{{< image path="overzoom-artifacts.png" alt="Screenshot of OSMO showing artifacts from overzooming too far" caption="Crunchy geometries that resulting from overzooming a tile too far">}}
 
 ## Mapsforge file format
 
@@ -75,7 +79,7 @@ Another more common trick the file format uses is delta (and double-delta) encod
 
 In a similar vein to storing way coordinates with delta encoding, all coordinates in a tile are stored relative to the origin of the tile. This once again cuts down the magnitude of the numbers you are storing. Another nice technique is the encoding of coordinate values. Although you might assume that a coordinate, such as (54.6195, -3.0778), would be stored as two floating point numbers, they instead store coordinates as integer values in microdegrees --- i.e. degrees × 10^6. This saves some space compared to storing floats, without compromising precision.
 
-They also use a variable-length encoding scheme for integers, allowing both large and small numbers to be stored in the same format, without losing too much efficiency. For example, the naive approach would be to use 32-bit integers for all numbers, but this would result in space being wasted when storing small delta values (which could fit in an 8-bit int). Therefore, they sacrifice the first bit of each byte as a continuation indicator, and use the remaining 7 bits to store (a part of) the actual value.
+They also use a variable-length encoding scheme for integers, allowing both large and small numbers to be stored in the same format, without losing too much efficiency. For example, the naïve approach would be to use 32-bit integers for all numbers, but this would result in space being wasted when storing small delta values (which could fit in an 8-bit int). Therefore, they sacrifice the first bit of each byte as a continuation indicator, and use the remaining 7 bits to store (a part of) the actual value.
 
 ```typescript
 // decode a variable length _unsigned_ integer as a number
@@ -101,7 +105,7 @@ getVUint() {
 }
 ```
 
-The final trick that I've already partially discussed is packing multiple values into a single byte. This allows you to store up to 8 flags in 8 bits, instead of a byte for each flag. As the minimum you can read from a `DataView` is 1 byte, you have to do some bit manipulation to read out the individual boolean flags. This is a bit fiddly, but not too bad. Representing the bitmask values in binary with `0b` makes it a bit easier to understand what is going on.
+The final trick that I've already partially discussed is packing multiple values into a single byte. This allows you to store up to 8 flags in 1 byte, instead of a whole byte for each flag. As the minimum you can read from a `DataView` is 1 byte, you have to do some bit manipulation to read out the individual boolean flags. This is a bit fiddly, but the space savings add up. Representing the bitmask values in binary with `0b` makes it a bit easier to understand what is going on.
 
 ```typescript
 const flags = tile_data.getUint8()
@@ -141,7 +145,7 @@ this.zoom_level = new_zoom
 
 ## Range requests and service worker abuse
 
-My next goal was to make the app work offline. Naively, this is simple --- just store the whole map file in a Service Worker cache, then `fetch()` it from there when offline. This approach worked fine while I was initially testing the app, given I was only using small map files (say >10 MB). Unfortunately, country sized maps will be much larger --- the map file for England is about 1 GB. While it is actually possible to `fetch()` and store a 1 GB blob in a Service Worker in modern browsers, having to download the entire map file on launch is terrible UX. I had two design goals in conflict:
+My next goal was to make the app work offline. Naïvely, this is simple --- just store the whole map file in a Service Worker cache, then `fetch()` it from there when offline. This approach worked fine while I was initially testing the app, given I was only using small map files (say >10 MB). Unfortunately, country sized maps will be much larger --- the map file for England is about 1 GB. While it is actually possible to `fetch()` and store a 1 GB blob in a Service Worker in modern browsers, having to download the entire map file on launch is terrible UX. I had two design goals in conflict:
 
 * The app should work instantly online, without a lengthy download period
 * The app should work offline 
