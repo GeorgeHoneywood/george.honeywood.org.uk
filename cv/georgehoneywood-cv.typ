@@ -51,8 +51,8 @@
     - Editing OpenStreetMap, using JOSM or Every Door
     // - Volunteered with the Scouts as a Young Leader
     // - Amateur photography
-  ],
-  [
+  
+    #colbreak()
     == Projects
 
     ==== #link("https://github.com/GeorgeHoneywood/drazil")[Web Music Player]

@@ -26,10 +26,7 @@ while [ "$1" != "" ]; do
     shift
 done
 
-echo "compiling cv..."
-typst compile "cv/georgehoneywood-cv.typ"
-echo "copying cv in"
-mv "cv/georgehoneywood-cv.pdf" "static/"
+./cv.sh
 
 echo "cleaning up..."
 rm -rf public/
