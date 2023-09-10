@@ -3,7 +3,7 @@ title: "Breaking into your Tenda PA6 Powerline adaptor"
 date: 2023-09-10T11:25:58+01:00
 description: "Using a command injection to get a root shell on a Tenda PA6 Powerline adaptor"
 keywords: ["infosec", "tenda pa6", "powerline"]
-draft: true
+draft: false
 tags: ["projects", "security"]
 math: false
 toc: false
