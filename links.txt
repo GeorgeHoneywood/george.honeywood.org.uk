@@ -19,3 +19,5 @@
 /blog/the-roomba/
 /blog/jane-holloway-hall/
 /blog/map-from-the-ground-up/
+/blog/tenda-pa6/
+/tags/security/
