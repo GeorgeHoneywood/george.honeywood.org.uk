@@ -141,7 +141,7 @@ this.y_offset = (this.canvas.height - y) - (y_offset_scaled * scale);
 this.zoom_level = new_zoom
 ```
 
-[^2]: This scale factor actually needs to be exponential, otherwise the zooming will get slower and slower as you zoom in.
+[^2]: This scale factor actually needs increase exponentially, otherwise the zooming will get slower and slower as you zoom in.
 
 ## Range requests and service worker abuse
 
