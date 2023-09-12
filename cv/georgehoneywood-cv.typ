@@ -8,7 +8,7 @@
     (name: "github", link: "https://github.com/GeorgeHoneywood", display: "@GeorgeHoneywood"),
     (name: "linkedin", link: "https://linkedin.com/in/georgeHoneywood", display: "George Honeywood"),
   ),
-  tagline: [Computer Scientist, Royal Holloway graduate. Currently looking for a new role.],
+  tagline: [Computer Scientist, Royal Holloway graduate. Currently working as an Infrastructure Assistant at GSA Capital.],
   [
     == Experience
 
