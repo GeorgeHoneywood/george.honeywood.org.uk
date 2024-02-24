@@ -10,22 +10,22 @@ toc: false
 comments: true
 ---
 
-Typst is pretty much what I was looking for since I was about 15, and had to write my first long form report for school. I didn't like using Word; I spent too much time fighting the formatting, and I couldn't easily run it on my PC at home. At the same time, I needed a bit more control over layout than what I could easily get using Markdown and pandoc.
+Typst is pretty much what I have been looking for since I was about 15 and had to write my first long form report for school. I didn't like using Word; I spent too much time fighting the formatting and I couldn't easily run it on my PC at home. At the same time, I needed a bit more control over layout than what I could easily get using Markdown and pandoc.
 
 {{< image path="typst" alt="My CV, prepared using Typst" caption="An example of a document prepared using Typst, my CV">}}
 
-At the time the answer I settled upon was LaTeX. LaTeX is pretty cool. You write whatever you want, then let it produce a pretty document for you. Unfortunately, the UX is not really up to modern standards. To compile a document with a bibliography you have to run a byzantine incantation of commands, such as [`pdflatex` -> `biber` -> `pdflatex` -> `pdflatex`](https://tex.stackexchange.com/a/204298) (or you can use `latexmk` which handles this stuff for you). It's not hard to install, but it does eat a lot of space (the equivalent of about 20 electron apps!):
+At the time the solution I settled upon was LaTeX. LaTeX is pretty cool. You write whatever you want, then let it produce a pretty document for you. Unfortunately, the UX is not really up to modern standards. To compile a document with a bibliography you have to run a byzantine incantation of commands, such as [`pdflatex` -> `biber` -> `pdflatex` -> `pdflatex`](https://tex.stackexchange.com/a/204298) (or you can use `latexmk` which handles this stuff for you). It's not hard to install, but it does eat a lot of space (the equivalent of about 20 electron apps!):
 
 ```bash
 ➜ du -sh /usr/share/tex{live,mf}
 2.9G	/usr/share/texlive
 408M	/usr/share/texmf
 ```
-I initially avoided some of this complexity by using ShareLaTeX [^1], a web based LaTeX editor. Whether you use a local install, or an online editor, you are still stuck with the underlying language. You best pray that you don't want to change any formatting other than perhaps the margins, or something that there is not an existing package for. TeX is macro based, and feels exactly like it was released in 1978, with pretty poor tooling to match.
+I initially avoided some of this complexity by using ShareLaTeX [^1], a web based LaTeX editor. Whether you use a local install or an online editor, you are still stuck with the underlying language. You better pray that you don't want to change any formatting other than the margins or something that there is not an existing package for. TeX is macro based, and feels exactly like it was released in 1978, with pretty poor tooling to match.
 
-[^1]: ShareLaTeX was since bought out by Overleaf, the other big player in the online LaTeX space. In a slightly unusual move, Overleaf then replaced their own editor with better one of ShareLaTeX.
+[^1]: ShareLaTeX has since been bought out by Overleaf, the other big player in the online LaTeX space. In a slightly unusual move, Overleaf then replaced their own editor with better one of ShareLaTeX.
 
-For context, have fun trying to figure out what you think what output [this macro](https://github.com/liantze/AltaCV/blob/74bc05df383c08ceacfcc6d438c1aa2b207cd1dc/altacv.cls#L328-L337) would produce:
+For context, have fun trying to figure out what output [this macro](https://github.com/liantze/AltaCV/blob/74bc05df383c08ceacfcc6d438c1aa2b207cd1dc/altacv.cls#L328-L337) would produce:
 
 ```latex
 \newcommand{\cvskill}[2]{%
@@ -40,7 +40,7 @@ For context, have fun trying to figure out what you think what output [this macr
 }
 ```
 
-You'd think a system from the 1970s would be quick on modern computers. This is not the case. Once your document grows to have a decent number of embedded figures everything takes a while. You can work around this, but it feels like it should just work. From scratch, compiling the [Final Year Project report](https://github.com/GeorgeHoneywood/final-year-project/files/11584765/george-honeywood-final-report.pdf) I wrote for uni took a solid 23 seconds, and it isn't even that large of a document, only about 50 pages and 13 figures. Subsequent compiles are a bit quicker, taking about 5 seconds, but that is still quite far from ideal.
+You'd think a system from the 1970s would be quick on modern computers. This is not the case. Once your document grows to have a decent number of embedded figures, everything takes a while. You can work around this, but it feels like it should just work. From scratch, compiling the [Final Year Project report](https://github.com/GeorgeHoneywood/final-year-project/files/11584765/george-honeywood-final-report.pdf) I wrote for uni took a solid 23 seconds, and it isn't even that large of a document, only about 50 pages and 13 figures. Subsequent compiles are a bit quicker, taking about 5 seconds, but that is still quite far from ideal.
 
 ```bash 
 ➜ time latexmk -pdf -silent main.tex 
@@ -90,7 +90,7 @@ Now I've established the motivation, I can extol the virtues of Typst. Typst is 
 Sub-files store map data for a range of zoom levels. For example, [-snip-]
 ```
 
-This syntax makes far more sense to me, it is pretty standard C-like language. It has all the usual constructs like functions, variables, loops, conditionals. In testament to this I decided to rewrite my CV from being in LaTeX to Typst. I had been using the [AltaCV](https://github.com/liantze/AltaCV) class, and wanted to see how hard it would to recreate in Typst. It only took a few hours.
+This syntax makes far more sense to me, as it is pretty standard C-like language. It has all the usual constructs like functions, variables, loops, conditionals, etc. In testament to this, I decided to rewrite my CV from LaTeX to Typst. I had been using the [AltaCV](https://github.com/liantze/AltaCV) class, and wanted to see how hard it would to recreate in Typst. It only took a few hours.
 
 Here is a Typst recreation of the `\cvskill` TeX macro we saw before:
 
@@ -141,7 +141,7 @@ For some context, Typst mixes content and scripting together. While writing cont
 
 Compilation is pretty much instant. Typst uses incremental compilation, enabled by a system of constrained memoization. The lack of delay between keypress and render is appreciated, but the technical details go way over my head.
 
-I'd wholeheartedly recommend Typst to anyone who might be thinking of learning LaTeX, or wants a document preparation system that comparable in simplicity to Markdown, but with the power to represent pretty much anything. I wish that it had been around 10 years ago for 15-year-sold me!
+I'd wholeheartedly recommend Typst to anyone who might be thinking of learning LaTeX, or wants a document preparation system that is comparable in simplicity to Markdown, but with the power to represent pretty much anything. I wish that it had been around 10 years ago for 15-year-sold me!
 
 If you'd like to learn more about Typst, [their tutorial](https://typst.app/docs/tutorial/) is excellent.  
-For a more detailed overview, see [Laurenz Mädje's masters dissertation](https://www.user.tu-berlin.de/laurmaedje/programmable-markup-language-for-typesetting.pdf).
+For a more detailed overview, see [Laurenz Mädje's master's dissertation](https://www.user.tu-berlin.de/laurmaedje/programmable-markup-language-for-typesetting.pdf).
