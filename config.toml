@@ -19,6 +19,8 @@ enableGitInfo = true
 
 # Optional params
 [params]
+  heading = "George Honeywood's blog"
+
   # Follow the Hugo date/time format reference here: 
   # https://gohugo.io/functions/format/#gos-layout-string
   # dateFormat = "3:04pm, 02/01/2006"
@@ -76,12 +78,6 @@ enableGitInfo = true
 sectionPagesMenu = "main"
 
 # Controls the navigation
-[[menu.main]]
-  identifier = "about"
-  name = "About"
-  title = "About"
-  url = "/"
-
 [[menu.main]]
   identifier = "blog"
   name = "Blog"

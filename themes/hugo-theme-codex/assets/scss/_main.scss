@@ -22,3 +22,7 @@ main {
     padding-top: calc(#{$burgerContainerHeight});
   }
 }
+
+.fancy {
+  color: $primary;
+}
