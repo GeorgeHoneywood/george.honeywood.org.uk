@@ -54,7 +54,7 @@ Simplification is less relevant for a zoomed in view, but is very necessary for 
 
 As part of this, you need to decide at how many zoom levels you provide simplified versions of the geometry. There is a trade-off here -- if you stored a simplified version for every zoom level between 1 and 20, the versions only one level apart will basically be duplicates, storing almost the same data, wasting space. For the zoom levels you don't store a simplified version for, you can either "under-zoom" a more detailed one, or "over-zoom" in the other direction. For example, if you stored a simplified copy at zoom 14, you could still render data at z12, albeit at a performance loss, as you are rendering unperceivable details. Equally, you could also render at z16, but the artefacts introduced by simplification may become visible.
 
-{{< image path="overzoom-artifacts.png" alt="Screenshot of OSMO showing artifacts from overzooming too far" caption="Crunchy geometries that resulting from overzooming a tile too far">}}
+{{< image path="overzoom-artifacts.png" alt="Screenshot of OSMO showing artifacts from overzooming too far" caption="Crunchy geometries that result from overzooming a tile too far">}}
 
 ## Mapsforge file format
 
