@@ -78,12 +78,12 @@ sectionPagesMenu = "main"
 # Controls the navigation
 [[menu.main]]
   identifier = "about"
-  name = "about"
+  name = "About"
   title = "About"
   url = "/"
 
 [[menu.main]]
   identifier = "blog"
-  name = "blog"
+  name = "Blog"
   title = "Blog"
   url = "/blog/"

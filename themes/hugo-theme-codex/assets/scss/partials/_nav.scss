@@ -66,6 +66,7 @@
 .nav__list > li > * {
   text-decoration: none;
   font-size: 2em;
+  text-transform: lowercase;
   cursor: pointer;
 
   color: var(--text-secondary);
