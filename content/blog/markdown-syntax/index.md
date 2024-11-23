@@ -11,7 +11,6 @@ toc: true
 ---
 
 This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.
-<!--more-->
 
 ## Headings
 
@@ -42,7 +41,7 @@ The blockquote element represents content that is quoted from another source, op
 #### Blockquote with attribution
 
 > Simplicity is the ultimate sophistication.
-> <cite>Leonardo da Vinci[^1]</cite>
+{{% comment %}} > <cite>Leonardo da Vinci[^1]</cite>{{% /comment %}} 
 
 [^1]: The above quote is often attributed to Leonardo da Vinci but there is no concrete evidence to support this.
 
@@ -56,6 +55,8 @@ Tables aren't part of the core Markdown spec, but Hugo supports supports them ou
     Bob | 27
   Alice | 23
 
+{{% comment %}}
+
 #### Inline Markdown within tables
 
 <div style="overflow-x: auto">
@@ -67,7 +68,6 @@ Nam, omnis sum am facea corem alique molestrunt et eos evelece arcillit ut aut e
 | *italics*  | **bold**  | ~~strikethrough~~ | `code`     |
 | *italics*  | **bold**  | ~~strikethrough~~ | `code`     |
 
-</div>
 
 ## Code Blocks
 
@@ -160,3 +160,5 @@ X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
 Press <kbd><kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>Delete</kbd></kbd> to end the session.
 
 Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.
+
+{{% /comment %}}

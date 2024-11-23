@@ -26,7 +26,5 @@ With Android I have come to a compromise, using LineageOS instead of the stock R
 
 This is not something I'd recommend for everyone, simply because it is not really worth the struggle of detangling yourself from Google's tentacles, unless its something that you really believe is important. I'll probably update[^2] this page eventually with my progress, which has rather depressingly slowed recently.
 
-</br>
-
 [^1]: Even the slightly scary childhood videos
 [^2]: 2021-02-22: I added sections about Google Photos alternatives

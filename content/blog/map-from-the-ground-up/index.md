@@ -17,11 +17,11 @@ This is a summary of the Final Year Project that I completed as part of my last 
 Building an offline HTML5 map application is a slightly weird thing to do. Most web maps are decidedly online, fetching tiles dynamically from a tile sever whenever they are required. Most offline map applications are native apps for mobile devices, which fulfil the main use case for an offline map, navigation. However, it is possible to build offline web apps, through technologies like Service Workers, and it seemed like a good opportunity for me to understand the lower levels of how web maps work.
 
 What follows is less of a summary of how a digital map is built, and more of a description of the things I found interesting along the way.
-<!-- in more of a logical order than strictly adhering to the chronology of the project developed. -->
+{{% comment %}} in more of a logical order than strictly adhering to the chronology of the project developed. {{% /comment %}}
 
 ## OpenStreetMap data
 
-<!-- TODO: maybe cut this -->
+{{% comment %}} TODO: maybe cut this {{% /comment %}}
 
 First, you need data to render. Raw OpenStreetMap data comes in either XML, or a more efficient, but semantically similar binary representation, known as PBF. Neither of these are particularly suitable for rendering a map from -- they are instead designed to simplify editing. Here is an example of a building in raw OSM XML:
 
