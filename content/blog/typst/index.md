@@ -144,4 +144,4 @@ Compilation is pretty much instant. Typst uses incremental compilation, enabled 
 I'd wholeheartedly recommend Typst to anyone who might be thinking of learning LaTeX, or wants a document preparation system that is comparable in simplicity to Markdown, but with the power to represent pretty much anything. I wish that it had been around 10 years ago for 15-year-sold me!
 
 If you'd like to learn more about Typst, [their tutorial](https://typst.app/docs/tutorial/) is excellent.  
-For a more detailed overview, see [Laurenz Mädje's master's dissertation](https://www.user.tu-berlin.de/laurmaedje/programmable-markup-language-for-typesetting.pdf).
+For a more detailed overview, see [Laurenz Mädje's master's dissertation](https://laurmaedje.github.io/programmable-markup-language-for-typesetting.pdf).
