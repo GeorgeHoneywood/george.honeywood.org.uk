@@ -89,7 +89,7 @@ blockquote {
   //   font-family: "Roboto", serif;
 
   //   z-index: -1;
-  //   
+  //
   //   color: darken(var(--bg), 20%);
   // }
 
@@ -137,6 +137,12 @@ code {
   margin: 0;
   background-color: rgba(27, 31, 35, 0.05);
   border-radius: 3px;
+
+  // hack around safari code block behaviour: https://github.com/adityatelange/hugo-PaperMod/issues/828#issuecomment-1171994855
+  text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 pre > code {
