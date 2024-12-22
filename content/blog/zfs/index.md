@@ -10,13 +10,13 @@ toc: false
 comments: true
 ---
 
-I am quite a big fan of ZFS. One of its useful features is snapshotting, allowing you to record the state of your filesystem at a point in time. This means if you later change or delete files, you will be able to roll-back to this previous snapshot, or restore individual files. So far, so normal --- even NTFS has a kind of snapshot/restore capability.
+I am quite a big fan of ZFS. One of its useful features is snapshotting, allowing you to record the state of your filesystem at a specific point in time. This means if you later change or delete files, you will be able to roll-back to this previous snapshot, or restore individual files. So far, so normal --- even NTFS has a kind of snapshot/restore capability.
 
-What makes ZFS's snapshots even more useful is what they enable in terms of filesystem synchronization. My use case is that I have 10 TB of data at a remote site that I want to back up to my local desktop. I am constrained by a pretty slow internet connection, so I need a solution that doesn't use much bandwidth.
+What makes ZFS's snapshots even more useful is what they enable in terms of filesystem synchronization. My use case is that I have 10 TB of data at a remote site that I want to back up to my local desktop. I am constrained by a slow internet connection, so I need a solution that doesn't use much bandwidth.
 
 What I can do is to have a matching snapshot pair on both sides, then take another snapshot on the sending end. ZFS can then find which blocks have changed on the sending side, and send and replay the differences to the receiving side. Unfortunately you still have to do a single initial replication on the whole dataset --- you can't get around that!
 
-In my case the initial replication was going to take more than a week over the slow link; I ended up [sneakernetting](https://en.wikipedia.org/wiki/Sneakernet) the data between sites to speed the process up. While you can achieve incremental results with a tool like `rsync`, the process isn't as efficient, as it has to check to see if each file has been updated.
+In my case the initial replication was going to take more than a week over the slow link; I ended up [sneakernetting](https://en.wikipedia.org/wiki/Sneakernet) the data between sites to speed up the process. While you can achieve incremental results with a tool like `rsync`, the process isn't as efficient, as it has to check to see if each file has been updated.
 
 [`syncoid`](https://github.com/jimsalterjrs/sanoid#syncoid) is the tool I use to automate the `zfs snapshot`, `zfs send | receive` process.
 I run a command like this to pull all the changes since the previous run:
@@ -74,12 +74,12 @@ Dec 22 03:00:29 desktop systemd[1]: tank-offsite.service: Failed with result 'ex
 Dec 22 03:00:29 desktop systemd[1]: Failed to start tank-offsite.service - Backup tank to tank-offsite.
 ```
 
-`systemd`'s docs have [some discussion of this scenario](https://systemd.io/NETWORK_ONLINE/#modyfing-the-meaning-of-network-onlinetarget). They suggest adding a separate service that runs the same ping check with `Before=network-online.target` specified. This means that any services depending on `network-online.target` will only start once the ping has been successful. In my case as I only have a single service that cares about this, keeping it all together in the same unit with `ExecStartPre=` made sense to me.
+`systemd`'s docs have [some discussion of this scenario](https://systemd.io/NETWORK_ONLINE/#modyfing-the-meaning-of-network-onlinetarget). They suggest adding a separate service that runs the same ping check with `Before=network-online.target` specified. This means that any services depending on `network-online.target` will only start once the ping has been successful. As I only have a single service that cares about this, keeping it all together in the same unit with `ExecStartPre=` made sense to me.
 
-You may have noticed a slight issue with this timer setup; my machine will always suspend after the backup job finishes. This is the desired outcome when the timer has caused the desktop to wake up, but it will probably be quite annoying if I was using the machine at the time. Luckily I'm usually asleep well before 03:00! I couldn't find a neat way of avoiding this.
+You may have noticed a slight issue with this timer setup: my machine will always suspend after the backup job finishes. This is the desired outcome when the timer has caused the desktop to wake up, but it will probably be quite annoying if I were using the machine at the time. Luckily I'm usually fast asleep before 03:00! I couldn't find a neat way of avoiding this.
 
 One thing that I'd still like to get working is ZFS's [`nop-write`](https://openzfs.org/wiki/Features#nop-write) support.
 My use for this is that I have a different daily job that tars up data from my VPS, overwriting a file on disk.
 This means that every day I have to sync the full tar file, as from ZFS's perspective it is completely new data, even though there will have been very few changes.
-The data in question is only about 1.5 GB --- so it isn't too slow, but if I can avoid having to copy it at all it would be preferable.
-Alternatively, I could just swap to using `rsync` for this job, and avoiding re-writing the data at all. ZFS's on disk compression should pretty much replicate the benefits I was getting from compressing the tar file.
+The data in question is only about 1.5 GB --- so it isn't too slow, but if I can avoid having to copy it at all then it would be preferable.
+Alternatively, I could just swap to using `rsync` for this job, and avoid re-writing the data at all. ZFS's compression should replicate the benefits I was getting from compressing the tar file.
