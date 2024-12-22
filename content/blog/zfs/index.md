@@ -1,7 +1,7 @@
 ---
 title: "ZFS snapshots and syncing them"
 date: 2024-12-07T20:50:25Z
-draft: true
+draft: false
 description: "I finally have a somewhat usable offsite backup!"
 keywords: ["ZFS"]
 tags: ["projects"]

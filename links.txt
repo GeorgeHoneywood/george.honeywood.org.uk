@@ -22,3 +22,4 @@
 /blog/tenda-pa6/
 /tags/security/
 /blog/typst/
+/blog/zfs/
