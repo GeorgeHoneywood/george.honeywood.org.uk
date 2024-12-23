@@ -1,5 +1,5 @@
 ---
-title: "ZFS snapshots and syncing them"
+title: "ZFS snapshots and how to sync them"
 date: 2024-12-07T20:50:25Z
 draft: false
 description: "I finally have a somewhat usable offsite backup!"
