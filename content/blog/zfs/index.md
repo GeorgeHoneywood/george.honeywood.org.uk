@@ -65,6 +65,7 @@ WantedBy=timers.target
 The only little hack here is the `ExecStartPre=` line; my first pass at this didn't include it. I was hoping that `After=network-online.target` would be enough to make sure the network stack was up before the `syncoid` command would run. Evidently not:
 
 ```bash
+➜ journalctl -u tank-offsite
 Dec 22 03:00:28 desktop systemd[1]: Starting tank-offsite.service - Backup tank to tank-offsite...
 Dec 22 03:00:29 desktop syncoid[162504]: ssh: connect to host 192.168.1.10 port 22: Network is unreachable
 Dec 22 03:00:29 desktop syncoid[162505]: ssh: connect to host 192.168.1.10 port 22: Network is unreachable
@@ -78,8 +79,49 @@ Dec 22 03:00:29 desktop systemd[1]: Failed to start tank-offsite.service - Backu
 
 You may have noticed a slight issue with this timer setup: my machine will always suspend after the backup job finishes. This is the desired outcome when the timer has caused the desktop to wake up, but it will probably be quite annoying if I were using the machine at the time. Luckily I'm usually fast asleep before 03:00! I couldn't find a neat way of avoiding this.
 
-One thing that I'd still like to get working is ZFS's [`nop-write`](https://openzfs.org/wiki/Features#nop-write) support.
+One thing that I'd still like to get working is ZFS's [`nop-write`][nop-write] support.
 My use for this is that I have a different daily job that tars up data from my VPS, overwriting a file on disk.
 This means that every day I have to sync the full tar file, as from ZFS's perspective it is completely new data, even though there will have been very few changes.
-The data in question is only about 1.5 GB --- so it isn't too slow, but if I can avoid having to copy it at all then it would be preferable.
+The data in question is only about 1.3 GB --- so it isn't too slow, but if I can avoid having to copy it at all then it would be preferable.
 Alternatively, I could just swap to using `rsync` for this job, and avoid re-writing the data at all. ZFS's compression should replicate the benefits I was getting from compressing the tar file.
+
+[nop-write]: https://openzfs.org/wiki/Features#nop-write
+
+## a few days later
+
+Getting [`nop-write`][nop-write] working was indeed really just as simple as swapping the dataset checksum setting to `sha256` (or you can pick one of [the other options](https://openzfs.github.io/openzfs-docs/Basic%20Concepts/Checksums.html#checksum-algorithms))
+
+```bash
+➜ zfs set checksum=sha256 pool_name/dataset_name
+```
+
+Now even though the job rewrites this large tar file daily, there is nothing for `syncoid` to copy over! (well, only 84 KB compared to 1.3 GB)
+
+```bash
+➜ journalctl -qu tank-offsite --grep 'tank/backup@' | tail -n 2
+# without `nop-write`
+Dec 28 03:00:43 desktop syncoid[337636]: Sending incremental tank/backup@syncoid_desktop_2024-12-27:23:38:04-GMT00:00 ... syncoid_desktop_2024-12-28:03:00:43-GMT00:00 (~ 1.3 GB):
+# with `nop-write`
+Dec 28 13:28:38 desktop syncoid[26300]: Sending incremental tank/backup@syncoid_desktop_2024-12-28:13:12:15-GMT00:00 ... syncoid_desktop_2024-12-28:13:28:38-GMT00:00 (~ 84 KB):
+```
+
+I am now questioning why I didn't use `rsync` in the first place, however.
+`nop-write` saves me from replicating the unchanged overwritten file, by preventing the writes from actually hitting the disk.
+It doesn't avoid the whole daily download from the VPS though!
+ZFS couldn't possibly know what writes would be no-ops without having the new data to checksum against what is already on disk.
+
+The only slight gotcha with `nop-write` is that you need to make sure that you don't truncate the file you rewrite.
+For example something like this won't work:
+
+```bash
+➜ ssh $VPS_HOSTNAME 'tar -cf - /var/www/' > var-www.tar
+```
+
+If you do this, then the shell first truncates the file before writing the new data.
+There is probably a clever bash way of avoiding the truncation, but using `dd` with the `conv=notrunc` option is a bit more self documenting:
+
+```bash
+➜ ssh $VPS_HOSTNAME 'tar -cf - /var/www/' | dd of=var-www.tar conv=notrunc bs=1M
+```
+
+Although `nop-write` sounds very compelling at first -- it is actually fairly niche. Most of the time it is possible (and more efficient) to avoid rewriting unchanged data! 
