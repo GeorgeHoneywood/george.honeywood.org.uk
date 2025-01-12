@@ -125,3 +125,60 @@ There is probably a clever bash way of avoiding the truncation, but using `dd` w
 ```
 
 Although `nop-write` sounds very compelling at first -- it is actually fairly niche. Most of the time it is possible (and more efficient) to avoid rewriting unchanged data! 
+
+## a few weeks later
+
+At some point I decided to enable some power management settings on my desktop.
+Usually, my desktop is suspended. However, sometimes one of my meddling cats will step on the keyboard, waking it up, so it is handy if the machine automatically suspends after being idle for some amount of time.
+Auto-suspend however created a bit of headache for this backup job:
+
+```bash
+Jan 10 03:00:44 desktop systemd[1]: Starting tank-offsite.service - Backup tank to tank-offsite...
+Jan 10 03:00:55 desktop sh[296224]: PING 192.168.1.10 (192.168.1.10) 56(84) bytes of data.
+Jan 10 03:00:55 desktop sh[296224]: 64 bytes from 192.168.1.10: icmp_seq=1 ttl=62 time=12.8 ms
+Jan 10 03:00:55 desktop sh[296224]: --- 192.168.1.10 ping statistics ---
+Jan 10 03:00:55 desktop sh[296224]: 1 packets transmitted, 1 received, 0% packet loss, time 0ms
+Jan 10 03:00:55 desktop sh[296224]: rtt min/avg/max/mdev = 12.842/12.842/12.842/0.000 ms
+Jan 10 03:00:56 desktop syncoid[296226]: Sending incremental tank/backup@syncoid_desktop_2025-01-09:03:00:51-GMT00:00 ... syncoid_desktop_2025-01-10:03:00:56-GMT00:00 (~ 3.2 MB):
+Jan 10 03:01:11 desktop syncoid[296226]: Sending incremental tank/backup/email@syncoid_desktop_2025-01-09:03:01:11-GMT00:00 ... syncoid_desktop_2025-01-10:03:01:11-GMT00:00 (~ 1.5 MB):
+Jan 10 03:01:13 desktop syncoid[296226]: Sending incremental tank/backup/lxc@syncoid_desktop_2025-01-09:03:01:13-GMT00:00 ... syncoid_desktop_2025-01-10:03:01:13-GMT00:00 (~ 4 KB):
+Jan 10 03:01:14 desktop syncoid[296226]: Sending incremental tank/backup/pbs@syncoid_desktop_2025-01-09:03:01:13-GMT00:00 ... syncoid_desktop_2025-01-10:03:01:14-GMT00:00 (~ 1.0 GB):
+Jan 10 08:52:35 desktop syncoid[296484]: cannot receive incremental stream: dataset is busy
+Jan 10 19:29:53 desktop syncoid[296488]: lzop: Broken pipe: <stdout>
+Jan 10 19:29:53 desktop syncoid[296226]: CRITICAL ERROR: ssh      -S /tmp/syncoid-root@192.168.1.10-1736478055-2255 root@192.168.1.10 ' zfs send  -I '"'"'tank/backup/pbs'"'"'@'"'"'syncoid_desktop_2025-01-09:03:01:13-G'"'"' '>
+Jan 10 19:29:55 desktop syncoid[296226]: Sending incremental tank/backup/veeam@syncoid_desktop_2025-01-09:03:15:13-GMT00:00 ... syncoid_desktop_2025-01-10:19:29:55-GMT00:00 (~ 4 KB):
+Jan 10 19:29:59 desktop syncoid[296226]: Sending incremental tank/data@syncoid_desktop_2025-01-09:05:52:20-GMT00:00 ... syncoid_desktop_2025-01-10:19:29:58-GMT00:00 (~ 35.8 MB):
+Jan 10 19:30:39 desktop systemd[1]: tank-offsite.service: Main process exited, code=exited, status=2/INVALIDARGUMENT
+Jan 10 19:30:39 desktop systemd[1]: tank-offsite.service: Failed with result 'exit-code'.
+Jan 10 19:30:39 desktop systemd[1]: Failed to start tank-offsite.service - Backup tank to tank-offsite.
+Jan 10 19:30:39 desktop systemd[1]: tank-offsite.service: Consumed 31.336s CPU time, 43.7M memory peak.
+```
+
+It wasn't immediately clear what was going wrong to me, as I'd completely forgotten that auto-suspend was enabled.
+What made it more obvious was this other journal entry:
+
+```bash
+Jan 10 03:15:40 desktop systemd-logind[1367]: The system will suspend now!
+Jan 10 03:15:40 desktop ModemManager[1645]: <msg> [sleep-monitor-systemd] system is about to suspend
+Jan 10 03:15:40 desktop NetworkManager[2071]: <info>  [1736478940.0158] manager: sleep: sleep requested (sleeping: no  enabled: yes)
+Jan 10 03:15:40 desktop NetworkManager[2071]: <info>  [1736478940.0163] manager: NetworkManager state is now ASLEEP
+Jan 10 03:15:40 desktop systemd[1]: Reached target sleep.target - Sleep.
+Jan 10 03:15:40 desktop systemd[1]: Starting nvidia-suspend.service - NVIDIA system suspend actions...
+```
+
+Conveniently, it is quite easy to add "inhibitions" that prevent the system from sleeping.
+I added a `systemd-inhibit` call on the `ExecStart=` line of the unit:
+
+```bash
+ExecStart=/usr/bin/systemd-inhibit /usr/local/sbin/syncoid [-snip-]
+```
+
+This wasn't quite enough, however. There is [a race condition](https://github.com/systemd/systemd/issues/14045) if you call `systemd-inhibit` while the machine is still waking from sleep:
+
+```bash
+Jan 12 03:00:51 desktop systemd-inhibit[398074]: Failed to inhibit: The operation inhibition has been requested for is already running
+Jan 12 03:00:51 desktop systemd[1]: tank-offsite.service: Main process exited, code=exited, status=1/FAILUR
+```
+
+I've hacked around this by adding a 30s sleep in another `ExecStartPre=` line.
+I'm somewhat surprised there isn't a built-in option to inhibit sleep while a unit is running, but I suppose this is a niche thing to do.
