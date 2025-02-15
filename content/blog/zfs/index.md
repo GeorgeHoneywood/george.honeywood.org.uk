@@ -65,7 +65,7 @@ WantedBy=timers.target
 The only little hack here is the `ExecStartPre=` line; my first pass at this didn't include it. I was hoping that `After=network-online.target` would be enough to make sure the network stack was up before the `syncoid` command would run. Evidently not:
 
 ```bash
-➜ journalctl -u tank-offsite
+$ journalctl -u tank-offsite
 Dec 22 03:00:28 desktop systemd[1]: Starting tank-offsite.service - Backup tank to tank-offsite...
 Dec 22 03:00:29 desktop syncoid[162504]: ssh: connect to host 192.168.1.10 port 22: Network is unreachable
 Dec 22 03:00:29 desktop syncoid[162505]: ssh: connect to host 192.168.1.10 port 22: Network is unreachable
@@ -92,13 +92,13 @@ Alternatively, I could just swap to using `rsync` for this job, and avoid re-wri
 Getting [`nop-write`][nop-write] working was indeed really just as simple as swapping the dataset checksum setting to `sha256` (or you can pick one of [the other options](https://openzfs.github.io/openzfs-docs/Basic%20Concepts/Checksums.html#checksum-algorithms))
 
 ```bash
-➜ zfs set checksum=sha256 pool_name/dataset_name
+$ zfs set checksum=sha256 pool_name/dataset_name
 ```
 
 Now even though the job rewrites this large tar file daily, there is nothing for `syncoid` to copy over! (well, only 84 KB compared to 1.3 GB)
 
 ```bash
-➜ journalctl -qu tank-offsite --grep 'tank/backup@' | tail -n 2
+$ journalctl -qu tank-offsite --grep 'tank/backup@' | tail -n 2
 # without `nop-write`
 Dec 28 03:00:43 desktop syncoid[337636]: Sending incremental tank/backup@syncoid_desktop_2024-12-27:23:38:04-GMT00:00 ... syncoid_desktop_2024-12-28:03:00:43-GMT00:00 (~ 1.3 GB):
 # with `nop-write`
@@ -114,14 +114,14 @@ The only slight gotcha with `nop-write` is that you need to make sure that you d
 For example something like this won't work:
 
 ```bash
-➜ ssh $VPS_HOSTNAME 'tar -cf - /var/www/' > var-www.tar
+$ ssh $VPS_HOSTNAME 'tar -cf - /var/www/' > var-www.tar
 ```
 
 If you do this, then the shell first truncates the file before writing the new data.
 There is probably a clever bash way of avoiding the truncation, but using `dd` with the `conv=notrunc` option is a bit more self documenting:
 
 ```bash
-➜ ssh $VPS_HOSTNAME 'tar -cf - /var/www/' | dd of=var-www.tar conv=notrunc bs=1M
+$ ssh $VPS_HOSTNAME 'tar -cf - /var/www/' | dd of=var-www.tar conv=notrunc bs=1M
 ```
 
 Although `nop-write` sounds very compelling at first -- it is actually fairly niche. Most of the time it is possible (and more efficient) to avoid rewriting unchanged data! 

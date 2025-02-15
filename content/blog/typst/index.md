@@ -17,7 +17,7 @@ Typst is pretty much what I have been looking for since I was about 15 and had t
 At the time the solution I settled upon was LaTeX. LaTeX is pretty cool. You write whatever you want, then let it produce a pretty document for you. Unfortunately, the UX is not really up to modern standards. To compile a document with a bibliography you have to run a byzantine incantation of commands, such as [`pdflatex` -> `biber` -> `pdflatex` -> `pdflatex`](https://tex.stackexchange.com/a/204298) (or you can use `latexmk` which handles this stuff for you). It's not hard to install, but it does eat a lot of space (the equivalent of about 20 electron apps!):
 
 ```bash
-➜ du -sh /usr/share/tex{live,mf}
+$ du -sh /usr/share/tex{live,mf}
 2.9G	/usr/share/texlive
 408M	/usr/share/texmf
 ```
@@ -43,7 +43,7 @@ For context, have fun trying to figure out what output [this macro](https://gith
 You'd think a system from the 1970s would be quick on modern computers. This is not the case. Once your document grows to have a decent number of embedded figures, everything takes a while. You can work around this, but it feels like it should just work. From scratch, compiling the [Final Year Project report](https://github.com/GeorgeHoneywood/final-year-project/files/11584765/george-honeywood-final-report.pdf) I wrote for uni took a solid 23 seconds, and it isn't even that large of a document, only about 50 pages and 13 figures. Subsequent compiles are a bit quicker, taking about 5 seconds, but that is still quite far from ideal.
 
 ```bash 
-➜ time latexmk -pdf -silent main.tex 
+$ time latexmk -pdf -silent main.tex 
 Latexmk: Run number 1 of rule 'pdflatex'
 Latexmk: Run number 1 of rule 'biber main'
 Latexmk: Run number 2 of rule 'pdflatex'
@@ -52,7 +52,7 @@ Latexmk: Run number 4 of rule 'pdflatex'
 
 real    0m23.588s
 
-➜ time latexmk -pdf -silent main.tex
+$ time latexmk -pdf -silent main.tex
 Latexmk: Run number 1 of rule 'pdflatex'
 
 real    0m5.509s
