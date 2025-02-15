@@ -55,6 +55,13 @@ $tocBreakpoint: 1024px;
     height: auto;
   }
 
+  // asciinema player
+  div > .ap-wrapper {
+    margin: 20px auto;
+    display: block;
+    height: auto;
+  }
+
   a {
     color: var(--link);
     &:visited {
