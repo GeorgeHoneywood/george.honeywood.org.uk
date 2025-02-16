@@ -11,6 +11,13 @@ comments: true
 asciinema: true
 ---
 
+{{< image 
+	path="oki-microline-320-elite"
+	alt="An Oki Microline 320 Elite dot matrix printer taking up all my desk space"
+	caption="My desk-dominating Oki Microline 320 Elite dot matrix printer"
+	lazy=false
+>}}
+
 The joy of the dot matrix printer is how simple the interface is -- it's just a file, `/dev/usb/lp0`.
 When you write some ASCII character into this file, the printer prints it. That's it!
 Below are five increasingly complicated ways to write to this file.
