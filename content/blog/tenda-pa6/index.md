@@ -9,7 +9,7 @@ math: false
 toc: false
 ---
 
-{{< image path="tenda-pa6.jpg" alt="My Tenda PA6 in the attic" >}}
+{{< image path="tenda-pa6.jpg" alt="My Tenda PA6 in the attic" lazy=false >}}
 
 So I have a little Tenda PA6 Powerline/HomePlug WiFi extender that I use as an additional WAP in the attic room of my house. This room has been getting very hot recently (around 35 °C), and when I touch the device it feels to be at least 60 °C. Tenda's website says that the PA6 can operate in temperatures up to 40 °C, but I wanted to see if I could get some temperature readings out of the device to see how hot it is actually getting. 
 

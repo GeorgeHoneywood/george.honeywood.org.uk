@@ -10,13 +10,13 @@ toc: false
 comments: true
 ---
 
-{{< image path="founders-cat" alt="Founder's at sunrise" >}}
+{{< image path="founders-cat" alt="Founder's at sunrise" lazy=false >}}
 
 I study at Royal Holloway, a university probably most well known for the iconic Founder's Building. According to Wikipedia, it is an example of French-Renaissance style architecture. Founder's is often used in TV and film as visual shorthand for a grandiose university or school setting, starring in Avengers: Age of Ultron, The Crown, You, and most importantly, Midsomer Murders [^1].
 
 [^1]: The Crown and You were filming recently, so I don't have any sources (bar campus rumours). Royal Holloway has an [official page](https://www.royalholloway.ac.uk/about-us/our-history/our-story/in-tv-and-film/) listing previous productions.
 
-{{< image path="jane-holloway-front" alt="Entrance to Jane Holloway Hall" >}}
+{{< image path="jane-holloway-front" alt="Entrance to Jane Holloway Hall" lazy=false >}}
 
 On the wooded slopes below Founder's is the grade two listed Jane Holloway Hall, which was formerly an indoor heated swimming pool. It was built in 1893, so about a decade after Founder's was constructed. This completion date would make it one of the earlier examples in the UK. It is not nearly as visually impressive as Founder's, but it suits the wooded environment well. Unfortunately, they decided to pebble dash it, which I think is a bad call on _any_ building. Fortunately, the interior has the brickwork exposed, and is notable for its "elegant pinjointed steel roof trusses" [^4].
 

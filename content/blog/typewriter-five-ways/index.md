@@ -142,7 +142,7 @@ For the authentic 1960s Unix experience we can pipe the output of a shell into T
 $ TERM=lp /bin/sh -i 2>&1 | ./typist
 ```
 
-{{< image path="terminal" alt="Output from running the command above">}}
+{{< image path="terminal" alt="Output from running the command above" >}}
 
 Setting the `TERM=lp` environment variable is important. It prevents the shell from using fancy control characters that the printer can't render, like the ANSI colouring codes. `2>&1` redirects both the `stdout` and `stderr` of the shell into Typist [^3]. If I was feeling brave I could learn how to use `ed` and do some proper line oriented file editing!
 

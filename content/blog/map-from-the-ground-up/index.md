@@ -12,7 +12,7 @@ comments: true
 
 This is a summary of the Final Year Project that I completed as part of my last year at Royal Holloway. The task was to produce an "Offline HTML5 Map Application". You can try out the result, OSMO, at [files.george.honeywood.org.uk/final-deliverable/](https://files.george.honeywood.org.uk/final-deliverable/#16/51.4290/-0.5521). The code is available on [GitHub](https://github.com/GeorgeHoneywood/final-year-project), and I have also written a [formal report](https://github.com/GeorgeHoneywood/final-year-project/files/11584765/george-honeywood-final-report.pdf).
 
-{{< image path="header.png" alt="Screenshot of the OSMO app, showing central London" >}}
+{{< image path="header.png" alt="Screenshot of the OSMO app, showing central London" lazy=false >}}
 
 Building an offline HTML5 map application is a slightly weird thing to do. Most web maps are decidedly online, fetching tiles dynamically from a tile sever whenever they are required. Most offline map applications are native apps for mobile devices, which fulfil the main use case for an offline map, navigation. However, it is possible to build offline web apps, through technologies like Service Workers, and it seemed like a good opportunity for me to understand the lower levels of how web maps work.
 

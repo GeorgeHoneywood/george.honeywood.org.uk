@@ -6,6 +6,8 @@
     to convert images to a smaller size before committing:
 
     convert -strip  in.jpg -resize 1280x out.jpg
+
+    add lazy=false for images above the fold
     
     credit to: https://www.brycewray.com/posts/2022/06/responsive-optimized-images-hugo/ 
 */}}
@@ -52,7 +54,7 @@
                     src='{{ $actualImg.RelPermalink }}'
                     width="{{ $src.Width }}"
                     height="{{ $src.Height }}"
-                    loading="lazy"
+                    {{ if (default true (.Get "lazy")) }} loading="lazy" {{ end }}
                     alt='{{ with (.Get "alt") }}
                         {{- . -}}
                     {{else}}

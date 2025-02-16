@@ -12,7 +12,7 @@ comments: true
 
 Typst is pretty much what I have been looking for since I was about 15 and had to write my first long form report for school. I didn't like using Word; I spent too much time fighting the formatting and I couldn't easily run it on my PC at home. At the same time, I needed a bit more control over layout than what I could easily get using Markdown and pandoc.
 
-{{< image path="typst" alt="My CV, prepared using Typst" caption="An example of a document prepared using Typst, my CV">}}
+{{< image path="typst" alt="My CV, prepared using Typst" caption="An example of a document prepared using Typst, my CV" lazy=false >}}
 
 At the time the solution I settled upon was LaTeX. LaTeX is pretty cool. You write whatever you want, then let it produce a pretty document for you. Unfortunately, the UX is not really up to modern standards. To compile a document with a bibliography you have to run a byzantine incantation of commands, such as [`pdflatex` -> `biber` -> `pdflatex` -> `pdflatex`](https://tex.stackexchange.com/a/204298) (or you can use `latexmk` which handles this stuff for you). It's not hard to install, but it does eat a lot of space (the equivalent of about 20 electron apps!):
 

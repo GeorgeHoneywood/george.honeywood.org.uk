@@ -12,11 +12,11 @@ comments: true
 
 I've become a bit obsessed with typewriters. This is an Olympia Traveller de Luxe. The term "traveler" is definitely relative --- it weighs about 5kg, and is quite the pain to carry.
 
-{{< image path="angle-wide" alt="Wide angle" >}}
+{{< image path="angle-wide" alt="Wide angle" lazy=false >}}
 
 Even though it is indisputably simpler than a modern laptop, the complexities of it seem more striking. It is packed with tiny linkages that all work in harmony to get the text on the page. Even the ink spools are more complicated than you might think. Each press of a key winds the ribbon a small amount from one spool to the other, and then once one side is exhausted, pressure builds on a pin that causes the mechanism to switch directions --- returning the ribbon to the other spool.
 
-{{< image path="top-no-case" alt="Top down without case" >}}
+{{< image path="top-no-case" alt="Top down without case" lazy=false >}}
 
 You can adjust the margins using two sliders behind the paper slot. When you are within about 8 characters of the end of the line a little bell dings, reminding you to return the carriage. It is sometimes a little awkward when you are in the middle of a particularly long word, but you can always -hyphenate anything that will not fit. If you feel like living life on the edge, you can override the margins, letting you fit those last couple of characters in.
 

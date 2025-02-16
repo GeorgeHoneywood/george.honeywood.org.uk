@@ -50,13 +50,13 @@ I think this would be a valuable tool to help motivate contributors if the imple
 
 ## late 2022 update
 
-In July 2021, I made some upgrades to this demo, but never got round to updating this post. It is still running at [https://maps.honeyfox.uk](https://maps.honeyfox.uk).
+In July 2021, I made some upgrades to this demo, but never got round to updating this post. It is still running at [https://osm-history.george.honeywood.org.uk](https://osm-history.george.honeywood.org.uk).
 
 Instead of showing just one set of old tiles, it shows the state every year between 2007 and 2022. As rendering the tiles live requires a beefy server, I used a script to download the tiles for each year I wanted, making everything static. This only works because I only wanted to render a relatively small area -- when you increase the area, the amount of tiles you need to download grows exponentially. This demo is now just a bunch of `$year/$z/$x/$y.png`s I serve using nginx on my little VPS.
 
-Departing from the technical details, you can see my contributions begin in 2019. My initial prompt to start editing OSM was that a new build estate near my house was missing from the map (you can see it appear [here](https://maps.honeyfox.uk/#17/50.78814/-1.90129) in 2019).
+Departing from the technical details, you can see my contributions begin in 2019. My initial prompt to start editing OSM was that a new build estate near my house was missing from the map (you can see it appear [here](https://osm-history.george.honeywood.org.uk/#17/50.78814/-1.90129) in 2019).
 
-In some years there aren't many changes. In others a lot of stuff is changed -- between 2010 and 2011, all the roads and residential areas were added. From then all is quiet until 2018, when most of the houses were drawn in. Someone[^1] gave [Ferndown Golf Club](https://maps.honeyfox.uk/#16/50.7994/-1.8767) an excellent makeover in 2022, adding all the hole numbers, greens, fairways and bunkers. I can and have spent ages looking at this visualization. Something about it is extremely satisfying to me.
+In some years there aren't many changes. In others a lot of stuff is changed -- between 2010 and 2011, all the roads and residential areas were added. From then all is quiet until 2018, when most of the houses were drawn in. Someone[^1] gave [Ferndown Golf Club](https://osm-history.george.honeywood.org.uk/#16/50.7994/-1.8767) an excellent makeover in 2022, adding all the hole numbers, greens, fairways and bunkers. I can and have spent ages looking at this visualization. Something about it is extremely satisfying to me.
 
 [^1]: I would never map something like this myself. This is part of the beauty of OSM -- people map the things they care about. I'd never map a golf course partially because I know nothing about golf, and partially because I vaguely disapprove of it as a landuse. There are currently three 18-hole courses within 3 km of my parent's house (there used to be 4!).
 

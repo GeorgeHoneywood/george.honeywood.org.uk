@@ -14,7 +14,7 @@ toc: false
 
 Last weekend I took part in a hackathon with 3 of my housemates. We decided to make a social network app that inspires people to live a more eco-concious lifestyle. It has a concept of achievements, which are simple changes or tasks that people can make to reduce their environmental impact.
 
-{{< image path="achievement.jpg" width="45%" alt="An example of an achievement" >}}
+{{< image path="achievement.jpg" width="45%" alt="An example of an achievement" lazy=false >}}
 
 You can either privately complete an achievement, or publicly create a post linked to that specific achievement. Either of these will add to your "carbon score", which is displayed on a leaderboard against people you are following.
 
