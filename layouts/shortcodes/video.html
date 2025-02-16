@@ -1,4 +1,18 @@
-{{/*} use this something like {{< video path="docking-960x720.mp4" muted="true" >}} */}}
+{{/* 
+    usage:
+
+    {{< video path="docking-960x720.mp4" muted="true" >}}
+
+    can use something like this to convert videos to a smaller size:
+    ffmpeg -i in.mp4 -vf scale=-1:720 -c:v libx264 -preset slow -crf 28 -c:a copy -pix_fmt yuv420p -map_metadata -1 out.mp4
+
+    also include this to roast audio: 
+    -c:a aac -b:a 40k -ac 1
+
+    try using vp9/webm and opus for better compression:
+    ffmpeg -i in.mp4 -vf scale=-1:720 -c:v libvpx-vp9 -b:v 0 -crf 40 -c:a libopus -b:a 16k -ac 1 out.webm
+
+*/}}
 
 {{ $muted := .Get "muted" }}
 {{ $nocontrols := .Get "no-controls" }}

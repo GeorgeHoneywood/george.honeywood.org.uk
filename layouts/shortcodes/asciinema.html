@@ -1,10 +1,18 @@
-<!-- source: https://jenciso.github.io/blog/embedding-asciinema-cast-in-your-hugo-site/ -->
-<!-- mildly adapated to add the controls option -->
+{{/*
+    usage:
 
-<!-- NOTE: some options need to be passed bare on the shortcode, without "" -->
+    {{< asciinema key="strace" startAt="2" autoPlay="true" controls=true loop=true >}}
+
+    source: https://jenciso.github.io/blog/embedding-asciinema-cast-in-your-hugo-site/
+    mildly adapted to add the controls option
+
+    NOTE: some options need to be passed bare on the shortcode, without ""
+
+    see here for a neat way to record a whole tmux session: https://gist.github.com/worldofprasanna/1861b182103cef452ec58471679a7e5b
+*/}}
 
 <div id='{{ with .Get "key" }}{{ . }}{{ end }}'></div>
-<script src="{{ .Site.BaseURL }}/js/asciinema-player.min.js"></script>
+<script src="/js/asciinema-player.min.js"></script>
 
 {{ $src := .Page.Resources.GetMatch (printf "casts/%s*" (.Get "key")) }}
 
