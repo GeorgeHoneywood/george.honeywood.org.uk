@@ -21,10 +21,10 @@ jobs:
           submodules: recursive
 
       - name: setup Hugo
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v3
         with:
           extended: true
-          hugo-version: 'latest'
+          hugo-version: '0.133.0'
 
       - name: setup Typst
         uses: GeorgeHoneywood/setup-typst@main
