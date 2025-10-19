@@ -11,7 +11,7 @@ comments: true
 asciinema: true
 ---
 
-{{< image 
+{{< image
 	path="oki-microline-320-elite"
 	alt="An Oki Microline 320 Elite dot matrix printer taking up all my desk space"
 	caption="My desk-dominating Oki Microline 320 Elite dot matrix printer"
