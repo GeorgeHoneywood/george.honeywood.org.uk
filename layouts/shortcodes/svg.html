@@ -1,0 +1,45 @@
+{{/* 
+    usage:
+
+    {{< svg 
+        path="network"
+        alt="Network diagram"
+        caption="A rendition of how this setup works"
+    >}}
+
+    add lazy=false for images above the fold
+
+    NOTE: for SVGs exported from diagrams.net, make sure transparency is enabled
+    
+    credit to: https://www.brycewray.com/posts/2022/06/responsive-optimized-images-hugo/ 
+*/}}
+
+{{ $src := .Page.Resources.GetMatch (printf "images/%s*" (.Get "path")) }}
+
+
+{{ if $src }}
+    <figure>
+        <a href='{{ $src.RelPermalink }}'>
+            <picture>
+                <img
+                    style="{{ with (.Get "width") }}width: {{ . }};{{ end }}"
+                    src='{{ $src.RelPermalink }}'
+    
+                    {{ if (default true (.Get "lazy")) }} loading="lazy" {{ end }}
+                    alt='{{ with (.Get "alt") }}
+                        {{- . -}}
+                    {{else}}
+                        {{ warnf "no alt found for '%s' on page '%s'" (.Get "path") (.Page.Path)}}
+                    {{end}}'
+                />
+            </picture>
+        </a>
+        {{ with (.Get "caption") }}
+            <figcaption>
+                {{ . | markdownify }}
+            </figcaption>
+        {{end}}
+    </figure>
+{{ else }}
+    {{ errorf "no image found for '%s' on page '%s':\noptions are: %s" (.Get "path") (.Page.Path) (.Page.Resources.ByType "image" )}}
+{{ end }}
