@@ -24,3 +24,4 @@
 /blog/typst/
 /blog/zfs/
 /blog/typewriter-five-ways/
+/blog/bodging-a-brouter/

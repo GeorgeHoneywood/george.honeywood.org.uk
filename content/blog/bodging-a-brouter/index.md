@@ -1,7 +1,7 @@
 ---
 title: "Bodging a brouter"
 date: 2025-10-17T19:20:35+01:00
-draft: true
+draft: false
 description: "Site-to-site VPN, the hard way"
 keywords: ["wireguard", "tailscale", "VPN", "bridge"]
 tags: ["projects"]
