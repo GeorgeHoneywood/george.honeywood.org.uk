@@ -1,0 +1,48 @@
+@import "./post.scss";
+
+// svg { 
+//     background-color: var(--text);
+// }
+
+h3 {
+    color: #3E0C87;
+}
+
+@media (prefers-color-scheme: dark) {
+    h3 {
+        color: #d7aaff;
+    }
+}
+
+h4 {
+    margin-bottom: 0.5em;
+}
+
+h4 a {
+    text-decoration: none;
+    color: var(--text) !important
+}
+
+.name {
+    margin-bottom: 0.5em;
+}
+
+dt {
+    float: left;
+    clear: left;
+}
+
+dt::after {
+    content: "\00a0\00a0";
+}
+
+dd {
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .typst-frame {
+        filter: invert(1);
+    }
+}

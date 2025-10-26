@@ -12,3 +12,5 @@ hugo.linux
 
 # no point storing this, as it can be generated from cv/georgehoneywood-cv.typ
 static/georgehoneywood-cv.pdf
+cv/georgehoneywood-cv.html
+cv/georgehoneywood-cv.pdf

@@ -35,7 +35,7 @@ enableGitInfo = true
   # Links to your social accounts, comment/uncomment as needed. Icons will be displayed for those specified.
   #twitter = "https://twitter.com/<your handle>"
   github = "https://github.com/GeorgeHoneywood"
-  cv = "/georgehoneywood-cv.pdf"
+  cv = "/cv/"
   email = "mailto:contact@george.honeywood.org.uk"
   # facebook = "https://facebook.com/<your handle>"
   # gitlab = "https://gitlab.com/<your handle>"
@@ -48,7 +48,7 @@ enableGitInfo = true
   # Titles for your icons (shown as tooltips), and also their display order.
   # Currently, these icons are supported: 
   #   "Twitter", "GitHub", "Email", "Facebook", "GitLab", "Instagram", "LinkedIn", "YouTube"
-  iconOrder = ["GitHub", "Email", "LinkedIn", "CV", "GPG", "RSS"]
+  iconOrder = ["GitHub", "Email", "LinkedIn", "CV", "RSS"]
 
   # Metadata for Twitter cards, defaults to params.twitter
   # twitterSite = "@<your handle>"
@@ -83,3 +83,20 @@ sectionPagesMenu = "main"
   name = "Blog"
   title = "Blog"
   url = "/blog/"
+
+[[menu.main]]
+  identifier = "cv"
+  name = "CV"
+  title = "CV"
+  url = "/cv/"
+
+# hack to make hugo rebuild when the CV changes
+# you still need to refresh the page manually thoughm live-reload doesn't work :(
+[module]
+  [[module.mounts]]
+    source = "cv/georgehoneywood-cv.html"
+    target = "assets/georgehoneywood-cv.html"
+
+  [[module.mounts]]
+    source = 'assets'
+    target = 'assets'
