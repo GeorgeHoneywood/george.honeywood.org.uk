@@ -25,3 +25,6 @@
 /blog/zfs/
 /blog/typewriter-five-ways/
 /blog/bodging-a-brouter/
+/cv/
+/tags/typst/
+/blog/typst-and-hugo/

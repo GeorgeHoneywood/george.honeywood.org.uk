@@ -4,7 +4,7 @@ date: 2024-02-18T10:34:22Z
 draft: false
 description: "Document preparation with Typst"
 keywords: ["typst", "latex"]
-tags: ["thoughts"]
+tags: ["thoughts", "typst"]
 math: false
 toc: false
 comments: true
