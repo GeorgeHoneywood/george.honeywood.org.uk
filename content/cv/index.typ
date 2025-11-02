@@ -1,6 +1,7 @@
 ---
 title: "CV"
 comments: false
+layout: cv
 ---
 #import "alta-typst/alta-typst.typ": alta, name, skill, styled-link, target, term
 
@@ -22,6 +23,14 @@ comments: false
   ],
   context [
     == Experience
+
+    // === Infrastructure Assistant \
+    // #name[GSA Capital]
+    // #term[Sep 2023 --- Present][London]
+
+    // // TODO: real
+    // - Maintained and monitored internal infrastucture, including an extensive Linux esate.
+
 
     === Junior Software Engineer \
     #name[Cudo]

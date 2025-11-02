@@ -89,14 +89,3 @@ sectionPagesMenu = "main"
   name = "CV"
   title = "CV"
   url = "/cv/"
-
-# hack to make hugo rebuild when the CV changes
-# you still need to refresh the page manually thoughm live-reload doesn't work :(
-[module]
-  [[module.mounts]]
-    source = "cv/georgehoneywood-cv.html"
-    target = "assets/georgehoneywood-cv.html"
-
-  [[module.mounts]]
-    source = 'assets'
-    target = 'assets'
