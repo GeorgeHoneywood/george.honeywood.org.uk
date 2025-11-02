@@ -10,6 +10,8 @@ toc: false
 comments: true
 ---
 
+_(2025-11-02 update: I've now done this much more cleanly, by forking and modifying Hugo such that it can render `.typ` files directly. See my new post [here]({{< relref "typst-and-hugo-properly" >}}).)_
+
 One slightly vain thing that I've wanted to do for a while is have my CV available in both PDF and HTML form, without the hassle of keeping two different versions in sync.
 On the face of it, this sounds pretty trivial, just write in Markdown, then use Pandoc to export to both formats.\
 If only I didn't care about styling!
@@ -19,7 +21,7 @@ It generates unstyled, semantic HTML, which is exactly what you want for embeddi
 
 I've updated my CV template [Alta Typst](https://github.com/GeorgeHoneywood/alta-typst) to use this new feature. The bulk of the work was adding conditionals, for when you want to control exactly how the HTML is structured. Where before I had this tiny one line function:
 
-```plain
+```typst
 #let term(period, location) = {
   text(9pt)[#icon("calendar") #period #h(1fr) #icon("location") #location]
 }
@@ -27,7 +29,7 @@ I've updated my CV template [Alta Typst](https://github.com/GeorgeHoneywood/alta
 
 I now have this 20 line monstrosity:
 
-```plain
+```typst
 #let term(period, location) = context {
   // PDF == paged
   if target() == "paged" { 
@@ -140,7 +142,7 @@ Template for the `/cv/` page:
 As Typst outputs a standalone HTML document, including `<head>` and `<body>`, you need to strip these out if you want to embed the output in a template.
 You'll also need some boilerplate content file:
 
-```markdown
+```yaml
 # content/cv.md
 ---
 layout: cv

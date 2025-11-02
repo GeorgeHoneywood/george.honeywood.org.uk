@@ -40,9 +40,3 @@ dd {
     margin-left: 1.5rem;
     margin-bottom: 0.5rem;
 }
-
-@media (prefers-color-scheme: dark) {
-    .typst-frame {
-        filter: invert(1);
-    }
-}

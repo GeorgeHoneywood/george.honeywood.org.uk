@@ -74,7 +74,7 @@ Sub-files store map data for a range of zoom levels. For example, [-snip-]
 
 Now I've established the motivation, I can extol the virtues of Typst. Typst is a fresh take on document preparation. It combines the good bits of LaTeX, but with much faster compiles and a smaller learning curve. Here's how you'd do the same in Typst:
 
-```plain
+```typst
 ==== Sub-files
 
 #figure(
@@ -94,7 +94,7 @@ This syntax makes far more sense to me, as it is pretty standard C-like language
 
 Here is a Typst recreation of the `\cvskill` TeX macro we saw before:
 
-```plain
+```typst
 #let skill(name, rating) = {
   let max_rating = 5
   let i = 1

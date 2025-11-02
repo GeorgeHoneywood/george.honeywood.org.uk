@@ -109,7 +109,21 @@ blockquote {
   }
 }
 
-.highlight {
+.typst-equation {
+  margin-top: $leading;
+}
+
+.typst-code {
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+    .typst-frame {
+        filter: invert(1);
+    }
+}
+
+pre {
   margin-top: $leading;
   div {
     padding-left: 12px;
@@ -119,9 +133,7 @@ blockquote {
     padding-left: 0;
     padding-right: 0;
   }
-}
 
-pre {
   line-height: 1.45;
   padding: 12px;
   word-wrap: normal;
