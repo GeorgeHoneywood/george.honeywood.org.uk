@@ -1,10 +1,10 @@
 ---
 title: "Proper Hugo Typst support"
 date: 2025-11-02T12:29:41Z
-draft: true
+draft: false
 description: "Extending Hugo to render Typst natively"
 keywords: ["typst", "hugo", "static site generator"]
-tags: ["projects", "typst"]
+tags: ["projects", "typst", "development"]
 math: false
 toc: false
 comments: true
@@ -19,7 +19,7 @@ This post is written in Typst!
 I had a first pass at making Hugo deal with Typst's HTML export support last weekend, see #link("{{< relref "typst-and-hugo" >}}")[Typst + Hugo]. It worked, but not very well!
 It was OK for one dedicated page, but not good enough for writing normal blog posts with. You had to add a dedicated template for each page, and manually export the `.typ` files to HTML out of band from Hugo.
 
-A couple of years ago, there this topic got a bit of discussion on the #link("https://discourse.gohugo.io/t/how-can-i-introduce-a-new-markup-language-typst-for-hugo/44848")[Hugo forum]. This was before Typst could natively export HTML, however, so it would have had to be done via `pandoc` or some other third-party tool --- it makes much more sense now Typst can render its' own HTML.
+A couple of years ago, this topic got a bit of discussion on the #link("https://discourse.gohugo.io/t/how-can-i-introduce-a-new-markup-language-typst-for-hugo/44848")[Hugo forum]. This was before Typst could natively export HTML, however, so it would have had to be done via `pandoc` or some other third-party tool --- it makes much more sense now Typst can render its' own HTML.
 
 Conveniently Hugo's codebase is pretty pluggable when it comes to markup formats, it's not wedded to Markdown. Hugo also has support for Asciidoc, pandoc, and reStructuredText/RST, among others.
 The `pandoc` support uses pandoc as as an "external renderer", where Hugo just shells out to the system `pandoc` binary generate the HTML --- this is pretty much exactly what I want. I asked GitHub Copilot to have a go and it did quite a good job, I had #link("https://github.com/gohugoio/hugo/compare/master...GeorgeHoneywood:hugo:typst")[something working] after only a couple of iterations.
@@ -76,4 +76,4 @@ To give it a try yourself, you'll need to build #link("https://github.com/George
 + Then make some pages with `.typ` extensions, and Hugo will use the Typst renderer 
 
 Full disclosure: I am not planning on maintaining this fork, but the patchset is pretty mimimal, so should be easy enough to keep up to date with upstream.
-For those curious, you can have a look at the source for this post #link("https://raw.githubusercontent.com/GeorgeHoneywood/george.honeywood.org.uk/refs/heads/master/content/blog/typst-and-hugo-properly/index.typ")[here].
+For those curious, you can have a look at the source for this post #link("https://raw.githubusercontent.com/GeorgeHoneywood/george.honeywood.org.uk/master/content/blog/typst-and-hugo-properly/index.typ")[here].
