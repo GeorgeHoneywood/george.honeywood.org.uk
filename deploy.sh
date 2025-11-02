@@ -33,7 +33,7 @@ rm -rf public/
 echo -n "deploying: "
 if [[ $OPTS_PROD = "yes" ]]; then
     echo "production"
-    hugo --gc --minify
+    ~/code/contrib/hugo/hugo --gc --minify
     check_links
 
     rsync -avzh --delete public/ honeyfox@git.honeyfox.uk:/var/www/html/george.honeywood.org.uk/
@@ -49,7 +49,7 @@ else
 
     echo "staging: $URL"
     echo "building site..."
-    hugo --gc --minify -D \
+    ~/code/contrib/hugo/hugo --gc --minify -D \
     --environment staging \
     -b "$URL"
 
