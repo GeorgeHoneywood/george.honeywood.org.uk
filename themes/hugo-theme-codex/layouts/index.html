@@ -1,4 +1,10 @@
 {{ define "styles" }}
+	{{ $.Scratch.Set "style_opts" (dict "src" "scss/pages/posts.scss" "dest" "css/posts.css") }}
 {{ end }}
 
-{{ with.Site.GetPage "/blog" }}{{ .Render "list" }}{{end}}
+{{ define "main" }}
+	{{ $blog := .Site.GetPage "section" "blog" }}
+	{{ with $blog }}
+		{{ partial "post-list.html" . }}
+	{{ end }}
+{{ end }}
