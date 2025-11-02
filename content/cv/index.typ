@@ -1,3 +1,7 @@
+---
+title: "CV"
+comments: false
+---
 #import "alta-typst/alta-typst.typ": alta, name, skill, styled-link, target, term
 
 #alta(

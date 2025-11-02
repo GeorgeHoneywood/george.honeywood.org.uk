@@ -6,4 +6,20 @@ My personal blog, mostly about, but not limited to, GIS and Software Engineering
 
 Compiles to static HTML using Hugo. The theme is based on [Codex](https://github.com/jakewies/hugo-theme-codex), with an added dark theme.
 
-Deploys to prod with a simple [`rsync` script](deploy.sh) to my VPS. For staging, GitHub Actions automatically deploys new commits to [Sourcehut Pages](https://master.staging.george.honeywood.org.uk/). 
+Deploys to prod with a simple [`rsync` script](deploy.sh) to my VPS.
+For staging, GitHub Actions automatically deploys new commits to [Sourcehut Pages](https://master.staging.george.honeywood.org.uk/). 
+
+### Notes
+
+Needs a patched version of Hugo with Typst support: https://github.com/GeorgeHoneywood/hugo/tree/typst
+
+```bash
+cd ~/code/contrib/
+git clone git@github.com:GeorgeHoneywood/hugo.git
+cd hugo
+CGO_ENABLED=1 go build -tags extended
+```
+
+```bash
+./serve.sh
+```
