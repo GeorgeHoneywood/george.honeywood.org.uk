@@ -36,7 +36,7 @@ if [[ $OPTS_PROD = "yes" ]]; then
     ~/code/contrib/hugo/hugo --gc --minify
     check_links
 
-    rsync -avzh --delete public/ honeyfox@git.honeyfox.uk:/var/www/html/george.honeywood.org.uk/
+    rsync -avzh --chown=caddy:caddy --chmod=755 --delete public/ root@hetzner.honeyfox.uk:/var/www/html/george.honeywood.org.uk/
 else
     SUB_DOMAIN="staging"
     if [[ $CI = "true" ]]; then
