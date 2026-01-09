@@ -24,13 +24,15 @@ layout: cv
   context [
     == Experience
 
-    // === Infrastructure Assistant \
-    // #name[GSA Capital]
-    // #term[Sep 2023 --- Present][London]
+    === Infrastructure Assistant \
+    #name[GSA Capital]
+    #term[Sep 2023 --- Present][London]
 
-    // // TODO: real
-    // - Maintained and monitored internal infrastucture, including an extensive Linux esate.
-
+    - Maintaining and monitoring internal infrastucture, including an extensive Linux estate, VMware cluster and Slurm compute cluster.
+    - Promptly and professionally handling a wide range of internal user queries, across OS support, cluster compute, networking, and desktop support.
+    - Config management via Puppet and Terraform.
+    - Automation in Python, streamlining existing processes.
+    - Datacenter work, racking & patching servers and appliances.
 
     === Junior Software Engineer \
     #name[Cudo]
@@ -45,7 +47,7 @@ layout: cv
     #name[Royal Holloway Physics Dept.]
     #term[Oct 2019 --- Jul 2021][Egham, Surrey]
 
-    - Migrated from legacy Nagios monitoring system to Icinga to ensure service continuity. This included setting up Icinga Director, which allows new hosts to be added through a web interface.
+    - Helped with migration from legacy Nagios monitoring system to Icinga, to ensure service continuity.
     - Installed & imaged rack mounted servers for use within a Hadoop compute cluster.
 
     _References available on request._
@@ -56,7 +58,7 @@ layout: cv
     #name[Royal Holloway, University of London]
     #term[Sep 2019 --- Jul 2023][Egham, Surrey]
 
-    - Final Year Project: offline HTML5 map viewer app, for which I implemented a TypeScript parser for the binary Mapsforge file format. I also developed a canvas-based map renderer.
+    - Final Year Project: offline HTML5 map viewer app. I implemented a TypeScript parser for the binary Mapsforge file format, along with a HTML canvas-based map renderer.
     - Studied modules including: Software Language Engineering, Functional Programming, User-Centred Design, Multi-Agent Systems, Databases, and Operating Systems.
 
     === A-Levels \
@@ -64,13 +66,6 @@ layout: cv
     #term[Sep 2017 --- Aug 2019][Bournemouth, Dorset]
 
     - Computer Science (B), Geography (B), Resistant Materials (C), and Physics (D)
-
-    == Interests
-
-    - Using and contributing to free & open-source software
-    - Editing OpenStreetMap, using JOSM or Every Door
-    // - Volunteered with the Scouts as a Young Leader
-    // - Amateur photography
 
     // #if target() == "paged" {
     //  colbreak()
@@ -84,13 +79,12 @@ layout: cv
 
     === #link("https://github.com/GeorgeHoneywood/thegoodmap/")[The Good Map]
 
-    Collaboratively developed a cross-platform mobile app (in Flutter) to allow people to find environmentally friendly establishments, using data from OpenStreetMap.
+    Collaboratively developed a cross-platform mobile app in Flutter, to allow users to find ecofriendly establishments, using data from OpenStreetMap.
 
     === Employee Appraisal System
 
-    - Worked as part of a 4-person team to create a web app, designed to evaluate employees of a company.
-    - Developed an API in Flask to conform the Requirements Specification and Design Description.
-    - After development was completed, wrote an Acceptance Testing report, for a delivered solution from another team.
+    - University project, worked as part of a 4-person team to create a web app, designed to evaluate employees of a company.
+    - Developed an API in Flask to conform to a Requirements Specification and Design Description.
 
     === Hackathons
 
@@ -103,14 +97,15 @@ layout: cv
 
     === Homelab
 
-    - I administrate a headless server which hosts utilities and storage for my home network. It runs Proxmox VE as a hypervisor, with ZFS to provide storage.
-    - Each service runs in a separate LXC container, to ensure isolation & security. It also enables me to safely update programs, as you can roll back if issues occur.
-    - NGINX is used as a reverse proxy, to allow external access to internal services, such as a Nextcloud instance.
+    I administrate a headless server which hosts utilities and storage for my home network. It runs Proxmox VE as a hypervisor, with ZFS to provide storage. Each service runs in a separate LXC container, which provides some isolation, without the overhead of full VMs. \
+    I also use a small VPS to run other services, like my #link("https://george.honeywood.org.uk")[personal website] #if target() != "paged" [(that you are currently viewing!)] and a WireGuard#sym.trademark.registered VPN.
 
-    === VPS
+    == Interests
 
-    - I use a small VPS to run other services, like Gitea, which is used to host Git repositories for projects that I am developing.
-    - As it has a fast internet connection, I also use it as a VPN (through WireGuard) to protect my traffic on unsecured Wi-Fi.
+    - Using and contributing to free & open-source software
+    - Editing OpenStreetMap, using JOSM or Every Door
+    // - Volunteered with the Scouts as a Young Leader
+    // - Amateur photography
 
     // == Skills
 
