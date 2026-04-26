@@ -29,3 +29,4 @@
 /tags/typst/
 /blog/typst-and-hugo/
 /blog/typst-and-hugo-properly/
+/tags/photography/
