@@ -83,9 +83,18 @@ sectionPagesMenu = "main"
   name = "Blog"
   title = "Blog"
   url = "/blog/"
+  weight = 1
+
+[[menu.main]]
+  identifier = "photos"
+  name = "Photos"
+  title = "Photos"
+  url = "/photos/"
+  weight = 2
 
 [[menu.main]]
   identifier = "cv"
   name = "CV"
   title = "CV"
   url = "/cv/"
+  weight = 3

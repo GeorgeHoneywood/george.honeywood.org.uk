@@ -3,8 +3,9 @@
 
     {{< image path="typst" alt="My CV, prepared using Typst" caption="An example of a document prepared using Typst, my CV">}}
 
-    to convert images to a smaller size before committing:
+    remove exif, plus convert to a smaller size before committing:
 
+    exiftool -geotag= -EXIF= -tagsFromFile @ -exif:Orientation *.jpg
     convert -strip  in.jpg -resize 1280x out.jpg
 
     add lazy=false for images above the fold
@@ -12,7 +13,8 @@
     credit to: https://www.brycewray.com/posts/2022/06/responsive-optimized-images-hugo/ 
 */}}
 
-{{ $src := .Page.Resources.GetMatch (printf "images/%s*" (.Get "path")) }}
+{{ $filter := images.AutoOrient }}
+{{ $src := .Page.Resources.GetMatch (printf "images/%s*" (.Get "path"))  | images.Filter $filter }}
 
 {{- $respSizes := slice "320" "640" "960" "1280" -}}
 {{/* if the viewport is >600px, then serve the nearest image greater than 600px,
