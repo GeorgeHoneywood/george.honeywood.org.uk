@@ -6,6 +6,9 @@
     remove exif, plus convert to a smaller size before committing:
 
     exiftool -geotag= -EXIF= -tagsFromFile @ -exif:Orientation *.jpg
+    mogrify -resize 1280x *.jpg
+
+    # or
     convert -strip  in.jpg -resize 1280x out.jpg
 
     add lazy=false for images above the fold
