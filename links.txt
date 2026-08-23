@@ -31,3 +31,4 @@
 /blog/typst-and-hugo-properly/
 /tags/photography/
 /blog/hyperoptic/
+/blog/uni-final-year-project/

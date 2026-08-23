@@ -224,10 +224,16 @@ footer {
 }
 
 /* overrides */
-.post__content {
+.post__content > {
   ul li {
     margin-bottom: 0.5rem;
   }
+  ol > li {
+    margin-bottom: 0.5rem;
+  }
+  // ol li p {
+  //   margin-top: 0.5rem;
+  // }
 }
 
 .twitter-tweet.twitter-tweet-rendered {

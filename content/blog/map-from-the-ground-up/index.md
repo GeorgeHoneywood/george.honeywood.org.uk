@@ -4,13 +4,13 @@ date: 2023-07-04T11:19:09Z
 draft: false
 description: "A summary of how one might go about building a digital map."
 keywords: ["maps", "projection", "tiles", "openstreetmap"]
-tags: ["openstreetmap", "projects"]
+tags: ["openstreetmap", "projects", "development"]
 math: false
 toc: false
 comments: true
 ---
 
-This is a summary of the Final Year Project that I completed as part of my last year at Royal Holloway. The task was to produce an "Offline HTML5 Map Application". You can try out the result, OSMO, at [files.george.honeywood.org.uk/final-deliverable/](https://files.george.honeywood.org.uk/final-deliverable/#16/51.4290/-0.5521). The code is available on [GitHub](https://github.com/GeorgeHoneywood/final-year-project), and I have also written a [formal report](https://github.com/GeorgeHoneywood/final-year-project/files/11584765/george-honeywood-final-report.pdf).
+This is a summary of the Final Year Project that I completed as part of my last year at Royal Holloway. The task was to produce an "Offline HTML5 Map Application". You can try out the result, OSMO, at [files.george.honeywood.org.uk/final-deliverable/](https://files.george.honeywood.org.uk/final-deliverable/#16/51.4290/-0.5521). The code is available on [GitHub](https://github.com/GeorgeHoneywood/final-year-project), and I have also written a formal report viewable [online]({{< relref "uni-final-year-project" >}}), or as a [PDF](https://github.com/GeorgeHoneywood/final-year-project/files/11584765/george-honeywood-final-report.pdf). 
 
 {{< image path="header.png" alt="Screenshot of the OSMO app, showing central London" lazy=false >}}
 
