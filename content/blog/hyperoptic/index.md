@@ -58,3 +58,60 @@ Somewhat amusingly Hyperoptic managed to schedule an internal installation appoi
 {{< image path="point-of-entry-module.jpg" alt="Fibre point of entry module" caption="Point of entry module, one of these is installed above each flat's door">}}
 
 I'll report back here once the install is complete --- hopefully it'll be done in the next few weeks, without too much more faff. I'm looking forward to the promised 1 Gbps speeds and latency in the single digit millis. The download speed will be ~30x our current speed, with the upload ~100x faster!
+
+## Update
+
+It took a bit longer than expected, but our Hyperoptic fibre is now working! Here's a timeline:
+
+* 2026-07-24: Hyperoptic door-to-door salesperson signed us up, with an inital install date of 2026-07-29.
+* 2026-07-29: Hyperoptic contractors turned up, but they were expecting one the of the aforementioned point of entry modules to already be installed above the flat door, so couldn't proceed.
+* 2026-08: Throughout August Hyperoptic support have a long email chain with the building management company and the freeholder, with the premise that Hyperoptic might need to penetrate the fire batting in the riser.\
+  This was confusing to me, as fibre had already been installed to other flats via the stairwell, not the riser!
+* 2026-08-26: Another Hyperoptic contractor attends, but they could not install the point of entry module, as the flats above us in the building were already live -- and connecting our flat would have disrupted their service.
+* 2026-09-04: A third group of Hyperoptic contactors attend, armed with a planned work order, and they install the fibre into the flat. Turns out the sticking point was that our flat has a metal beam above the door, which apparently the other flats don't have. They instead drilled through the door frame.\
+  The contractors also set up the router, but Hyperoptic's phone support was was not able to activate the service. Support said it would take 12-24 hours to activate.
+* 2026-09-05: I call Hyperoptic support, and they escalate the activation issue.
+* 2026-09-06: I call Hyperoptic support again.
+* 2026-09-08: The service is activated and working!
+
+The speeds & latency are as good as I was hoping for, and I've not seen any reliability issues so far.
+Downloading from my VPS:
+
+```bash
+root@desktop:~$ iperf3 -P 4 -Rc hetzner.honeyfox.uk
+Connecting to host hetzner.honeyfox.uk, port 5201
+Reverse mode, remote host hetzner.honeyfox.uk is sending
+[-snip-]
+[ ID] Interval           Transfer     Bitrate         Retr
+[SUM]   0.00-10.03  sec  1.06 GBytes   912 Mbits/sec  790
+```
+Uploading:
+
+```bash
+root@desktop:~$ iperf3 -c hetzner.honeyfox.uk
+Connecting to host hetzner.honeyfox.uk, port 5201
+[-snip-]
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.01  sec  1.07 GBytes   916 Mbits/sec    0
+```
+
+Ping to Cloudflare is circa 2 ms:
+
+```bash
+root@desktop:~$ ping -c 10 1.1
+PING 1.1 (1.0.0.1) 56(84) bytes of data.
+64 bytes from 1.0.0.1: icmp_seq=1 ttl=56 time=2.02 ms
+64 bytes from 1.0.0.1: icmp_seq=2 ttl=56 time=1.89 ms
+64 bytes from 1.0.0.1: icmp_seq=3 ttl=56 time=2.05 ms
+64 bytes from 1.0.0.1: icmp_seq=4 ttl=56 time=1.99 ms
+64 bytes from 1.0.0.1: icmp_seq=5 ttl=56 time=1.70 ms
+64 bytes from 1.0.0.1: icmp_seq=6 ttl=56 time=1.55 ms
+64 bytes from 1.0.0.1: icmp_seq=7 ttl=56 time=2.53 ms
+64 bytes from 1.0.0.1: icmp_seq=8 ttl=56 time=2.43 ms
+64 bytes from 1.0.0.1: icmp_seq=9 ttl=56 time=1.92 ms
+64 bytes from 1.0.0.1: icmp_seq=10 ttl=56 time=2.17 ms
+
+--- 1.1 ping statistics ---
+10 packets transmitted, 10 received, 0% packet loss, time 9011ms
+rtt min/avg/max/mdev = 1.554/2.022/2.527/0.282 ms
+```
